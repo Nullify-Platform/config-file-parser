@@ -1,4 +1,4 @@
-.PHONY: build clean deploy
+.PHONY: build clean
 
 GOENV = CGO_ENABLED=0 GOOS=linux GOARCH=amd64
 
