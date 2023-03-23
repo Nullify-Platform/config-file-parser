@@ -1,1 +1,2 @@
+minimum_comment_severity: medium
 ignore_dirs: ["data"]

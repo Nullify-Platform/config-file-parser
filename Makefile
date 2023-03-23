@@ -11,6 +11,9 @@ clean:
 format: 
 	gofmt -w ./...
 
+test:
+	go test ./...
+
 cov:
 	-go test -coverpkg=./... -coverprofile=coverage.txt -covermode count ./...
 	-gocover-cobertura < coverage.txt > coverage.xml
