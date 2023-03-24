@@ -55,6 +55,14 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			expected: true,
 		},
 		{
+			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityUnknown)},
+			expected: true,
+		},
+		{
+			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityUnknown)},
+			expected: true,
+		},
+		{
 			config:   &models.Configuration{MinimumCommentSeverity: "invalid-severity"},
 			expected: false,
 		},

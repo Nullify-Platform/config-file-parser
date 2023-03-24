@@ -5,4 +5,5 @@ const (
 	SeverityHigh     = "HIGH"
 	SeverityMedium   = "MEDIUM"
 	SeverityLow      = "LOW"
+	SeverityUnknown  = "UNKNOWN"
 )

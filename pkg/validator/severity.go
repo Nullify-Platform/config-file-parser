@@ -13,6 +13,7 @@ var validSeveritites = []string{
 	models.SeverityMedium,
 	models.SeverityHigh,
 	models.SeverityCritical,
+	models.SeverityUnknown,
 }
 
 // ValidateMinimumCommentSeverity returns true if the minimum_comment_severity
@@ -22,6 +23,7 @@ var validSeveritites = []string{
 //   - MEDIUM / medium
 //   - HIGH / high
 //   - CRITICAL / critical
+//   - UNKNOWN / unknown
 func ValidateMinimumCommentSeverity(config *models.Configuration) bool {
 	return slices.Contains(validSeveritites, strings.ToUpper(config.MinimumCommentSeverity))
 }
