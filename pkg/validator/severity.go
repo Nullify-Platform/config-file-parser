@@ -1,8 +1,6 @@
 package validator
 
 import (
-	"strings"
-
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 	"golang.org/x/exp/slices"
 )
@@ -23,5 +21,5 @@ var validSeveritites = []string{
 //   - HIGH / high
 //   - CRITICAL / critical
 func ValidateMinimumCommentSeverity(config *models.Configuration) bool {
-	return slices.Contains(validSeveritites, strings.ToUpper(config.MinimumCommentSeverity))
+	return slices.Contains(validSeveritites, config.MinimumCommentSeverity)
 }

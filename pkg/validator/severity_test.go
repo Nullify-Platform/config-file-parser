@@ -1,7 +1,6 @@
 package validator
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/nullify-platform/config-file-parser/pkg/models"
@@ -27,15 +26,7 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityLow)},
-			expected: true,
-		},
-		{
 			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityMedium},
-			expected: true,
-		},
-		{
-			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityMedium)},
 			expected: true,
 		},
 		{
@@ -43,15 +34,7 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityHigh)},
-			expected: true,
-		},
-		{
 			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityCritical},
-			expected: true,
-		},
-		{
-			config:   &models.Configuration{MinimumCommentSeverity: strings.ToLower(models.SeverityCritical)},
 			expected: true,
 		},
 		{
