@@ -9,7 +9,7 @@ import (
 )
 
 const configStr string = `
-minimum_comment_severity: medium
+minimum_comment_severity: high
 ignore_dirs: ["data"]
 `
 
@@ -28,11 +28,19 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			},
 		},
 		{
-			name: "",
+			name: "user provided values",
 			data: configStr,
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityMedium,
+				MinimumCommentSeverity: models.SeverityHigh,
 				IgnoreDirs:             []string{"data"},
+			},
+		},
+		{
+			name: "user provided empty minimum_comment_severity",
+			data: "minimum_comment_severity: ''",
+			expected: &models.Configuration{
+				MinimumCommentSeverity: models.SeverityMedium,
+				IgnoreDirs:             []string{},
 			},
 		},
 	} {

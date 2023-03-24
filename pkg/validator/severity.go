@@ -6,7 +6,6 @@ import (
 )
 
 var validSeveritites = []string{
-	"",
 	models.SeverityLow,
 	models.SeverityMedium,
 	models.SeverityHigh,

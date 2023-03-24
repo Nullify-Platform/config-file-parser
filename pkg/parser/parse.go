@@ -8,7 +8,7 @@ import (
 )
 
 func ParseConfiguration(data []byte) (*models.Configuration, error) {
-	config := GetDefaultConfig()
+	config := NewDefaultConfig()
 	err := yaml.Unmarshal([]byte(data), config)
 	if err != nil {
 		return nil, err
@@ -19,4 +19,7 @@ func ParseConfiguration(data []byte) (*models.Configuration, error) {
 
 func sanitizeConfig(config *models.Configuration) {
 	config.MinimumCommentSeverity = strings.ToUpper(config.MinimumCommentSeverity)
+	if config.MinimumCommentSeverity == "" {
+		config.MinimumCommentSeverity = DefaultMinimumCommentSeverity
+	}
 }

@@ -2,9 +2,11 @@ package parser
 
 import "github.com/nullify-platform/config-file-parser/pkg/models"
 
-func GetDefaultConfig() *models.Configuration {
+const DefaultMinimumCommentSeverity = models.SeverityMedium
+
+func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{
-		MinimumCommentSeverity: models.SeverityMedium,
+		MinimumCommentSeverity: DefaultMinimumCommentSeverity,
 		IgnoreDirs:             []string{},
 	}
 }
