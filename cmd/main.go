@@ -12,8 +12,14 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Printf("ignore dirs:\n")
+	fmt.Println("ignore dirs:")
 	for _, dir := range config.IgnoreDirs {
 		fmt.Printf("  - %s\n", dir)
 	}
+
+	fmt.Println("emails:")
+	for _, dir := range config.EmailNotifications {
+		fmt.Printf("  - %s\n", dir)
+	}
+
 }
