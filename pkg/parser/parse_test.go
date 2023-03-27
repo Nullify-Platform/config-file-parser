@@ -44,8 +44,8 @@ func TestParseConfiguration(t *testing.T) {
 			},
 		},
 		{
-			name: "user provided low minimum_comment_severity",
-			data: "minimum_comment_severity: 'low'",
+			name: "user provided LOW minimum_comment_severity",
+			data: "minimum_comment_severity: 'LOW'",
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityLow,
 				IgnoreDirs:             nil,
