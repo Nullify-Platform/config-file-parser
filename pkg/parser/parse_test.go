@@ -13,7 +13,7 @@ minimum_comment_severity: high
 ignore_dirs: ["data"]
 `
 
-func TestValidateMinimumCommentSeverity(t *testing.T) {
+func TestParseConfiguration(t *testing.T) {
 	for _, scenario := range []struct {
 		name     string
 		data     string
@@ -24,7 +24,7 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			data: "",
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             []string{},
+				IgnoreDirs:             nil,
 			},
 		},
 		{
@@ -40,7 +40,15 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			data: "minimum_comment_severity: ''",
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             []string{},
+				IgnoreDirs:             nil,
+			},
+		},
+		{
+			name: "user provided low minimum_comment_severity",
+			data: "minimum_comment_severity: 'low'",
+			expected: &models.Configuration{
+				MinimumCommentSeverity: models.SeverityLow,
+				IgnoreDirs:             nil,
 			},
 		},
 	} {
