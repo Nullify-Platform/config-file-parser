@@ -21,5 +21,4 @@ func main() {
 	for _, dir := range config.EmailNotifications {
 		fmt.Printf("  - %s\n", dir)
 	}
-
 }
