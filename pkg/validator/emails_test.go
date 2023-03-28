@@ -113,7 +113,7 @@ func TestParsingAndValidEmails(t *testing.T) {
 
 	config4, err := parser.ParseConfiguration([]byte(emailWithEmptyArray))
 	require.NoError(t, err)
-	require.Equal(t, true, ValidateEmail(config4))
+	require.Equal(t, false, ValidateEmail(config4))
 
 	config5, err := parser.ParseConfiguration([]byte(twoValidEmails))
 	require.NoError(t, err)
