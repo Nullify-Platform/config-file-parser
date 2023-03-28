@@ -7,7 +7,6 @@ import (
 )
 
 func ValidateEmail(config *models.Configuration) bool {
-
 	if config.EmailNotifications == nil {
 		return true
 	}
