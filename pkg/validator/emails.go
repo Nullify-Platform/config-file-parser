@@ -11,10 +11,6 @@ func ValidateEmail(config *models.Configuration) bool {
 		return true
 	}
 
-	if len(config.EmailNotifications) == 1 && config.EmailNotifications[0] == "" {
-		return false
-	}
-
 	for _, email := range config.EmailNotifications {
 		_, err := mail.ParseAddress(email)
 		if err != nil {
