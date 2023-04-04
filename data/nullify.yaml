@@ -1,2 +1,3 @@
 minimum_comment_severity: medium
 ignore_dirs: ["data"]
+email_notifications: ["notifications@nullify.cloud", "noreply@nullify.cloud"]
