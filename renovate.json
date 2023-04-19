@@ -2,5 +2,19 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:base"
+  ],
+  "schedule": ["before 9am on monday"],
+  "docker": {
+    "pinDigests": true
+  },
+  "labels": ["patch"],
+  "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths"],
+  "packageRules": [
+    {
+      "groupName": "Package Updates",
+      "groupSlug": "package-updates",
+      "matchUpdateTypes": ["major", "minor", "patch", "lockFileMaintenance"],
+      "matchPackagePatterns": ["*"]
+    }
   ]
 }
