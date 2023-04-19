@@ -9,11 +9,12 @@
   },
   "labels": ["patch"],
   "postUpdateOptions": ["gomodTidy", "gomodUpdateImportPaths"],
+  "separateMajorMinor": false,
   "packageRules": [
     {
       "groupName": "Package Updates",
       "groupSlug": "package-updates",
-      "matchUpdateTypes": ["major", "minor", "patch", "lockFileMaintenance"],
+      "matchUpdateTypes": ["major", "minor", "patch"],
       "matchPackagePatterns": ["*"]
     }
   ]
