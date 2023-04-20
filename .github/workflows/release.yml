@@ -30,12 +30,12 @@ jobs:
           echo "VERSION:   ${{ steps.get-version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "SHORT_SHA: $(git rev-parse --short HEAD)" >> $GITHUB_STEP_SUMMARY
   release:
-    if: ${{ needs.get-version.outputs.version != 'undefined' || (github.event_name == 'workflow_dispatch' || needs.get-version.outputs.version != 'undefined') }}
+    if: ${{ needs.get-version.outputs.version != 'undefined' || (github.event_name == 'workflow_dispatch' && needs.get-version.outputs.version != 'undefined') }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Generate Release Tag
-        run: echo "RELEASE_TAG=v${{needs.get-version.outputs.version}}" >> $GITHUB_ENV
+        run: echo "RELEASE_TAG=v${{ needs.get-version.outputs.version }}" >> $GITHUB_ENV
       - name: Generate Release
         uses: softprops/action-gh-release@v1
         with:
