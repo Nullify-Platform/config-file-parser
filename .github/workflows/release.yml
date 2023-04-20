@@ -26,7 +26,7 @@ jobs:
         id: get-version
         uses: nullify-platform/private-github-actions/actions/release-version@main
       - run: |
-          echo "${{ env.SERVICE_NAME }} @ ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "config-file-parser @ ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
           echo "VERSION:   ${{ steps.get-version.outputs.version }}" >> $GITHUB_STEP_SUMMARY
           echo "SHORT_SHA: $(git rev-parse --short HEAD)" >> $GITHUB_STEP_SUMMARY
   release:
