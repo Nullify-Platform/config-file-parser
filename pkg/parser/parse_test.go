@@ -11,6 +11,7 @@ import (
 const configStr string = `
 minimum_comment_severity: high
 ignore_dirs: ["data"]
+secrets_whitelist: ["secretPassword",	 "superSecretPassword"]
 `
 
 func TestParseConfiguration(t *testing.T) {
@@ -25,6 +26,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityMedium,
 				IgnoreDirs:             nil,
+				SecretsWhitelist:       nil,
 			},
 		},
 		{
@@ -33,6 +35,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityHigh,
 				IgnoreDirs:             []string{"data"},
+				SecretsWhitelist:       []string{"secretPassword", "superSecretPassword"},
 			},
 		},
 		{
@@ -41,6 +44,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityMedium,
 				IgnoreDirs:             nil,
+				SecretsWhitelist:       nil,
 			},
 		},
 		{
@@ -49,6 +53,25 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				MinimumCommentSeverity: models.SeverityLow,
 				IgnoreDirs:             nil,
+				SecretsWhitelist:       nil,
+			},
+		},
+		{
+			name: "user provided a single secret",
+			data: `secrets_whitelist: ["password"]`,
+			expected: &models.Configuration{
+				MinimumCommentSeverity: models.SeverityMedium,
+				IgnoreDirs:             nil,
+				SecretsWhitelist:       []string{"password"},
+			},
+		},
+		{
+			name: "user provided empty secret whitelist",
+			data: `secrets_whitelist: `,
+			expected: &models.Configuration{
+				MinimumCommentSeverity: models.SeverityMedium,
+				IgnoreDirs:             nil,
+				SecretsWhitelist:       nil,
 			},
 		},
 	} {
