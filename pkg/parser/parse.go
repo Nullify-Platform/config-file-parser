@@ -18,8 +18,8 @@ func ParseConfiguration(data []byte) (*models.Configuration, error) {
 }
 
 func sanitizeConfig(config *models.Configuration) {
-	config.MinimumCommentSeverity = strings.ToUpper(config.MinimumCommentSeverity)
-	if config.MinimumCommentSeverity == "" {
-		config.MinimumCommentSeverity = DefaultMinimumCommentSeverity
+	config.SeverityThreshold = strings.ToUpper(config.SeverityThreshold)
+	if config.SeverityThreshold == "" {
+		config.SeverityThreshold = DefaultSeverityThreshold
 	}
 }

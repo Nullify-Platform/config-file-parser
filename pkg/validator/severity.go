@@ -12,13 +12,13 @@ var validSeveritites = []string{
 	models.SeverityCritical,
 }
 
-// ValidateMinimumCommentSeverity returns true if the minimum_comment_severity
+// ValidateSeverityThreshold returns true if the severity_threshold
 // option is one of the valid values:
 //   - ""
 //   - LOW / low
 //   - MEDIUM / medium
 //   - HIGH / high
 //   - CRITICAL / critical
-func ValidateMinimumCommentSeverity(config *models.Configuration) bool {
-	return slices.Contains(validSeveritites, config.MinimumCommentSeverity)
+func ValidateSeverityThreshold(config *models.Configuration) bool {
+	return slices.Contains(validSeveritites, config.SeverityThreshold)
 }

@@ -54,46 +54,46 @@ func TestValidEmails(t *testing.T) {
 }
 
 const validEmail string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: ["hello@gmail.com"]
 `
 
 const emptyEmail string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications:
 `
 
 const noEmailConfig string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 `
 const emailWithEmptyArray string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: [""]
 `
 
 const twoValidEmails string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: ["john@nullify.cloud", "lisa@gmail.com"]
 `
 const validAndInvalid string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: ["john()@nullify.cloud", "lisa@gmail.com"]
 `
 
 const missingCommaIncorrectQuotes string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: ["hello@gmail.com john@nullify.cloud"]
 `
 
 const missingComma string = `
-minimum_comment_severity: medium
+severity_threshold: medium
 ignore_dirs: ["data"]	
 email_notifications: ["hello@gmail.com" "john@nullify.cloud"]
 `
