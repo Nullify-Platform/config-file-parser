@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestValidateMinimumCommentSeverity(t *testing.T) {
+func TestValidateSeverityThreshold(t *testing.T) {
 	for _, scenario := range []struct {
 		name     string
 		config   *models.Configuration
@@ -25,38 +25,38 @@ func TestValidateMinimumCommentSeverity(t *testing.T) {
 			expected: true,
 		},
 		{
-			name:     "empty MinimumCommentSeverity",
-			config:   &models.Configuration{MinimumCommentSeverity: ""},
+			name:     "empty SeverityThreshold",
+			config:   &models.Configuration{SeverityThreshold: ""},
 			expected: false,
 		},
 		{
 			name:     "SeverityLow",
-			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityLow},
+			config:   &models.Configuration{SeverityThreshold: models.SeverityLow},
 			expected: true,
 		},
 		{
 			name:     "SeverityMedium",
-			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityMedium},
+			config:   &models.Configuration{SeverityThreshold: models.SeverityMedium},
 			expected: true,
 		},
 		{
 			name:     "SeverityHigh",
-			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityHigh},
+			config:   &models.Configuration{SeverityThreshold: models.SeverityHigh},
 			expected: true,
 		},
 		{
 			name:     "SeverityCritical",
-			config:   &models.Configuration{MinimumCommentSeverity: models.SeverityCritical},
+			config:   &models.Configuration{SeverityThreshold: models.SeverityCritical},
 			expected: true,
 		},
 		{
 			name:     "unexpected severity",
-			config:   &models.Configuration{MinimumCommentSeverity: "invalid-severity"},
+			config:   &models.Configuration{SeverityThreshold: "invalid-severity"},
 			expected: false,
 		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
-			isValid := ValidateMinimumCommentSeverity(scenario.config)
+			isValid := ValidateSeverityThreshold(scenario.config)
 			assert.Equal(t, scenario.expected, isValid)
 		})
 	}

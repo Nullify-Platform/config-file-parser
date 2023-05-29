@@ -9,7 +9,7 @@ import (
 )
 
 const configStr string = `
-minimum_comment_severity: high
+severity_threshold: high
 ignore_dirs: ["data"]
 secrets_whitelist: ["secretPassword",	 "superSecretPassword"]
 `
@@ -24,61 +24,61 @@ func TestParseConfiguration(t *testing.T) {
 			name: "default values",
 			data: "",
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             nil,
-				SecretsWhitelist:       nil,
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				SecretsWhitelist:  nil,
 			},
 		},
 		{
 			name: "user provided values",
 			data: configStr,
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityHigh,
-				IgnoreDirs:             []string{"data"},
-				SecretsWhitelist:       []string{"secretPassword", "superSecretPassword"},
+				SeverityThreshold: models.SeverityHigh,
+				IgnoreDirs:        []string{"data"},
+				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
 			},
 		},
 		{
-			name: "user provided empty minimum_comment_severity",
-			data: "minimum_comment_severity: ''",
+			name: "user provided empty severity_threshold",
+			data: "severity_threshold: ''",
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             nil,
-				SecretsWhitelist:       nil,
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				SecretsWhitelist:  nil,
 			},
 		},
 		{
-			name: "user provided LOW minimum_comment_severity",
-			data: "minimum_comment_severity: 'LOW'",
+			name: "user provided LOW severity_threshold",
+			data: "severity_threshold: 'LOW'",
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityLow,
-				IgnoreDirs:             nil,
-				SecretsWhitelist:       nil,
+				SeverityThreshold: models.SeverityLow,
+				IgnoreDirs:        nil,
+				SecretsWhitelist:  nil,
 			},
 		},
 		{
 			name: "user provided a single secret",
 			data: `secrets_whitelist: ["password"]`,
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             nil,
-				SecretsWhitelist:       []string{"password"},
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				SecretsWhitelist:  []string{"password"},
 			},
 		},
 		{
 			name: "user provided empty secret whitelist",
 			data: `secrets_whitelist: `,
 			expected: &models.Configuration{
-				MinimumCommentSeverity: models.SeverityMedium,
-				IgnoreDirs:             nil,
-				SecretsWhitelist:       nil,
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				SecretsWhitelist:  nil,
 			},
 		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config, err := ParseConfiguration([]byte(scenario.data))
 			require.NoError(t, err)
-			assert.Equal(t, scenario.expected.MinimumCommentSeverity, config.MinimumCommentSeverity)
+			assert.Equal(t, scenario.expected.SeverityThreshold, config.SeverityThreshold)
 			require.Equal(t, len(scenario.expected.IgnoreDirs), len(config.IgnoreDirs))
 			for i, v := range config.IgnoreDirs {
 				assert.Equal(t, v, scenario.expected.IgnoreDirs[i])
