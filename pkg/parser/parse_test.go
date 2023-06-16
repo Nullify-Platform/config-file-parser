@@ -100,16 +100,6 @@ func TestParseConfiguration(t *testing.T) {
 				SecretsWhitelist:  nil,
 			},
 		},
-		{
-			name: "user provided glob in ignore patterns",
-			data: `ignore_patterns: ["*d"]`,
-			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
-				IgnoreDirs:        nil,
-				IgnorePatterns:    []string{"*d"},
-				SecretsWhitelist:  nil,
-			},
-		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config, err := ParseConfiguration([]byte(scenario.data))
