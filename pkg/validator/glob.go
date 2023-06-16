@@ -1,8 +1,7 @@
 package validator
 
 import (
-	"path/filepath"
-
+	"github.com/gobwas/glob"
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 )
 
@@ -12,7 +11,7 @@ func ValidateGlob(config *models.Configuration) bool {
 	}
 
 	for _, pattern := range config.IgnorePatterns {
-		_, err := filepath.Glob(pattern)
+		_, err := glob.Compile(pattern)
 		if err != nil {
 			return false
 		}
