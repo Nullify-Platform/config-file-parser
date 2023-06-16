@@ -6,5 +6,5 @@ import (
 
 // ValidateConfig return true if provided configuration is valid
 func ValidateConfig(config *models.Configuration) bool {
-	return ValidateSeverityThreshold(config) && ValidateEmail(config)
+	return ValidateSeverityThreshold(config) && ValidateEmail(config) && ValidateGlob(config)
 }

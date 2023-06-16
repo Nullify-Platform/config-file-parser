@@ -26,6 +26,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
+				IgnorePatterns:    nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -35,6 +36,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityHigh,
 				IgnoreDirs:        []string{"data"},
+				IgnorePatterns:    []string{"*d"},
 				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
 			},
 		},
@@ -44,6 +46,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
+				IgnorePatterns:    nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -53,6 +56,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityLow,
 				IgnoreDirs:        nil,
+				IgnorePatterns:    nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -62,6 +66,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
+				IgnorePatterns:    nil,
 				SecretsWhitelist:  []string{"password"},
 			},
 		},
@@ -71,6 +76,27 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
+				SecretsWhitelist:  nil,
+				IgnorePatterns:    nil,
+			},
+		},
+		{
+			name: "user provided empty ignore patterns",
+			data: `ignore_patterns: `,
+			expected: &models.Configuration{
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				IgnorePatterns:    nil,
+				SecretsWhitelist:  nil,
+			},
+		},
+		{
+			name: "user provided glob in ignore patterns",
+			data: `ignore_patterns: ["*d"]`,
+			expected: &models.Configuration{
+				SeverityThreshold: models.SeverityMedium,
+				IgnoreDirs:        nil,
+				IgnorePatterns:    []string{"*d"},
 				SecretsWhitelist:  nil,
 			},
 		},

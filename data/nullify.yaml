@@ -1,3 +1,4 @@
 severity_threshold: medium
 ignore_dirs: ["data"]
+ignore_pattens: ["*d"]
 email_notifications: ["notifications@nullify.cloud", "noreply@nullify.cloud"]
