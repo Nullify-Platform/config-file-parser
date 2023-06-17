@@ -26,7 +26,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -36,7 +36,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityHigh,
 				IgnoreDirs:        []string{"data"},
-				IgnorePatterns:    []string{"*d"},
+				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
 			},
 		},
@@ -46,7 +46,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -56,7 +56,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityLow,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
 			},
 		},
@@ -66,7 +66,7 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 				SecretsWhitelist:  []string{"password"},
 			},
 		},
@@ -77,26 +77,26 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
 				SecretsWhitelist:  nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 			},
 		},
 		{
 			name: "user provided empty ignore patterns",
-			data: `ignore_patterns: `,
+			data: `ignore_paths: `,
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    nil,
+				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
 			},
 		},
 		{
 			name: "user provided glob in ignore patterns",
-			data: `ignore_patterns: ["*d"]`,
+			data: `ignore_paths: ["*d"]`,
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				IgnorePatterns:    []string{"*d"},
+				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  nil,
 			},
 		},

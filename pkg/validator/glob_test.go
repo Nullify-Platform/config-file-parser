@@ -21,33 +21,33 @@ func TestValidGlobs(t *testing.T) {
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{}},
+			config:   &models.Configuration{IgnorePaths: []string{}},
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{"*[abc]"}},
+			config:   &models.Configuration{IgnorePaths: []string{"*[abc]"}},
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{"*[abc]", "*d"}},
+			config:   &models.Configuration{IgnorePaths: []string{"*[abc]", "*d"}},
 			expected: true,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{"*[abc"}},
+			config:   &models.Configuration{IgnorePaths: []string{"*[abc"}},
 			expected: false,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{"*d", "*[abc"}},
+			config:   &models.Configuration{IgnorePaths: []string{"*d", "*[abc"}},
 			expected: false,
 		},
 		{
-			config:   &models.Configuration{IgnorePatterns: []string{"*[abc", "*d"}},
+			config:   &models.Configuration{IgnorePaths: []string{"*[abc", "*d"}},
 			expected: false,
 		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			isValid := ValidateGlob(scenario.config)
-			assert.Equalf(t, isValid, scenario.expected, fmt.Sprintf("failed test, globs: %s, len: %d\n", scenario.config.IgnorePatterns, len(scenario.config.IgnorePatterns)))
+			assert.Equalf(t, isValid, scenario.expected, fmt.Sprintf("failed test, globs: %s, len: %d\n", scenario.config.IgnorePaths, len(scenario.config.IgnorePaths)))
 		})
 	}
 }
@@ -55,41 +55,41 @@ func TestValidGlobs(t *testing.T) {
 const validGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: ["*[abc]"]
+ignore_paths: ["*[abc]"]
 email_notifications: ["hello@gmail.com"]
 `
 const emptyGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: ["*[abc]", "*d"]
+ignore_paths: ["*[abc]", "*d"]
 email_notifications: ["hello@gmail.com"]
 `
 
 const twoValidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: 
+ignore_paths: 
 email_notifications: ["hello@gmail.com"]
 `
 
 const invalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: ["*[abc"]
+ignore_paths: ["*[abc"]
 email_notifications: ["hello@gmail.com"]
 `
 
 const endInvalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: ["*d", "*[abc"]
+ignore_paths: ["*d", "*[abc"]
 email_notifications: ["hello@gmail.com"]
 `
 
 const startInvalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
-ignore_patterns: ["*[abc", "*d"]
+ignore_paths: ["*[abc", "*d"]
 email_notifications: ["hello@gmail.com"]
 `
 
