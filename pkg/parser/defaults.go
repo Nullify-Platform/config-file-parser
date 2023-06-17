@@ -8,6 +8,6 @@ func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{
 		SeverityThreshold: DefaultSeverityThreshold,
 		IgnoreDirs:        []string{},
-		IgnorePatterns:    []string{},
+		IgnorePaths:       []string{},
 	}
 }

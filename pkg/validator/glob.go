@@ -6,11 +6,11 @@ import (
 )
 
 func ValidateGlob(config *models.Configuration) bool {
-	if config.IgnorePatterns == nil {
+	if config.IgnorePaths == nil {
 		return true
 	}
 
-	for _, pattern := range config.IgnorePatterns {
+	for _, pattern := range config.IgnorePaths {
 		_, err := glob.Compile(pattern)
 		if err != nil {
 			return false
