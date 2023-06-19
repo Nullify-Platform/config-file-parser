@@ -27,7 +27,7 @@ jobs:
           git diff --exit-code
   lint:
     runs-on: ubuntu-latest
-    container: golangci/golangci-lint:v1.53.2
+    container: golangci/golangci-lint:v1.53.3
     steps:
       - uses: actions/checkout@v3
       - name: Lint
