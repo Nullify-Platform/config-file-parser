@@ -28,6 +28,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 		{
@@ -38,6 +39,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        []string{"data"},
 				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
+				SecretsAllowlist:  []string{"secretPassword", "superSecretPassword"},
 			},
 		},
 		{
@@ -48,6 +50,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 		{
@@ -58,6 +61,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 		{
@@ -68,6 +72,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  []string{"password"},
+				SecretsAllowlist:  []string{"password"},
 			},
 		},
 		{
@@ -76,8 +81,9 @@ func TestParseConfiguration(t *testing.T) {
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityMedium,
 				IgnoreDirs:        nil,
-				SecretsWhitelist:  nil,
 				IgnorePaths:       nil,
+				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 		{
@@ -88,6 +94,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 		{
@@ -98,6 +105,7 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  nil,
+				SecretsAllowlist:  nil,
 			},
 		},
 	} {

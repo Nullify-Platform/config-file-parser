@@ -10,5 +10,9 @@ func ValidateSecrets(config *models.Configuration) bool {
 		return true
 	}
 
+	if config.SecretsAllowlist == nil {
+		return true
+	}
+
 	return true
 }
