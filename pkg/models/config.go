@@ -5,5 +5,7 @@ type Configuration struct {
 	IgnoreDirs         []string `yaml:"ignore_dirs"`
 	IgnorePaths        []string `yaml:"ignore_paths"`
 	EmailNotifications []string `yaml:"email_notifications"`
-	SecretsWhitelist   []string `yaml:"secrets_whitelist"`
+	// TODO deprecate
+	SecretsWhitelist []string `yaml:"secrets_whitelist"`
+	SecretsAllowlist []string `yaml:"secrets_allowlist"`
 }
