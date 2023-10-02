@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     container: golang:1.21.1
     steps:
-      - name: setup
-        run: git config --global --add safe.directory $(pwd)
       - uses: actions/checkout@v4
       - name: build
         run: make build
