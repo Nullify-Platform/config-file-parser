@@ -43,7 +43,7 @@ func TestValidEmails(t *testing.T) {
 						Targets: []models.NotificationTarget{
 							{
 								Type:   models.NotificationTypeEmail,
-								Emails: []string{"john@nullify.cloud"},
+								Emails: []string{"john@nullify.ai"},
 							},
 						},
 					},
@@ -60,7 +60,7 @@ func TestValidEmails(t *testing.T) {
 						Targets: []models.NotificationTarget{
 							{
 								Type:   models.NotificationTypeEmail,
-								Emails: []string{"lisa@nullify.cloud", "lisa@gmail.nullify.cloud"},
+								Emails: []string{"lisa@nullify.ai", "lisa@gmail.nullify.ai"},
 							},
 						},
 					},
@@ -94,7 +94,7 @@ func TestValidEmails(t *testing.T) {
 						Targets: []models.NotificationTarget{
 							{
 								Type:   models.NotificationTypeEmail,
-								Emails: []string{"john@nullify.cloud", "john@@gmail.com"},
+								Emails: []string{"john@nullify.ai", "john@@gmail.com"},
 							},
 						},
 					},
@@ -160,14 +160,14 @@ notifications:
   test:
     targets:
     - type: email
-      emails: ["john@nullify.cloud", "lisa@gmail.com"]
+      emails: ["john@nullify.ai", "lisa@gmail.com"]
 `
 const validAndInvalid string = `
 notifications:
   test:
     targets:
     - type: email
-      emails: ["john()@nullify.cloud", "lisa@gmail.com"]
+      emails: ["john()@nullify.ai", "lisa@gmail.com"]
 `
 
 const missingCommaIncorrectQuotes string = `
@@ -175,7 +175,7 @@ notifications:
   test:
     targets:
     - type: email
-      emails: ["hello@gmail.com john@nullify.cloud"]
+      emails: ["hello@gmail.com john@nullify.ai"]
 `
 
 const missingComma string = `
@@ -183,7 +183,7 @@ notifications:
   test:
     targets:
     - type: email
-      emails: ["hello@gmail.com" "john@nullify.cloud"]
+      emails: ["hello@gmail.com" "john@nullify.ai"]
 `
 
 func TestParsingAndValidEmails(t *testing.T) {

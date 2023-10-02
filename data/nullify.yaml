@@ -1,7 +1,6 @@
 severity_threshold: medium
 ignore_dirs: ["data"]
 ignore_pattens: ["*d"]
-email_notifications: ["notifications@nullify.cloud", "noreply@nullify.cloud"]
 notifications:
   findings-to-slack-and-email:
     events:
@@ -18,4 +17,4 @@ notifications:
     - type: slack
       channel: "123456"
     - type: email
-      emails: [ notifications@nullify.cloud, noreply@nullify.cloud ]
+      emails: [ notifications@nullify.ai, noreply@nullify.ai ]
