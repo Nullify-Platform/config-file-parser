@@ -25,8 +25,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "empty notifications",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events:  []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{},
 					},
@@ -37,8 +37,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "single correct email",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events: []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{
 							{
@@ -54,8 +54,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "two correct emails",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events: []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{
 							{
@@ -71,8 +71,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "single incorrect email",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events: []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{
 							{
@@ -88,8 +88,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "one correct and one incorrect email",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events: []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{
 							{
@@ -105,8 +105,8 @@ func TestValidEmails(t *testing.T) {
 		{
 			name: "one incorrect email",
 			config: &models.Configuration{
-				Notifications: []models.Notification{
-					{
+				Notifications: map[string]models.Notification{
+					"test": {
 						Events: []models.NotificationEvent{},
 						Targets: []models.NotificationTarget{
 							{
@@ -129,16 +129,18 @@ func TestValidEmails(t *testing.T) {
 
 const validEmail string = `
 notifications:
-- targets:
-  - type: email
-    emails: ["hello@gmail.com"]
+  test:
+    targets:
+    - type: email
+      emails: ["hello@gmail.com"]
 `
 
 const emptyEmail string = `
 notifications:
-- targets:
-  - type: email
-    emails:
+  test:
+    targets:
+    - type: email
+      emails:
 `
 
 const noEmailConfig string = `
@@ -147,36 +149,41 @@ notifications:
 
 const emailWithEmptyArray string = `
 notifications:
-- targets:
-  - type: email
-    emails: [""]
+  test:
+    targets:
+    - type: email
+      emails: [""]
 `
 
 const twoValidEmails string = `
 notifications:
-- targets:
-  - type: email
-    emails: ["john@nullify.cloud", "lisa@gmail.com"]
+  test:
+    targets:
+    - type: email
+      emails: ["john@nullify.cloud", "lisa@gmail.com"]
 `
 const validAndInvalid string = `
 notifications:
-- targets:
-  - type: email
-    emails: ["john()@nullify.cloud", "lisa@gmail.com"]
+  test:
+    targets:
+    - type: email
+      emails: ["john()@nullify.cloud", "lisa@gmail.com"]
 `
 
 const missingCommaIncorrectQuotes string = `
 notifications:
-- targets:
-  - type: email
-    emails: ["hello@gmail.com john@nullify.cloud"]
+  test:
+    targets:
+    - type: email
+      emails: ["hello@gmail.com john@nullify.cloud"]
 `
 
 const missingComma string = `
 notifications:
-- targets:
-  - type: email
-    emails: ["hello@gmail.com" "john@nullify.cloud"]
+  test:
+    targets:
+    - type: email
+      emails: ["hello@gmail.com" "john@nullify.cloud"]
 `
 
 func TestParsingAndValidEmails(t *testing.T) {
