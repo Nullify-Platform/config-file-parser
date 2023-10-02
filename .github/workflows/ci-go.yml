@@ -15,9 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     container: golang:1.21.1
     steps:
-      - name: setup
-        run: |
-          git config --global --add safe.directory $(pwd)
       - uses: actions/checkout@v4
       - name: build
         run: make build
@@ -25,27 +22,14 @@ jobs:
         run: |
           go mod tidy
           git diff --exit-code
+      - name: test
+        run: make unit
   lint:
     runs-on: ubuntu-latest
     container: golangci/golangci-lint:v1.54.2
     steps:
+      - name: setup
+        run: git config --global --add safe.directory $(pwd)
       - uses: actions/checkout@v4
       - name: Lint
         run: golangci-lint run ./...
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Unit Tests
-        env:
-          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-        run: |
-          go install github.com/boumenot/gocover-cobertura@v1.2.0
-          make cov
-          curl -Os https://uploader.codecov.io/v0.3.5/linux/codecov
-          if sha256sum codecov | grep -q "080b43eaec3434326bb0f61653a82d27aba15c311ddde9d3f68cb364314f7aae"; then
-            chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} 
-          else
-            echo "sha256 of codecov changed"
-          fi
