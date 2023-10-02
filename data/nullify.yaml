@@ -2,3 +2,19 @@ severity_threshold: medium
 ignore_dirs: ["data"]
 ignore_pattens: ["*d"]
 email_notifications: ["notifications@nullify.cloud", "noreply@nullify.cloud"]
+notifications:
+- events:
+  - type: new-sast-findings
+    filters:
+      severity: high
+      confidence: high
+  - type: new-secrets
+  - type: new-sca-findings
+    filters:
+      severity: high
+      confidence: high
+  targets:
+  - type: slack
+    channel: "123456"
+  - type: email
+    emails: [ notifications@nullify.cloud, noreply@nullify.cloud ]

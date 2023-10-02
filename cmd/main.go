@@ -17,8 +17,16 @@ func main() {
 		fmt.Printf("  - %s\n", dir)
 	}
 
-	fmt.Println("emails:")
-	for _, dir := range config.EmailNotifications {
-		fmt.Printf("  - %s\n", dir)
+	fmt.Println("notifications:")
+	for _, notification := range config.Notifications {
+		fmt.Println("\tevents:")
+		for _, event := range notification.Events {
+			fmt.Printf("\t\t- %s\n", event.Type)
+		}
+
+		fmt.Println("\ttargets:")
+		for _, event := range notification.Targets {
+			fmt.Printf("\t\t- %s\n", event.Type)
+		}
 	}
 }
