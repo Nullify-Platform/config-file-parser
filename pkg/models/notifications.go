@@ -15,17 +15,17 @@ type NotificationEventFilters struct {
 }
 
 const (
-	NotificationTypeSlack   string = "slack"
 	NotificationTypeWebhook string = "webhook"
+	NotificationTypeSlack   string = "slack"
 	NotificationTypeEmail   string = "email"
 )
 
 type NotificationTarget struct {
 	Type string `yaml:"type"`
 
-	// optional
-	WebhookSecretID string   `yaml:"webhook_secret_id"`
-	WebookURL       string   `yaml:"webhook_url"`
-	SlackChannel    string   `yaml:"slack_channel"`
-	Emails          []string `yaml:"emails"`
+	// optional fields depending on the `type`
+	SecretID  string   `yaml:"secret_id"`
+	URL       string   `yaml:"url"`
+	ChannelID string   `yaml:"channel_id"`
+	Emails    []string `yaml:"emails"`
 }

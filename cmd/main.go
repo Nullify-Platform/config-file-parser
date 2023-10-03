@@ -18,15 +18,16 @@ func main() {
 	}
 
 	fmt.Println("notifications:")
-	for _, notification := range config.Notifications {
+	for name, notification := range config.Notifications {
+		fmt.Printf("- %s\n", name)
 		fmt.Println("\tevents:")
 		for _, event := range notification.Events {
-			fmt.Printf("\t\t- %s\n", event.Type)
+			fmt.Printf("\t- %s\n", event.Type)
 		}
 
 		fmt.Println("\ttargets:")
 		for _, event := range notification.Targets {
-			fmt.Printf("\t\t- %s\n", event.Type)
+			fmt.Printf("\t- %s\n", event.Type)
 		}
 	}
 }

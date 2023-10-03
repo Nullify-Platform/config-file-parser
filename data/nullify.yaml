@@ -2,6 +2,12 @@ severity_threshold: medium
 ignore_dirs: ["data"]
 ignore_pattens: ["*d"]
 notifications:
+  all-events-webhook:
+    events:
+    - type: "*"
+    targets:
+    - type: webhook
+      url: https://webhook.site/123456
   findings-to-slack-and-email:
     events:
     - type: new-sast-findings
@@ -15,6 +21,6 @@ notifications:
         confidence: high
     targets:
     - type: slack
-      channel: "123456"
+      channel_id: "123456"
     - type: email
       emails: [ notifications@nullify.ai, noreply@nullify.ai ]
