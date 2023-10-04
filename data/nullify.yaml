@@ -1,6 +1,8 @@
 severity_threshold: medium
-ignore_dirs: ["data"]
-ignore_pattens: ["*d"]
+ignore_dirs:
+  - data
+ignore_paths:
+  - data/**/*
 notifications:
   all-events-webhook:
     events:
@@ -23,3 +25,21 @@ notifications:
         channels: [ "123456" ]
       email:
         emails: [ notifications@nullify.ai, noreply@nullify.ai ]
+scheduled_notifications:
+  new-findings:
+    schedule: "* * * * *"
+    topics:
+      - new-findings
+      - new-cves
+      - new-secrets-exposed
+    targets:
+      - type: email
+        emails:
+          - monitoring@nullify.ai
+      - type: slack
+        channel_id: "123456"
+dependencies:
+  ignore:
+    - cve: CVE-2021-1234
+      reason: This is a false positive
+      expiry: "2021-12-31"
