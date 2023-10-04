@@ -1,20 +1,19 @@
 name: CI Go
 on:
-  push:
-    branches:
-      - main
   pull_request:
     paths:
-      - .github/workflows/go.yml
+      - .github/workflows/ci-go.yml
       - '**.go'
       - go.*
       - Makefile
-run-name: CI Go ${{ github.sha }} by @${{ github.actor }}
+run-name: CI Go by @${{ github.actor }} ${{ github.sha }}
 jobs:
-  build:
+  build-test:
     runs-on: ubuntu-latest
     container: golang:1.21.1
     steps:
+      - name: setup
+        run: git config --global --add safe.directory $(pwd)
       - uses: actions/checkout@v4
       - name: build
         run: make build

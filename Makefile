@@ -11,9 +11,6 @@ clean:
 format: 
 	gofmt -w ./...
 
-test:
-	go test ./...
-
 cov:
 	-go test -coverpkg=./... -coverprofile=coverage.txt -covermode count ./...
 	-gocover-cobertura < coverage.txt > coverage.xml
@@ -22,3 +19,6 @@ cov:
 
 lint:
 	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:v1.44.2 golangci-lint run --enable gofmt,stylecheck,gosec ./...
+
+unit:
+	go test ./...
