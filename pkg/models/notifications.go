@@ -5,13 +5,35 @@ type Notification struct {
 	Targets []NotificationTarget `yaml:"targets"`
 }
 
+const (
+	NotificationEventTypeNewCodeFindings       string = "new-code-findings"
+	NotificationEventTypeNewAPIFindings        string = "new-api-findings"
+	NotificationEventTypeNewDependencyFindings string = "new-dependency-findings"
+	NotificationEventTypeNewSecretFindings     string = "new-secret-findings"
+)
+
+const (
+	NotificationEventGroupAlerts string = "alerts"
+)
+
+var NotificationEventGroups = map[string][]string{
+	NotificationEventGroupAlerts: {
+		NotificationEventTypeNewCodeFindings,
+	},
+}
+
 type NotificationEvent struct {
 	Type    string                   `yaml:"type"`
+	Group   string                   `yaml:"group"`
 	Filters NotificationEventFilters `yaml:"filters"`
 }
 
 type NotificationEventFilters struct {
-	Severity string `yaml:"severity"`
+	MinimumSeverity string   `yaml:"minimum_severity"`
+	MinimumPriority int      `yaml:"minimum_priority"`
+	CWEs            []int    `yaml:"cwes"`
+	CVEs            []string `yaml:"cves"`
+	SecretTypes     []string `yaml:"secret_types"`
 }
 
 const (

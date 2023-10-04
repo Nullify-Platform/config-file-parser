@@ -10,15 +10,13 @@ notifications:
       url: https://webhook.site/123456
   findings-to-slack-and-email:
     events:
-    - type: new-sast-findings
+    - type: new-code-findings
       filters:
         severity: high
-        confidence: high
-    - type: new-secrets
-    - type: new-sca-findings
+    - type: new-secret-findings
+    - type: new-dependency-findings
       filters:
-        severity: high
-        confidence: high
+        minimum_severity: high
     targets:
     - type: slack
       channel_id: "123456"
