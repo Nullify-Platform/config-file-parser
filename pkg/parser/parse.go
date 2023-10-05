@@ -22,4 +22,13 @@ func sanitizeConfig(config *models.Configuration) {
 	if config.SeverityThreshold == "" {
 		config.SeverityThreshold = DefaultSeverityThreshold
 	}
+
+	for name, n := range config.Notifications {
+		n.Events.All.MinimumSeverity = strings.ToUpper(n.Events.All.MinimumSeverity)
+		n.Events.NewAPIFindings.MinimumSeverity = strings.ToUpper(n.Events.NewAPIFindings.MinimumSeverity)
+		n.Events.NewCodeFindings.MinimumSeverity = strings.ToUpper(n.Events.NewCodeFindings.MinimumSeverity)
+		n.Events.NewDependencyFindings.MinimumSeverity = strings.ToUpper(n.Events.NewDependencyFindings.MinimumSeverity)
+
+		config.Notifications[name] = n
+	}
 }
