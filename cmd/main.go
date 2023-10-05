@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
+	"bytes"
 
 	"github.com/nullify-platform/config-file-parser/pkg/parser"
+	"gopkg.in/yaml.v3"
 )
 
 func main() {
@@ -12,13 +13,14 @@ func main() {
 		panic(err)
 	}
 
-	fmt.Println("ignore dirs:")
-	for _, dir := range config.IgnoreDirs {
-		fmt.Printf("  - %s\n", dir)
+	var buf bytes.Buffer
+	enc := yaml.NewEncoder(&buf)
+	enc.SetIndent(2)
+
+	err = enc.Encode(config)
+	if err != nil {
+		panic(err)
 	}
 
-	fmt.Println("emails:")
-	for _, dir := range config.EmailNotifications {
-		fmt.Printf("  - %s\n", dir)
-	}
+	println(buf.String())
 }

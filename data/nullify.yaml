@@ -1,4 +1,25 @@
 severity_threshold: medium
 ignore_dirs: ["data"]
 ignore_pattens: ["*d"]
-email_notifications: ["notifications@nullify.cloud", "noreply@nullify.cloud"]
+notifications:
+  all-events-webhook:
+    events:
+      all:
+        minimum_severity: high
+        secret_types: [ssh_key]
+    targets:
+      webhook:
+        urls: [ https://webhook.site/123456 ]
+  findings-to-slack-and-email:
+    events:
+      new_code_findings:
+        minimum_severity: high
+      new_secret_findings:
+        types: [ssh_key]
+      new_dependency_findings:
+        minimum_severity: high
+    targets:
+      slack:
+        channels: [ "123456" ]
+      email:
+        emails: [ notifications@nullify.ai, noreply@nullify.ai ]

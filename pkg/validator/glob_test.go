@@ -56,41 +56,35 @@ const validGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: ["*[abc]"]
-email_notifications: ["hello@gmail.com"]
 `
 const emptyGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: ["*[abc]", "*d"]
-email_notifications: ["hello@gmail.com"]
 `
 
 const twoValidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: 
-email_notifications: ["hello@gmail.com"]
 `
 
 const invalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: ["*[abc"]
-email_notifications: ["hello@gmail.com"]
 `
 
 const endInvalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: ["*d", "*[abc"]
-email_notifications: ["hello@gmail.com"]
 `
 
 const startInvalidGlob string = `
 severity_threshold: medium
 ignore_dirs: ["data"]	
 ignore_paths: ["*[abc", "*d"]
-email_notifications: ["hello@gmail.com"]
 `
 
 func TestParsingAndValidGlobs(t *testing.T) {
