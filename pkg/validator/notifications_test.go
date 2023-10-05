@@ -39,7 +39,7 @@ func TestValidEmails(t *testing.T) {
 				Notifications: map[string]models.Notification{
 					"test": {
 						Targets: models.NotificationTargets{
-							Email: models.NotificationTargetEmail{
+							Email: &models.NotificationTargetEmail{
 								Addresses: []string{"john@nullify.ai"},
 							},
 						},
@@ -54,7 +54,7 @@ func TestValidEmails(t *testing.T) {
 				Notifications: map[string]models.Notification{
 					"test": {
 						Targets: models.NotificationTargets{
-							Email: models.NotificationTargetEmail{
+							Email: &models.NotificationTargetEmail{
 								Addresses: []string{"lisa@nullify.ai", "lisa@gmail.nullify.ai"},
 							},
 						},
@@ -69,7 +69,7 @@ func TestValidEmails(t *testing.T) {
 				Notifications: map[string]models.Notification{
 					"test": {
 						Targets: models.NotificationTargets{
-							Email: models.NotificationTargetEmail{
+							Email: &models.NotificationTargetEmail{
 								Addresses: []string{"john@@gmail.com"},
 							},
 						},
@@ -84,7 +84,7 @@ func TestValidEmails(t *testing.T) {
 				Notifications: map[string]models.Notification{
 					"test": {
 						Targets: models.NotificationTargets{
-							Email: models.NotificationTargetEmail{
+							Email: &models.NotificationTargetEmail{
 								Addresses: []string{"john@nullify.ai", "john@@gmail.com"},
 							},
 						},
@@ -99,7 +99,7 @@ func TestValidEmails(t *testing.T) {
 				Notifications: map[string]models.Notification{
 					"test": {
 						Targets: models.NotificationTargets{
-							Email: models.NotificationTargetEmail{
+							Email: &models.NotificationTargetEmail{
 								Addresses: []string{"helloatgmail.com"},
 							},
 						},

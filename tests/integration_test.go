@@ -17,34 +17,34 @@ func TestIntegration(t *testing.T) {
 		Notifications: map[string]models.Notification{
 			"all-events-webhook": {
 				Events: models.NotificationEvents{
-					All: models.NotificationEventAll{
+					All: &models.NotificationEventAll{
 						MinimumSeverity: models.SeverityHigh,
 						SecretTypes:     []string{"ssh_key"},
 					},
 				},
 				Targets: models.NotificationTargets{
-					Webhook: models.NotificationTargetWebhook{
+					Webhook: &models.NotificationTargetWebhook{
 						URLs: []string{"https://webhook.site/123456"},
 					},
 				},
 			},
 			"findings-to-slack-and-email": {
 				Events: models.NotificationEvents{
-					NewCodeFindings: models.NotificationEventNewCodeFindings{
+					NewCodeFindings: &models.NotificationEventNewCodeFindings{
 						MinimumSeverity: models.SeverityHigh,
 					},
-					NewSecretFindings: models.NotificationEventNewSecretFindings{
+					NewSecretFindings: &models.NotificationEventNewSecretFindings{
 						Types: []string{"ssh_key"},
 					},
-					NewDependencyFindings: models.NotificationEventNewDependencyFindings{
+					NewDependencyFindings: &models.NotificationEventNewDependencyFindings{
 						MinimumSeverity: models.SeverityHigh,
 					},
 				},
 				Targets: models.NotificationTargets{
-					Slack: models.NotificationTargetSlack{
+					Slack: &models.NotificationTargetSlack{
 						Channels: []string{"123456"},
 					},
-					Email: models.NotificationTargetEmail{
+					Email: &models.NotificationTargetEmail{
 						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
 					},
 				},
@@ -57,10 +57,10 @@ func TestIntegration(t *testing.T) {
 					All: true,
 				},
 				Targets: models.ScheduledNotificationTargets{
-					Email: models.ScheduledNotificationTargetEmail{
+					Email: &models.ScheduledNotificationTargetEmail{
 						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
 					},
-					Slack: models.ScheduledNotificationTargetSlack{
+					Slack: &models.ScheduledNotificationTargetSlack{
 						Channels: []string{"123456"},
 					},
 				},

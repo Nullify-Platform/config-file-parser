@@ -26,8 +26,8 @@ type ScheduledNotificationTopics struct {
 }
 
 type ScheduledNotificationTargets struct {
-	Email ScheduledNotificationTargetEmail `yaml:"email,omitempty"`
-	Slack ScheduledNotificationTargetSlack `yaml:"slack,omitempty"`
+	Email *ScheduledNotificationTargetEmail `yaml:"email,omitempty"`
+	Slack *ScheduledNotificationTargetSlack `yaml:"slack,omitempty"`
 }
 
 type ScheduledNotificationTargetEmail struct {

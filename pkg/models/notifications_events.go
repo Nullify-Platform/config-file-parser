@@ -1,11 +1,11 @@
 package models
 
 type NotificationEvents struct {
-	All                   NotificationEventAll                   `yaml:"all,omitempty"`
-	NewAPIFindings        NotificationEventNewAPIFindings        `yaml:"new_api_findings,omitempty"`
-	NewCodeFindings       NotificationEventNewCodeFindings       `yaml:"new_code_findings,omitempty"`
-	NewDependencyFindings NotificationEventNewDependencyFindings `yaml:"new_dependency_findings,omitempty"`
-	NewSecretFindings     NotificationEventNewSecretFindings     `yaml:"new_secret_findings,omitempty"`
+	All                   *NotificationEventAll                   `yaml:"all,omitempty"`
+	NewAPIFindings        *NotificationEventNewAPIFindings        `yaml:"new_api_findings,omitempty"`
+	NewCodeFindings       *NotificationEventNewCodeFindings       `yaml:"new_code_findings,omitempty"`
+	NewDependencyFindings *NotificationEventNewDependencyFindings `yaml:"new_dependency_findings,omitempty"`
+	NewSecretFindings     *NotificationEventNewSecretFindings     `yaml:"new_secret_findings,omitempty"`
 }
 
 type NotificationEventAll struct {

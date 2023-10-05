@@ -1,9 +1,9 @@
 package models
 
 type NotificationTargets struct {
-	Webhook NotificationTargetWebhook `yaml:"webhook,omitempty"`
-	Email   NotificationTargetEmail   `yaml:"email,omitempty"`
-	Slack   NotificationTargetSlack   `yaml:"slack,omitempty"`
+	Webhook *NotificationTargetWebhook `yaml:"webhook,omitempty"`
+	Email   *NotificationTargetEmail   `yaml:"email,omitempty"`
+	Slack   *NotificationTargetSlack   `yaml:"slack,omitempty"`
 }
 
 type NotificationTargetWebhook struct {
