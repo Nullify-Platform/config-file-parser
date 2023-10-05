@@ -12,12 +12,17 @@ func ValidateNotifications(config *models.Configuration) bool {
 	}
 
 	for _, notification := range config.Notifications {
-		for _, target := range notification.Targets {
-			for _, email := range target.Emails {
-				_, err := mail.ParseAddress(email)
-				if err != nil {
-					return false
-				}
+		if notification.Targets.NotificationTargetEmail.Email != "" {
+			_, err := mail.ParseAddress(notification.Targets.NotificationTargetEmail.Email)
+			if err != nil {
+				return false
+			}
+		}
+
+		for _, email := range notification.Targets.NotificationTargetEmail.Emails {
+			_, err := mail.ParseAddress(email)
+			if err != nil {
+				return false
 			}
 		}
 	}

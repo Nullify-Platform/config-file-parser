@@ -4,21 +4,22 @@ ignore_pattens: ["*d"]
 notifications:
   all-events-webhook:
     events:
-    - type: "*"
+      all:
+        minimum_severity: high
+        secret_types: [ssh_key]
     targets:
-    - type: webhook
-      url: https://webhook.site/123456
+      webhook:
+        urls: [ https://webhook.site/123456 ]
   findings-to-slack-and-email:
     events:
-    - type: new-code-findings
-      filters:
-        severity: high
-    - type: new-secret-findings
-    - type: new-dependency-findings
-      filters:
+      new_code_findings:
+        minimum_severity: high
+      new_secret_findings:
+        types: [ssh_key]
+      new_dependency_findings:
         minimum_severity: high
     targets:
-    - type: slack
-      channel_id: "123456"
-    - type: email
-      emails: [ notifications@nullify.ai, noreply@nullify.ai ]
+      slack:
+        channels: [ "123456" ]
+      email:
+        emails: [ notifications@nullify.ai, noreply@nullify.ai ]

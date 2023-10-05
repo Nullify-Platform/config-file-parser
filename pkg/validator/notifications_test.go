@@ -27,8 +27,7 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events:  []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{},
+						Targets: models.NotificationTargets{},
 					},
 				},
 			},
@@ -39,10 +38,8 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events: []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{
-							{
-								Type:   models.NotificationTypeEmail,
+						Targets: models.NotificationTargets{
+							NotificationTargetEmail: models.NotificationTargetEmail{
 								Emails: []string{"john@nullify.ai"},
 							},
 						},
@@ -56,10 +53,8 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events: []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{
-							{
-								Type:   models.NotificationTypeEmail,
+						Targets: models.NotificationTargets{
+							NotificationTargetEmail: models.NotificationTargetEmail{
 								Emails: []string{"lisa@nullify.ai", "lisa@gmail.nullify.ai"},
 							},
 						},
@@ -73,10 +68,8 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events: []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{
-							{
-								Type:   models.NotificationTypeEmail,
+						Targets: models.NotificationTargets{
+							NotificationTargetEmail: models.NotificationTargetEmail{
 								Emails: []string{"john@@gmail.com"},
 							},
 						},
@@ -90,10 +83,8 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events: []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{
-							{
-								Type:   models.NotificationTypeEmail,
+						Targets: models.NotificationTargets{
+							NotificationTargetEmail: models.NotificationTargetEmail{
 								Emails: []string{"john@nullify.ai", "john@@gmail.com"},
 							},
 						},
@@ -107,10 +98,8 @@ func TestValidEmails(t *testing.T) {
 			config: &models.Configuration{
 				Notifications: map[string]models.Notification{
 					"test": {
-						Events: []models.NotificationEvent{},
-						Targets: []models.NotificationTarget{
-							{
-								Type:   models.NotificationTypeEmail,
+						Targets: models.NotificationTargets{
+							NotificationTargetEmail: models.NotificationTargetEmail{
 								Emails: []string{"helloatgmail.com"},
 							},
 						},
@@ -131,16 +120,16 @@ const validEmail string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: ["hello@gmail.com"]
+      email:
+        emails: ["hello@gmail.com"]
 `
 
 const emptyEmail string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails:
+      email:
+        emails: 
 `
 
 const noEmailConfig string = `
@@ -151,39 +140,39 @@ const emailWithEmptyArray string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: [""]
+      email:
+        emails: [""]
 `
 
 const twoValidEmails string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: ["john@nullify.ai", "lisa@gmail.com"]
+      email:
+        emails: ["john@nullify.ai", "lisa@gmail.com"]
 `
 const validAndInvalid string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: ["john()@nullify.ai", "lisa@gmail.com"]
+      email:
+        emails: ["john()@nullify.ai", "lisa@gmail.com"]
 `
 
 const missingCommaIncorrectQuotes string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: ["hello@gmail.com john@nullify.ai"]
+      email:
+        emails: ["hello@gmail.com john@nullify.ai"]
 `
 
 const missingComma string = `
 notifications:
   test:
     targets:
-    - type: email
-      emails: ["hello@gmail.com" "john@nullify.ai"]
+      email:
+        emails: ["hello@gmail.com" "john@nullify.ai"]
 `
 
 func TestParsingAndValidEmails(t *testing.T) {
