@@ -3,8 +3,6 @@ ignore_dirs:
   - dir1
 ignore_paths:
   - data/**/*
-secrets_allowlist:
-  - secret123
 notifications:
   all-events-webhook:
     events:
