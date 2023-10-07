@@ -42,3 +42,13 @@ dependencies:
     - cve: CVE-2021-1234
       reason: This is a false positive
       expiry: "2021-12-31"
+secrets:
+  ignore:
+    - value: mocksecret123
+      reason: This is a test secret, it has no access to anything
+      paths: [ "**/tests/*" ]
+    - pattern: id[0-9]+
+      reason: These are not secrets, they are internal identifiers
+    - value: actualsecret123
+      reason: We can't remove this right now but we should
+      expiry: "2021-12-31"

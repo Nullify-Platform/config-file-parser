@@ -13,7 +13,24 @@ func TestIntegration(t *testing.T) {
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},
-		SecretsAllowlist:  []string{"secret123"},
+		Secrets: models.Secrets{
+			Ignore: []models.SecretsIgnore{
+				{
+					Value:  "mocksecret123",
+					Reason: "This is a test secret, it has no access to anything",
+					Paths:  []string{"**/tests/*"},
+				},
+				{
+					Pattern: "id[0-9]+",
+					Reason:  "These are not secrets, they are internal identifiers",
+				},
+				{
+					Value:  "actualsecret123",
+					Reason: "We can't remove this right now but we should",
+					Expiry: "2021-12-31",
+				},
+			},
+		},
 		Notifications: map[string]models.Notification{
 			"all-events-webhook": {
 				Events: models.NotificationEvents{
