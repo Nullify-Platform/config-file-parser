@@ -83,6 +83,20 @@ func TestIntegration(t *testing.T) {
 				},
 			},
 		},
+		Code: models.Code{
+			Ignore: []models.CodeIgnore{
+				{
+					CWEs:   []int{589},
+					Reason: "HTTP requests with variables in tests don't matter",
+					Paths:  []string{"**/tests/*"},
+				},
+				{
+					RuleIDs: []string{"python-sql-injection"},
+					Reason:  "This code won't be going live until next year but we should fix it before then",
+					Expiry:  "2021-12-31",
+				},
+			},
+		},
 		Dependencies: models.Dependencies{
 			Ignore: []models.DependenciesIgnore{
 				{
