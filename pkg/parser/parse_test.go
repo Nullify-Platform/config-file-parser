@@ -28,7 +28,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 		{
@@ -39,7 +41,16 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        []string{"data"},
 				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
-				SecretsAllowlist:  []string{"secretPassword", "superSecretPassword"},
+				Secrets: models.Secrets{
+					Ignore: []models.SecretsIgnore{
+						{
+							Value: "secretPassword",
+						},
+						{
+							Value: "superSecretPassword",
+						},
+					},
+				},
 			},
 		},
 		{
@@ -50,7 +61,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 		{
@@ -61,7 +74,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 		{
@@ -72,7 +87,13 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  []string{"password"},
-				SecretsAllowlist:  []string{"password"},
+				Secrets: models.Secrets{
+					Ignore: []models.SecretsIgnore{
+						{
+							Value: "password",
+						},
+					},
+				},
 			},
 		},
 		{
@@ -83,7 +104,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 		{
@@ -94,7 +117,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 		{
@@ -105,7 +130,9 @@ func TestParseConfiguration(t *testing.T) {
 				IgnoreDirs:        nil,
 				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  nil,
-				SecretsAllowlist:  nil,
+				Secrets: models.Secrets{
+					Ignore: nil,
+				},
 			},
 		},
 	} {
