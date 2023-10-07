@@ -65,6 +65,11 @@ func TestIntegration(t *testing.T) {
 						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
 					},
 				},
+				Repositories: []string{
+					"config-file-parser",
+					"dast-action",
+					"cli",
+				},
 			},
 		},
 		ScheduledNotifications: map[string]models.ScheduledNotification{
@@ -81,6 +86,11 @@ func TestIntegration(t *testing.T) {
 						Channels: []string{"123456"},
 					},
 				},
+				Repositories: []string{
+					"config-file-parser",
+					"dast-action",
+					"cli",
+				},
 			},
 		},
 		Code: models.Code{
@@ -89,6 +99,11 @@ func TestIntegration(t *testing.T) {
 					CWEs:   []int{589},
 					Reason: "HTTP requests with variables in tests don't matter",
 					Paths:  []string{"**/tests/*"},
+					Repositories: []string{
+						"config-file-parser",
+						"dast-action",
+						"cli",
+					},
 				},
 				{
 					RuleIDs: []string{"python-sql-injection"},
@@ -103,6 +118,15 @@ func TestIntegration(t *testing.T) {
 					CVE:    "CVE-2021-1234",
 					Reason: "This is a false positive",
 					Expiry: "2021-12-31",
+				},
+				{
+					CVE:    "CVE-2021-5678",
+					Reason: "This isn't exploitable in client applications",
+					Expiry: "2021-12-31",
+					Repositories: []string{
+						"dast-action",
+						"cli",
+					},
 				},
 			},
 		},

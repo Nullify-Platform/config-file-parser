@@ -13,6 +13,9 @@ type ScheduledNotification struct {
 	Schedule string                       `yaml:"schedule,omitempty"`
 	Topics   ScheduledNotificationTopics  `yaml:"topics,omitempty"`
 	Targets  ScheduledNotificationTargets `yaml:"targets,omitempty"`
+
+	// global config only
+	Repositories []string `yaml:"repositories,omitempty"`
 }
 
 type ScheduledNotificationTopics struct {

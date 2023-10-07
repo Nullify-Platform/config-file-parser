@@ -10,4 +10,7 @@ type DependenciesIgnore struct {
 	Expiry string   `yaml:"expiry,omitempty"`
 	Dirs   []string `yaml:"dirs,omitempty"`
 	Paths  []string `yaml:"paths,omitempty"`
+
+	// global config only
+	Repositories []string `yaml:"repositories,omitempty"`
 }
