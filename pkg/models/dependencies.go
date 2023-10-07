@@ -5,7 +5,9 @@ type Dependencies struct {
 }
 
 type DependenciesIgnore struct {
-	CVE    string `yaml:"cve,omitempty"`
-	Reason string `yaml:"reason,omitempty"`
-	Expiry string `yaml:"expiry,omitempty"`
+	CVE    string   `yaml:"cve,omitempty"`
+	Reason string   `yaml:"reason,omitempty"`
+	Expiry string   `yaml:"expiry,omitempty"`
+	Dirs   []string `yaml:"dirs,omitempty"`
+	Paths  []string `yaml:"paths,omitempty"`
 }

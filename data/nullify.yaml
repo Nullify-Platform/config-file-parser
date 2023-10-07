@@ -36,6 +36,14 @@ scheduled_notifications:
           - monitoring@nullify.ai
       slack:
         channel: "123456"
+code:
+  ignore:
+    - cwes: [ 589 ] # Potential HTTP request made with variable url
+      reason: HTTP requests with variables in tests don't matter
+      paths: "**/tests/*"
+    - rule_ids: [ python-sql-injection ]
+      reason: This code won't be going live until next year but we should fix it before then
+      expiry: "2021-12-31"
 dependencies:
   ignore:
     - cve: CVE-2021-1234
