@@ -8,7 +8,7 @@ notifications:
     events:
       all:
         minimum_severity: high
-        secret_types: [ssh_key]
+        secret_types: [ ssh_key ]
     targets:
       webhook:
         urls: [ https://webhook.site/123456 ]
