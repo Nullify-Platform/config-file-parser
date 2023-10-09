@@ -8,7 +8,7 @@ notifications:
     events:
       all:
         minimum_severity: high
-        secret_types: [ssh_key]
+        secret_types: [ ssh_key ]
     targets:
       webhook:
         urls: [ https://webhook.site/123456 ]
@@ -25,6 +25,10 @@ notifications:
         channels: [ "123456" ]
       email:
         addresses: [ notifications@nullify.ai, noreply@nullify.ai ]
+    repositories:
+      - config-file-parser
+      - dast-action
+      - cli
 scheduled_notifications:
   new-findings:
     schedule: "0 0 * * *"
@@ -35,11 +39,19 @@ scheduled_notifications:
         channels: [ "123456" ]
       email:
         addresses: [ notifications@nullify.ai, noreply@nullify.ai ]
+    repositories:
+      - config-file-parser
+      - dast-action
+      - cli
 code:
   ignore:
     - cwes: [ 589 ] # Potential HTTP request made with variable url
       reason: HTTP requests with variables in tests don't matter
       paths: [ "**/tests/*" ]
+      repositories:
+        - config-file-parser
+        - dast-action
+        - cli
     - rule_ids: [ python-sql-injection ]
       reason: This code won't be going live until next year but we should fix it before then
       expiry: "2021-12-31"
@@ -48,6 +60,12 @@ dependencies:
     - cve: CVE-2021-1234
       reason: This is a false positive
       expiry: "2021-12-31"
+    - cve: CVE-2021-5678
+      reason: This isn't exploitable in client applications
+      expiry: "2021-12-31"
+      repositories:
+        - dast-action
+        - cli
 secrets:
   ignore:
     - value: mocksecret123

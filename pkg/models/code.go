@@ -11,4 +11,7 @@ type CodeIgnore struct {
 	Dirs    []string `yaml:"dirs,omitempty"`
 	Paths   []string `yaml:"paths,omitempty"`
 	Expiry  string   `yaml:"expiry,omitempty"`
+
+	// global config only
+	Repositories []string `yaml:"repositories,omitempty"`
 }

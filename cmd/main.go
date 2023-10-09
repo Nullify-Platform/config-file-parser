@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	config, err := parser.LoadFromFile("data/nullify.yaml")
+	config, err := parser.LoadFromFile("examples/nullify.yaml")
 	if err != nil {
 		panic(err)
 	}
