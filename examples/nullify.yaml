@@ -32,6 +32,7 @@ notifications:
 scheduled_notifications:
   new-findings:
     schedule: "0 0 * * *"
+    timezone: "America/Los_Angeles"
     topics:
       all: true
     targets:

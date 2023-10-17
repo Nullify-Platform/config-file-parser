@@ -5,7 +5,7 @@ import (
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 )
 
-func ValidateGlob(config *models.Configuration) bool {
+func ValidatePaths(config *models.Configuration) bool {
 	if config.IgnorePaths == nil {
 		return true
 	}
