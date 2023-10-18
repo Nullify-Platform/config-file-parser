@@ -11,6 +11,7 @@ const (
 
 type ScheduledNotification struct {
 	Schedule string                       `yaml:"schedule,omitempty"`
+	Timezone string                       `yaml:"timezone,omitempty"`
 	Topics   ScheduledNotificationTopics  `yaml:"topics,omitempty"`
 	Targets  ScheduledNotificationTargets `yaml:"targets,omitempty"`
 

@@ -5,6 +5,7 @@ import (
 
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 	"github.com/nullify-platform/config-file-parser/pkg/parser"
+	"github.com/nullify-platform/config-file-parser/pkg/validator"
 	"github.com/stretchr/testify/require"
 )
 
@@ -136,4 +137,5 @@ func TestIntegration(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, expectedConfig, config)
+	require.True(t, validator.ValidateConfig(config))
 }
