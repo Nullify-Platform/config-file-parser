@@ -9,6 +9,10 @@ func NewDefaultConfig() *models.Configuration {
 		SeverityThreshold:      DefaultSeverityThreshold,
 		IgnoreDirs:             []string{},
 		IgnorePaths:            []string{},
+		Code:                   models.Code{},
+		Dependencies:           models.Dependencies{},
+		Secrets:                models.Secrets{},
+		SecretsWhitelist:       []string{},
 		Notifications:          map[string]models.Notification{},
 		ScheduledNotifications: map[string]models.ScheduledNotification{},
 	}

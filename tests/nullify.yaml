@@ -76,3 +76,4 @@ secrets:
     - value: actualsecret123
       reason: We can't remove this right now but we should
       expiry: "2021-12-31"
+secrets_whitelist: ["abcd1234"]
