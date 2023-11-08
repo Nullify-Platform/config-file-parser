@@ -14,6 +14,7 @@ func TestIntegration(t *testing.T) {
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},
+		SecretsWhitelist:  []string{"abcd1234"},
 		Secrets: models.Secrets{
 			Ignore: []models.SecretsIgnore{
 				{
