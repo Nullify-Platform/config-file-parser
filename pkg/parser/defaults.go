@@ -6,6 +6,7 @@ const DefaultSeverityThreshold = models.SeverityMedium
 
 func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{
+		FailBuild:              false,
 		SeverityThreshold:      DefaultSeverityThreshold,
 		IgnoreDirs:             []string{},
 		IgnorePaths:            []string{},

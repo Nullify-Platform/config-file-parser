@@ -1,6 +1,7 @@
 package models
 
 type Configuration struct {
+	FailBuild              bool                             `yaml:"fail_build,omitempty"`
 	SeverityThreshold      string                           `yaml:"severity_threshold,omitempty"`
 	IgnoreDirs             []string                         `yaml:"ignore_dirs,omitempty"`
 	IgnorePaths            []string                         `yaml:"ignore_paths,omitempty"`

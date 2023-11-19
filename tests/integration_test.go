@@ -11,6 +11,7 @@ import (
 
 func TestIntegration(t *testing.T) {
 	expectedConfig := &models.Configuration{
+		FailBuild:         true,
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},
