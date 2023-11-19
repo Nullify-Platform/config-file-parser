@@ -1,4 +1,4 @@
-fail_build: true
+fail_builds: true
 severity_threshold: medium
 ignore_dirs:
   - dir1
