@@ -12,3 +12,10 @@ type Configuration struct {
 	Notifications          map[string]Notification          `yaml:"notifications,omitempty"`
 	ScheduledNotifications map[string]ScheduledNotification `yaml:"scheduled_notifications,omitempty"`
 }
+
+func (c *Configuration) GetsFailBuilds() bool {
+	if c.FailBuilds == nil {
+		return false
+	}
+	return *c.FailBuilds
+}
