@@ -14,30 +14,36 @@ func MergeConfigFiles(
 
 	// override with global config
 
-	if globalConfig.FailBuilds != nil {
-		config.FailBuilds = globalConfig.FailBuilds
-	}
+	if globalConfig != nil {
+		if globalConfig.FailBuilds != nil {
+			config.FailBuilds = globalConfig.FailBuilds
+		}
 
-	if validator.ValidateSeverityThreshold(config) {
-		config.SeverityThreshold = globalConfig.SeverityThreshold
-	}
+		if validator.ValidateSeverityThreshold(config) {
+			config.SeverityThreshold = globalConfig.SeverityThreshold
+		}
 
-	config.IgnoreDirs = globalConfig.IgnoreDirs
-	config.IgnorePaths = globalConfig.IgnorePaths
+		config.IgnoreDirs = globalConfig.IgnoreDirs
+		config.IgnorePaths = globalConfig.IgnorePaths
 
-	config.Code.Ignore = globalConfig.Code.Ignore
-	config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
-	config.Secrets.Ignore = globalConfig.Secrets.Ignore
+		config.Code.Ignore = globalConfig.Code.Ignore
+		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
+		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 
-	for k, v := range globalConfig.Notifications {
-		config.Notifications[k] = v
-	}
+		for k, v := range globalConfig.Notifications {
+			config.Notifications[k] = v
+		}
 
-	for k, v := range globalConfig.ScheduledNotifications {
-		config.ScheduledNotifications[k] = v
+		for k, v := range globalConfig.ScheduledNotifications {
+			config.ScheduledNotifications[k] = v
+		}
 	}
 
 	// override with repo config
+
+	if repoConfig == nil {
+		return config
+	}
 
 	if repoConfig.FailBuilds != nil {
 		config.FailBuilds = repoConfig.FailBuilds

@@ -6,14 +6,19 @@ const DefaultSeverityThreshold = models.SeverityMedium
 
 func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{
-		FailBuilds:             nil,
-		SeverityThreshold:      DefaultSeverityThreshold,
-		IgnoreDirs:             []string{},
-		IgnorePaths:            []string{},
-		Code:                   models.Code{},
-		Dependencies:           models.Dependencies{},
-		Secrets:                models.Secrets{},
-		SecretsWhitelist:       []string{},
+		FailBuilds:        nil,
+		SeverityThreshold: DefaultSeverityThreshold,
+		IgnoreDirs:        []string{},
+		IgnorePaths:       []string{},
+		Code: models.Code{
+			Ignore: []models.CodeIgnore{},
+		},
+		Dependencies: models.Dependencies{
+			Ignore: []models.DependenciesIgnore{},
+		},
+		Secrets: models.Secrets{
+			Ignore: []models.SecretsIgnore{},
+		},
 		Notifications:          map[string]models.Notification{},
 		ScheduledNotifications: map[string]models.ScheduledNotification{},
 	}
