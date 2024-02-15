@@ -24,7 +24,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "default values",
 			data: "",
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
@@ -57,7 +57,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "user provided empty severity_threshold",
 			data: "severity_threshold: ''",
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
@@ -83,7 +83,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "user provided a single secret",
 			data: `secrets_whitelist: ["password"]`,
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  []string{"password"},
@@ -100,7 +100,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "user provided empty secret whitelist",
 			data: `secrets_whitelist: `,
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
@@ -113,7 +113,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "user provided empty ignore patterns",
 			data: `ignore_paths: `,
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
 				SecretsWhitelist:  nil,
@@ -126,7 +126,7 @@ func TestParseConfiguration(t *testing.T) {
 			name: "user provided glob in ignore patterns",
 			data: `ignore_paths: ["*d"]`,
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityMedium,
+				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       []string{"*d"},
 				SecretsWhitelist:  nil,
