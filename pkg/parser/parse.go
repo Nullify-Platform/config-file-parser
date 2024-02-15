@@ -8,13 +8,15 @@ import (
 )
 
 func ParseConfiguration(data []byte) (*models.Configuration, error) {
-	config := NewDefaultConfig()
-	err := yaml.Unmarshal([]byte(data), config)
+	var config models.Configuration
+	err := yaml.Unmarshal([]byte(data), &config)
 	if err != nil {
 		return nil, err
 	}
-	sanitizeConfig(config)
-	return config, nil
+
+	sanitizeConfig(&config)
+
+	return &config, nil
 }
 
 func sanitizeConfig(config *models.Configuration) {
