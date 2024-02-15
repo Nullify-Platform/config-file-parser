@@ -22,7 +22,7 @@ func TestValidateSeverityThreshold(t *testing.T) {
 		{
 			name:     "default configuration",
 			config:   parser.NewDefaultConfig(),
-			expected: false,
+			expected: true,
 		},
 		{
 			name:     "empty SeverityThreshold",
