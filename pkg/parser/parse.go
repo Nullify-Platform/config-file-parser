@@ -18,13 +18,8 @@ func ParseConfiguration(data []byte) (*models.Configuration, error) {
 }
 
 func sanitizeConfig(config *models.Configuration) {
-	if config.SeverityThreshold == "" {
-		config.SeverityThreshold = DefaultSeverityThreshold
-	}
-
-	config.SeverityThreshold = strings.ToUpper(config.SeverityThreshold)
-	if config.SeverityThreshold == "" {
-		config.SeverityThreshold = DefaultSeverityThreshold
+	if config.SeverityThreshold != "" {
+		config.SeverityThreshold = strings.ToUpper(config.SeverityThreshold)
 	}
 
 	for name, n := range config.Notifications {
