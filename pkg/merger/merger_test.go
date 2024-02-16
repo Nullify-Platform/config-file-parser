@@ -21,19 +21,6 @@ func TestMergeConfigFiles(t *testing.T) {
 			repoConfig:   nil,
 			expected: &models.Configuration{
 				SeverityThreshold: parser.DefaultSeverityThreshold,
-				IgnoreDirs:        []string{},
-				IgnorePaths:       []string{},
-				Code: models.Code{
-					Ignore: []models.CodeIgnore{},
-				},
-				Dependencies: models.Dependencies{
-					Ignore: []models.DependenciesIgnore{},
-				},
-				Secrets: models.Secrets{
-					Ignore: []models.SecretsIgnore{},
-				},
-				Notifications:          map[string]models.Notification{},
-				ScheduledNotifications: map[string]models.ScheduledNotification{},
 			},
 		},
 		{
@@ -204,10 +191,54 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 			},
 		},
+		{
+			name:         "repo config without severity threshold",
+			globalConfig: nil,
+			repoConfig: &models.Configuration{
+				SeverityThreshold: "",
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+			},
+		},
+		{
+			name: "global config without severity threshold",
+			globalConfig: &models.Configuration{
+				SeverityThreshold: "",
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+			},
+		},
+		{
+			name: "global and repo config without severity threshold",
+			globalConfig: &models.Configuration{
+				SeverityThreshold: "",
+			},
+			repoConfig: &models.Configuration{
+				SeverityThreshold: "",
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+			},
+		},
+		{
+			name: "global and repo config without severity threshold",
+			globalConfig: &models.Configuration{
+				SeverityThreshold: models.SeverityCritical,
+			},
+			repoConfig: &models.Configuration{
+				SeverityThreshold: models.SeverityHigh,
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: models.SeverityHigh,
+			},
+		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config := MergeConfigFiles(scenario.globalConfig, scenario.repoConfig)
-			require.Equal(t, scenario.expected, config)
+			require.Equal(t, scenario.expected, config, scenario.name)
 		})
 	}
 }

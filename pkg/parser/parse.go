@@ -20,6 +20,7 @@ func ParseConfiguration(data []byte) (*models.Configuration, error) {
 }
 
 func sanitizeConfig(config *models.Configuration) {
+	config.SeverityThreshold = strings.Trim(config.SeverityThreshold, " ")
 	if config.SeverityThreshold != "" {
 		config.SeverityThreshold = strings.ToUpper(config.SeverityThreshold)
 	}

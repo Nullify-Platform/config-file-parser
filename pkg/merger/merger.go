@@ -19,7 +19,7 @@ func MergeConfigFiles(
 			config.FailBuilds = globalConfig.FailBuilds
 		}
 
-		if validator.ValidateSeverityThreshold(config) {
+		if globalConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(config) {
 			config.SeverityThreshold = globalConfig.SeverityThreshold
 		}
 
@@ -30,8 +30,16 @@ func MergeConfigFiles(
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 
+		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
+			config.Notifications = globalConfig.Notifications
+		}
+
 		for k, v := range globalConfig.Notifications {
 			config.Notifications[k] = v
+		}
+
+		if len(globalConfig.ScheduledNotifications) > 0 && config.ScheduledNotifications == nil {
+			config.ScheduledNotifications = globalConfig.ScheduledNotifications
 		}
 
 		for k, v := range globalConfig.ScheduledNotifications {
@@ -49,7 +57,7 @@ func MergeConfigFiles(
 		config.FailBuilds = repoConfig.FailBuilds
 	}
 
-	if validator.ValidateSeverityThreshold(config) {
+	if repoConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(config) {
 		config.SeverityThreshold = repoConfig.SeverityThreshold
 	}
 
@@ -73,8 +81,16 @@ func MergeConfigFiles(
 		config.Secrets.Ignore = repoConfig.Secrets.Ignore
 	}
 
+	if len(repoConfig.Notifications) > 0 && config.Notifications == nil {
+		config.Notifications = repoConfig.Notifications
+	}
+
 	for k, v := range repoConfig.Notifications {
 		config.Notifications[k] = v
+	}
+
+	if len(repoConfig.ScheduledNotifications) > 0 && config.ScheduledNotifications == nil {
+		config.ScheduledNotifications = repoConfig.ScheduledNotifications
 	}
 
 	for k, v := range repoConfig.ScheduledNotifications {

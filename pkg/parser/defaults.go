@@ -8,18 +8,18 @@ func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{
 		FailBuilds:        nil,
 		SeverityThreshold: DefaultSeverityThreshold,
-		IgnoreDirs:        []string{},
-		IgnorePaths:       []string{},
+		IgnoreDirs:        nil,
+		IgnorePaths:       nil,
 		Code: models.Code{
-			Ignore: []models.CodeIgnore{},
+			Ignore: nil,
 		},
 		Dependencies: models.Dependencies{
-			Ignore: []models.DependenciesIgnore{},
+			Ignore: nil,
 		},
 		Secrets: models.Secrets{
-			Ignore: []models.SecretsIgnore{},
+			Ignore: nil,
 		},
-		Notifications:          map[string]models.Notification{},
-		ScheduledNotifications: map[string]models.ScheduledNotification{},
+		Notifications:          nil,
+		ScheduledNotifications: nil,
 	}
 }
