@@ -29,6 +29,7 @@ func MergeConfigFiles(
 		config.Code.Ignore = globalConfig.Code.Ignore
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
+		config.SecretsWhitelist = globalConfig.SecretsWhitelist
 
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
 			config.Notifications = globalConfig.Notifications
@@ -79,6 +80,10 @@ func MergeConfigFiles(
 
 	if len(repoConfig.Secrets.Ignore) > 0 {
 		config.Secrets.Ignore = repoConfig.Secrets.Ignore
+	}
+
+	if len(repoConfig.SecretsWhitelist) > 0 {
+		config.SecretsWhitelist = repoConfig.SecretsWhitelist
 	}
 
 	if len(repoConfig.Notifications) > 0 && config.Notifications == nil {
