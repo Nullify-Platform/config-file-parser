@@ -59,10 +59,10 @@ code:
       expiry: "2021-12-31"
 dependencies:
   ignore:
-    - cve: CVE-2021-1234
+    - cves: [ CVE-2021-1234 ]
       reason: This is a false positive
       expiry: "2021-12-31"
-    - cve: CVE-2021-5678
+    - cves: [ CVE-2021-5678 ]
       reason: This isn't exploitable in client applications
       expiry: "2021-12-31"
       repositories:
