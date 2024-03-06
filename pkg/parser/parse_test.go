@@ -11,7 +11,6 @@ import (
 const configStr string = `
 severity_threshold: high
 ignore_dirs: ["data"]
-secrets_whitelist: ["secretPassword",	 "superSecretPassword"]
 `
 
 func TestParseConfiguration(t *testing.T) {
@@ -27,7 +26,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
-				SecretsWhitelist:  nil,
 				Secrets: models.Secrets{
 					Ignore: nil,
 				},
@@ -40,7 +38,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: models.SeverityHigh,
 				IgnoreDirs:        []string{"data"},
 				IgnorePaths:       []string{"*d"},
-				SecretsWhitelist:  []string{"secretPassword", "superSecretPassword"},
 				Secrets: models.Secrets{
 					Ignore: []models.SecretsIgnore{
 						{
@@ -60,7 +57,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
-				SecretsWhitelist:  nil,
 				Secrets: models.Secrets{
 					Ignore: nil,
 				},
@@ -73,37 +69,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: models.SeverityLow,
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
-				SecretsWhitelist:  nil,
-				Secrets: models.Secrets{
-					Ignore: nil,
-				},
-			},
-		},
-		{
-			name: "user provided a single secret",
-			data: `secrets_whitelist: ["password"]`,
-			expected: &models.Configuration{
-				SeverityThreshold: "",
-				IgnoreDirs:        nil,
-				IgnorePaths:       nil,
-				SecretsWhitelist:  []string{"password"},
-				Secrets: models.Secrets{
-					Ignore: []models.SecretsIgnore{
-						{
-							Value: "password",
-						},
-					},
-				},
-			},
-		},
-		{
-			name: "user provided empty secret whitelist",
-			data: `secrets_whitelist: `,
-			expected: &models.Configuration{
-				SeverityThreshold: "",
-				IgnoreDirs:        nil,
-				IgnorePaths:       nil,
-				SecretsWhitelist:  nil,
 				Secrets: models.Secrets{
 					Ignore: nil,
 				},
@@ -116,7 +81,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       nil,
-				SecretsWhitelist:  nil,
 				Secrets: models.Secrets{
 					Ignore: nil,
 				},
@@ -129,7 +93,6 @@ func TestParseConfiguration(t *testing.T) {
 				SeverityThreshold: "",
 				IgnoreDirs:        nil,
 				IgnorePaths:       []string{"*d"},
-				SecretsWhitelist:  nil,
 				Secrets: models.Secrets{
 					Ignore: nil,
 				},

@@ -16,13 +16,11 @@ func TestIntegration(t *testing.T) {
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},
-		SecretsWhitelist:  []string{"abcd1234"},
 		Secrets: models.Secrets{
 			Ignore: []models.SecretsIgnore{
 				{
 					Value:  "mocksecret123",
 					Reason: "This is a test secret, it has no access to anything",
-					Paths:  []string{"**/tests/*"},
 				},
 				{
 					Pattern: "id[0-9]+",
@@ -119,12 +117,12 @@ func TestIntegration(t *testing.T) {
 		Dependencies: models.Dependencies{
 			Ignore: []models.DependenciesIgnore{
 				{
-					CVE:    "CVE-2021-1234",
+					CVEs:   []string{"CVE-2021-1234"},
 					Reason: "This is a false positive",
 					Expiry: "2021-12-31",
 				},
 				{
-					CVE:    "CVE-2021-5678",
+					CVEs:   []string{"CVE-2021-5678"},
 					Reason: "This isn't exploitable in client applications",
 					Expiry: "2021-12-31",
 					Repositories: []string{
@@ -149,13 +147,11 @@ func TestEmptyFailsBuildField(t *testing.T) {
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},
-		SecretsWhitelist:  []string{"abcd1234"},
 		Secrets: models.Secrets{
 			Ignore: []models.SecretsIgnore{
 				{
 					Value:  "mocksecret123",
 					Reason: "This is a test secret, it has no access to anything",
-					Paths:  []string{"**/tests/*"},
 				},
 				{
 					Pattern: "id[0-9]+",
@@ -252,12 +248,12 @@ func TestEmptyFailsBuildField(t *testing.T) {
 		Dependencies: models.Dependencies{
 			Ignore: []models.DependenciesIgnore{
 				{
-					CVE:    "CVE-2021-1234",
+					CVEs:   []string{"CVE-2021-1234"},
 					Reason: "This is a false positive",
 					Expiry: "2021-12-31",
 				},
 				{
-					CVE:    "CVE-2021-5678",
+					CVEs:   []string{"CVE-2021-5678"},
 					Reason: "This isn't exploitable in client applications",
 					Expiry: "2021-12-31",
 					Repositories: []string{

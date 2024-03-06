@@ -40,7 +40,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				Dependencies: models.Dependencies{
 					Ignore: []models.DependenciesIgnore{
 						{
-							CVE: "CVE-2021-1234",
+							CVEs: []string{"CVE-2021-1234"},
 						},
 					},
 				},
@@ -80,7 +80,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				Dependencies: models.Dependencies{
 					Ignore: []models.DependenciesIgnore{
 						{
-							CVE: "CVE-2021-1234",
+							CVEs: []string{"CVE-2021-1234"},
 						},
 					},
 				},
@@ -123,7 +123,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				Dependencies: models.Dependencies{
 					Ignore: []models.DependenciesIgnore{
 						{
-							CVE: "CVE-2021-1234",
+							CVEs: []string{"CVE-2021-1234"},
 						},
 					},
 				},
@@ -164,7 +164,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				Dependencies: models.Dependencies{
 					Ignore: []models.DependenciesIgnore{
 						{
-							CVE: "CVE-2021-1234",
+							CVEs: []string{"CVE-2021-1234"},
 						},
 					},
 				},
