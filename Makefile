@@ -17,8 +17,15 @@ cov:
 	-go tool cover -html=coverage.txt -o coverage.html
 	-go tool cover -func=coverage.txt
 
-lint:
-	docker run --rm -v $(shell pwd):/app -w /app golangci/golangci-lint:v1.44.2 golangci-lint run --enable gofmt,stylecheck,gosec ./...
+lint: lint-go lint-docker
+
+lint-go:
+	docker build --quiet --target golangci-lint -t golangci-lint:latest .
+	docker run --rm -v $(shell pwd):/app -w /app golangci-lint golangci-lint run ./...
+
+lint-docker:
+	docker build --quiet --target hadolint -t hadolint:latest .
+	docker run --rm -v $(shell pwd):/app -w /app hadolint hadolint Dockerfile
 
 unit:
 	go test ./...
