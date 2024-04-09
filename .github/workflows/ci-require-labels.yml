@@ -5,7 +5,9 @@ on:
   pull_request:
     types: [opened, labeled, unlabeled, synchronize]
   merge_group:
-run-name: CI Require Labels ${{ github.sha }} by @${{ github.actor }}
+run-name: CI Require Labels by @${{ github.actor }} ${{ github.sha }}
+permissions:
+  pull-requests: read
 jobs:
   require-labels:
     if: ${{ github.event_name == 'pull_request' }}
@@ -13,7 +15,6 @@ jobs:
     outputs:
       status: ${{ steps.require-labels.outputs.status }}
     steps:
-      - uses: actions/checkout@v4
       - name: Require Labels
         id: require-labels
         uses: nullify-platform/github-actions/actions/require-labels@main
