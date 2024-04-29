@@ -48,10 +48,10 @@ scheduled_notifications:
 code:
   auto_fix:
     enabled: true
-    max_open_pull_requests: 2
-    pull_requests_creation_rate:
+    max_pull_requests_open: 2
+    max_pull_request_creation_rate:
       count: 1
-      period: 1d
+      days: 1
   ignore:
     - cwes: [ 589 ] # Potential HTTP request made with variable url
       reason: HTTP requests with variables in tests don't matter
@@ -64,6 +64,12 @@ code:
       reason: This code won't be going live until next year but we should fix it before then
       expiry: "2021-12-31"
 dependencies:
+  auto_fix:
+    enabled: true
+    max_pull_requests_open: 2
+    max_pull_request_creation_rate:
+      count: 1
+      days: 1
   ignore:
     - cves: [ CVE-2021-1234 ]
       reason: This is a false positive

@@ -24,3 +24,7 @@ func (c *Configuration) GetFailBuilds() bool {
 
 	return *c.FailBuilds
 }
+
+func Int(i int) *int {
+	return &i
+}
