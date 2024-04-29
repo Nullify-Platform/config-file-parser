@@ -48,8 +48,8 @@ scheduled_notifications:
 code:
   auto_fix:
     enabled: true
-    max_open_pull_requests: 2
-    pull_requests_creation_rate:
+    max_pull_requests_open: 2
+    max_pull_request_creation_rate:
       count: 1
       period: 1d
   ignore:
@@ -64,6 +64,12 @@ code:
       reason: This code won't be going live until next year but we should fix it before then
       expiry: "2021-12-31"
 dependencies:
+  auto_fix:
+    enabled: true
+    max_pull_requests_open: 2
+    max_pull_request_creation_rate:
+      count: 1
+      period: 1d
   ignore:
     - cves: [ CVE-2021-1234 ]
       reason: This is a false positive

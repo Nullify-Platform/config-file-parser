@@ -1,9 +1,9 @@
 package models
 
 type AutoFix struct {
-	Enabled                 bool                            `yaml:"enabled,omitempty"`
-	MaxOpenPullRequests     int                             `yaml:"max_open_pull_requests,omitempty"`
-	PullRequestCreationRate *AutoFixPullRequestCreationRate `yaml:"pull_request_creation_rate,omitempty"`
+	Enabled                    bool                            `yaml:"enabled,omitempty"`
+	MaxPullRequestsOpen        int                             `yaml:"max_pull_requests_open,omitempty"`
+	MaxPullRequestCreationRate *AutoFixPullRequestCreationRate `yaml:"max_pull_request_creation_rate,omitempty"`
 }
 
 type AutoFixPullRequestCreationRate struct {

@@ -15,18 +15,18 @@ func validateAutoFix(autofix *models.AutoFix) bool {
 		return true
 	}
 
-	if autofix.MaxOpenPullRequests < 0 {
+	if autofix.MaxPullRequestsOpen < 0 {
 		return false
 	}
 
-	if autofix.PullRequestCreationRate == nil {
+	if autofix.MaxPullRequestCreationRate == nil {
 		return true
 	}
 
-	if autofix.PullRequestCreationRate.Count < 0 {
+	if autofix.MaxPullRequestCreationRate.Count < 0 {
 		return false
 	}
 
-	_, err := time.ParseDuration(autofix.PullRequestCreationRate.Period)
+	_, err := time.ParseDuration(autofix.MaxPullRequestCreationRate.Period)
 	return err == nil
 }
