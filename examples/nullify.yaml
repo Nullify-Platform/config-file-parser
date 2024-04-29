@@ -46,6 +46,12 @@ scheduled_notifications:
       - dast-action
       - cli
 code:
+  auto_fix:
+    enabled: true
+    max_open_pull_requests: 2
+    pull_requests_creation_rate:
+      count: 1
+      period: 1d
   ignore:
     - cwes: [ 589 ] # Potential HTTP request made with variable url
       reason: HTTP requests with variables in tests don't matter
