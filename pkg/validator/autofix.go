@@ -1,8 +1,6 @@
 package validator
 
 import (
-	"time"
-
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 )
 
@@ -15,18 +13,21 @@ func validateAutoFix(autofix *models.AutoFix) bool {
 		return true
 	}
 
-	if autofix.MaxPullRequestsOpen < 0 {
-		return false
+	if autofix.MaxPullRequestsOpen != nil {
+		if *autofix.MaxPullRequestsOpen < 0 {
+			return false
+		}
 	}
 
-	if autofix.MaxPullRequestCreationRate == nil {
-		return true
+	if autofix.MaxPullRequestCreationRate != nil {
+		if autofix.MaxPullRequestCreationRate.Count < 0 {
+			return false
+		}
+
+		if autofix.MaxPullRequestCreationRate.Days < 0 {
+			return false
+		}
 	}
 
-	if autofix.MaxPullRequestCreationRate.Count < 0 {
-		return false
-	}
-
-	_, err := time.ParseDuration(autofix.MaxPullRequestCreationRate.Period)
-	return err == nil
+	return true
 }

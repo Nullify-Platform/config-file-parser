@@ -51,7 +51,7 @@ code:
     max_pull_requests_open: 2
     max_pull_request_creation_rate:
       count: 1
-      period: 1d
+      days: 1
   ignore:
     - cwes: [ 589 ] # Potential HTTP request made with variable url
       reason: HTTP requests with variables in tests don't matter
@@ -69,7 +69,7 @@ dependencies:
     max_pull_requests_open: 2
     max_pull_request_creation_rate:
       count: 1
-      period: 1d
+      days: 1
   ignore:
     - cves: [ CVE-2021-1234 ]
       reason: This is a false positive

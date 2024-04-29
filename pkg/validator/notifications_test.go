@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestValidEmails(t *testing.T) {
+func TestValidNotifications(t *testing.T) {
 	for _, scenario := range []struct {
 		name     string
 		config   *models.Configuration
