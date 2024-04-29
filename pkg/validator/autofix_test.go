@@ -24,7 +24,7 @@ func TestValidAutoFix(t *testing.T) {
 			name: "valid",
 			config: &models.Configuration{
 				Code: models.Code{
-					AutoFix: models.AutoFix{
+					AutoFix: &models.AutoFix{
 						Enabled:             true,
 						MaxPullRequestsOpen: models.Int(2),
 						MaxPullRequestCreationRate: &models.AutoFixPullRequestCreationRate{
@@ -34,7 +34,7 @@ func TestValidAutoFix(t *testing.T) {
 					},
 				},
 				Dependencies: models.Dependencies{
-					AutoFix: models.AutoFix{
+					AutoFix: &models.AutoFix{
 						Enabled:             true,
 						MaxPullRequestsOpen: models.Int(2),
 						MaxPullRequestCreationRate: &models.AutoFixPullRequestCreationRate{

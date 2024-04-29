@@ -31,6 +31,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				IgnoreDirs:        []string{"dir1", "dir2"},
 				IgnorePaths:       []string{"path1", "path2"},
 				Code: models.Code{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.CodeIgnore{
 						{
 							CWEs: []int{123},
@@ -38,6 +41,9 @@ func TestMergeConfigFiles(t *testing.T) {
 					},
 				},
 				Dependencies: models.Dependencies{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.DependenciesIgnore{
 						{
 							CVEs: []string{"CVE-2021-1234"},
@@ -71,6 +77,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				IgnoreDirs:        []string{"dir1", "dir2"},
 				IgnorePaths:       []string{"path1", "path2"},
 				Code: models.Code{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.CodeIgnore{
 						{
 							CWEs: []int{123},
@@ -78,6 +87,9 @@ func TestMergeConfigFiles(t *testing.T) {
 					},
 				},
 				Dependencies: models.Dependencies{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.DependenciesIgnore{
 						{
 							CVEs: []string{"CVE-2021-1234"},
@@ -114,6 +126,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				IgnoreDirs:        []string{"dir1", "dir2"},
 				IgnorePaths:       []string{"path1", "path2"},
 				Code: models.Code{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.CodeIgnore{
 						{
 							CWEs: []int{123},
@@ -121,6 +136,9 @@ func TestMergeConfigFiles(t *testing.T) {
 					},
 				},
 				Dependencies: models.Dependencies{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.DependenciesIgnore{
 						{
 							CVEs: []string{"CVE-2021-1234"},
@@ -155,6 +173,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				IgnoreDirs:        []string{"dir1", "dir2"},
 				IgnorePaths:       []string{"path1", "path2"},
 				Code: models.Code{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.CodeIgnore{
 						{
 							CWEs: []int{123},
@@ -162,6 +183,9 @@ func TestMergeConfigFiles(t *testing.T) {
 					},
 				},
 				Dependencies: models.Dependencies{
+					AutoFix: &models.AutoFix{
+						Enabled: true,
+					},
 					Ignore: []models.DependenciesIgnore{
 						{
 							CVEs: []string{"CVE-2021-1234"},

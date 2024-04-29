@@ -1,7 +1,7 @@
 package models
 
 type Dependencies struct {
-	AutoFix AutoFix              `yaml:"autofix,omitempty"`
+	AutoFix *AutoFix             `yaml:"autofix,omitempty"`
 	Ignore  []DependenciesIgnore `yaml:"ignore,omitempty"`
 }
 
