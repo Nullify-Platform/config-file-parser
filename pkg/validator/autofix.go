@@ -5,10 +5,14 @@ import (
 )
 
 func ValidateAutoFix(config *models.Configuration) bool {
-	return validateAutoFix(&config.Code.AutoFix) && validateAutoFix(&config.Dependencies.AutoFix)
+	return validateAutoFix(config.Code.AutoFix) && validateAutoFix(config.Dependencies.AutoFix)
 }
 
 func validateAutoFix(autofix *models.AutoFix) bool {
+	if autofix == nil {
+		return true
+	}
+
 	if !autofix.Enabled {
 		return true
 	}

@@ -26,7 +26,9 @@ func MergeConfigFiles(
 		config.IgnoreDirs = globalConfig.IgnoreDirs
 		config.IgnorePaths = globalConfig.IgnorePaths
 
+		config.Code.AutoFix = globalConfig.Code.AutoFix
 		config.Code.Ignore = globalConfig.Code.Ignore
+		config.Dependencies.AutoFix = globalConfig.Dependencies.AutoFix
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
@@ -70,8 +72,16 @@ func MergeConfigFiles(
 		config.IgnorePaths = repoConfig.IgnorePaths
 	}
 
+	if repoConfig.Code.AutoFix != nil {
+		config.Code.AutoFix = repoConfig.Code.AutoFix
+	}
+
 	if len(repoConfig.Code.Ignore) > 0 {
 		config.Code.Ignore = repoConfig.Code.Ignore
+	}
+
+	if repoConfig.Dependencies.AutoFix != nil {
+		config.Dependencies.AutoFix = repoConfig.Dependencies.AutoFix
 	}
 
 	if len(repoConfig.Dependencies.Ignore) > 0 {
