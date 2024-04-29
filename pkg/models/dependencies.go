@@ -1,7 +1,8 @@
 package models
 
 type Dependencies struct {
-	Ignore []DependenciesIgnore `yaml:"ignore,omitempty"`
+	AutoFix AutoFix              `yaml:"autofix,omitempty"`
+	Ignore  []DependenciesIgnore `yaml:"ignore,omitempty"`
 }
 
 type DependenciesIgnore struct {

@@ -9,5 +9,6 @@ func ValidateConfig(config *models.Configuration) bool {
 	return ValidateSeverityThreshold(config) &&
 		ValidateNotifications(config) &&
 		ValidateScheduledNotifications(config) &&
-		ValidatePaths(config)
+		ValidatePaths(config) &&
+		ValidateAutoFix(config)
 }
