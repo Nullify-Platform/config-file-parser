@@ -1,7 +1,7 @@
 package models
 
 type Code struct {
-	AutoFix *AutoFix     `yaml:"autofix,omitempty"`
+	AutoFix *AutoFix     `yaml:"auto_fix,omitempty"`
 	Ignore  []CodeIgnore `yaml:"ignore,omitempty"`
 }
 
