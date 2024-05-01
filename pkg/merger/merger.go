@@ -32,7 +32,7 @@ func MergeConfigFiles(
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
-		config.Jira = globalConfig.Jira
+		config.TicketCreation = globalConfig.TicketCreation
 
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
 			config.Notifications = globalConfig.Notifications
@@ -63,6 +63,11 @@ func MergeConfigFiles(
 
 	if repoConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(config) {
 		config.SeverityThreshold = repoConfig.SeverityThreshold
+	}
+
+	if repoConfig.TicketCreation.Enabled {
+		config.TicketCreation.Enabled = repoConfig.TicketCreation.Enabled
+		config.TicketCreation.Jira = repoConfig.TicketCreation.Jira
 	}
 
 	if len(repoConfig.IgnoreDirs) > 0 {

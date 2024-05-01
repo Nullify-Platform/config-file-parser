@@ -1,6 +1,11 @@
 package models
 
+type TicketCreation struct {
+	Enabled bool `yaml:"enabled,omitempty"`
+	Jira    Jira `yaml:"jira,omitempty"`
+}
+
 type Jira struct {
-	Project   string `yaml:"project,omitempty"`
-	IssueType string `yaml:"issuetype,omitempty"`
+	ProjectKey string `yaml:"projectKey,omitempty"`
+	IssueType  string `yaml:"issuetype,omitempty"`
 }

@@ -12,7 +12,7 @@ type Configuration struct {
 
 	Notifications          map[string]Notification          `yaml:"notifications,omitempty"`
 	ScheduledNotifications map[string]ScheduledNotification `yaml:"scheduled_notifications,omitempty"`
-	Jira                   Jira                             `yaml:"jira,omitempty"`
+	TicketCreation         TicketCreation                   `yaml:"ticket_creation,omitempty"`
 
 	// TODO deprecate
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
