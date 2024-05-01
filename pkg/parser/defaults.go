@@ -21,5 +21,9 @@ func NewDefaultConfig() *models.Configuration {
 		},
 		Notifications:          nil,
 		ScheduledNotifications: nil,
+		Jira: models.Jira{
+			Project:   "SCRUM",
+			IssueType: "Task",
+		},
 	}
 }

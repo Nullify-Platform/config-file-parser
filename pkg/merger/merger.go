@@ -32,6 +32,7 @@ func MergeConfigFiles(
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
+		config.Jira = globalConfig.Jira
 
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
 			config.Notifications = globalConfig.Notifications
