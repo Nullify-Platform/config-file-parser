@@ -77,3 +77,8 @@ secrets:
     - value: actualsecret123
       reason: We can't remove this right now but we should
       expiry: "2021-12-31"
+integrations:
+  jira:
+    projectKey: SCRUM
+    issuetype: Task
+    severity_threshold: high

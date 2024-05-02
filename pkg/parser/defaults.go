@@ -21,12 +21,6 @@ func NewDefaultConfig() *models.Configuration {
 		},
 		Notifications:          nil,
 		ScheduledNotifications: nil,
-		TicketCreation: models.TicketCreation{
-			Enabled: false,
-			Jira: models.Jira{
-				ProjectKey: "SCRUM",
-				IssueType:  "Task",
-			},
-		},
+		Integrations:           models.Integrations{},
 	}
 }
