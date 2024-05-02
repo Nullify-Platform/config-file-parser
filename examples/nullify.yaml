@@ -93,6 +93,6 @@ secrets:
 integrations:
   jira:
     disabled: true
-    projectKey: SCRUM
-    issuetype: Task
+    project_key: SCRUM
+    issue_type: Task
     severity_threshold: high
