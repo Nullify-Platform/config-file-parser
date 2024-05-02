@@ -9,4 +9,5 @@ type Jira struct {
 	ProjectKey        string `yaml:"project_key,omitempty"`
 	IssueType         string `yaml:"issue_type,omitempty"`
 	SeverityThreshold string `yaml:"severity_threshold,omitempty"`
+	OnFixTransition   string `yaml:"on_fix_transition,omitempty"`
 }

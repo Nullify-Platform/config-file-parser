@@ -138,6 +138,7 @@ func TestIntegration(t *testing.T) {
 				ProjectKey:        "JIRINT",
 				IssueType:         "Nul-Finding",
 				SeverityThreshold: models.SeverityHigh,
+				OnFixTransition:   "Done",
 			},
 		},
 	}

@@ -73,8 +73,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
-						ProjectKey: "JIRINT",
-						IssueType:  "Nul-Finding",
+						ProjectKey:      "JIRINT",
+						IssueType:       "Nul-Finding",
+						OnFixTransition: "Done",
 					},
 				},
 			},
@@ -125,8 +126,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
-						ProjectKey: "JIRINT",
-						IssueType:  "Nul-Finding",
+						ProjectKey:      "JIRINT",
+						IssueType:       "Nul-Finding",
+						OnFixTransition: "Done",
 					},
 				},
 			},
@@ -180,8 +182,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
-						ProjectKey: "JIRINT",
-						IssueType:  "Nul-Finding",
+						ProjectKey:      "JIRINT",
+						IssueType:       "Nul-Finding",
+						OnFixTransition: "Done",
 					},
 				},
 			},
@@ -233,8 +236,9 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
-						ProjectKey: "JIRINT",
-						IssueType:  "Nul-Finding",
+						ProjectKey:      "JIRINT",
+						IssueType:       "Nul-Finding",
+						OnFixTransition: "Done",
 					},
 				},
 			},
