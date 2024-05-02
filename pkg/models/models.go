@@ -12,6 +12,7 @@ type Configuration struct {
 
 	Notifications          map[string]Notification          `yaml:"notifications,omitempty"`
 	ScheduledNotifications map[string]ScheduledNotification `yaml:"scheduled_notifications,omitempty"`
+	Integrations           Integrations                     `yaml:"integrations,omitempty"`
 
 	// TODO deprecate
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`

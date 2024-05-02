@@ -71,6 +71,14 @@ func TestMergeConfigFiles(t *testing.T) {
 						Schedule: "0 0 * * *",
 					},
 				},
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey:        "JIRINT",
+						IssueType:         "Nul-Finding",
+						OnFixTransition:   "Done",
+						SeverityThreshold: models.SeverityHigh,
+					},
+				},
 			},
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityHigh,
@@ -115,6 +123,14 @@ func TestMergeConfigFiles(t *testing.T) {
 				ScheduledNotifications: map[string]models.ScheduledNotification{
 					"slack": {
 						Schedule: "0 0 * * *",
+					},
+				},
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey:        "JIRINT",
+						IssueType:         "Nul-Finding",
+						OnFixTransition:   "Done",
+						SeverityThreshold: models.SeverityHigh,
 					},
 				},
 			},
@@ -166,6 +182,14 @@ func TestMergeConfigFiles(t *testing.T) {
 						Schedule: "0 0 * * *",
 					},
 				},
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey:        "JIRINT",
+						IssueType:         "Nul-Finding",
+						OnFixTransition:   "Done",
+						SeverityThreshold: models.SeverityHigh,
+					},
+				},
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
@@ -211,6 +235,14 @@ func TestMergeConfigFiles(t *testing.T) {
 				ScheduledNotifications: map[string]models.ScheduledNotification{
 					"slack": {
 						Schedule: "0 0 * * *",
+					},
+				},
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey:        "JIRINT",
+						IssueType:         "Nul-Finding",
+						OnFixTransition:   "Done",
+						SeverityThreshold: models.SeverityHigh,
 					},
 				},
 			},

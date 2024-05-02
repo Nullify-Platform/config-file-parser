@@ -132,6 +132,15 @@ func TestIntegration(t *testing.T) {
 				},
 			},
 		},
+		Integrations: models.Integrations{
+			Jira: &models.Jira{
+				Disabled:          false,
+				ProjectKey:        "JIRINT",
+				IssueType:         "Nul-Finding",
+				SeverityThreshold: models.SeverityHigh,
+				OnFixTransition:   "Done",
+			},
+		},
 	}
 
 	config, err := parser.LoadFromFile("nullify.yaml")

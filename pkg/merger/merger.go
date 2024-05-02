@@ -33,6 +33,10 @@ func MergeConfigFiles(
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
 
+		if globalConfig.Integrations.Jira != nil {
+			config.Integrations.Jira = globalConfig.Integrations.Jira
+		}
+
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
 			config.Notifications = globalConfig.Notifications
 		}
@@ -62,6 +66,10 @@ func MergeConfigFiles(
 
 	if repoConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(config) {
 		config.SeverityThreshold = repoConfig.SeverityThreshold
+	}
+
+	if repoConfig.Integrations.Jira != nil {
+		config.Integrations.Jira = repoConfig.Integrations.Jira
 	}
 
 	if len(repoConfig.IgnoreDirs) > 0 {
