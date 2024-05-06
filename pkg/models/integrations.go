@@ -5,9 +5,19 @@ type Integrations struct {
 }
 
 type Jira struct {
-	Disabled          bool   `yaml:"disabled,omitempty"`
-	ProjectKey        string `yaml:"project_key,omitempty"`
-	IssueType         string `yaml:"issue_type,omitempty"`
-	SeverityThreshold string `yaml:"severity_threshold,omitempty"`
-	OnFixTransition   string `yaml:"on_fix_transition,omitempty"`
+	Disabled          bool        `yaml:"disabled,omitempty"`
+	ProjectKey        string      `yaml:"project_key,omitempty"`
+	IssueType         string      `yaml:"issue_type,omitempty"`
+	SeverityThreshold string      `yaml:"severity_threshold,omitempty"`
+	OnFixTransition   string      `yaml:"on_fix_transition,omitempty"`
+	Priorities        *Priorities `yaml:"priorities,omitempty"`
+}
+
+// Mapping of Nullify Finding severities to Jira Priorities.
+// The user can specify the priority of the issue based on the severity.
+type Priorities struct {
+	Critical string `yaml:"critical,omitempty"`
+	High     string `yaml:"high,omitempty"`
+	Medium   string `yaml:"medium,omitempty"`
+	Low      string `yaml:"low,omitempty"`
 }
