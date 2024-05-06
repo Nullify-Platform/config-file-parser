@@ -35,6 +35,17 @@ func MergeConfigFiles(
 
 		if globalConfig.Integrations.Jira != nil {
 			config.Integrations.Jira = globalConfig.Integrations.Jira
+			if globalConfig.Integrations.Jira.Priorities != nil {
+				config.Integrations.Jira.Priorities = globalConfig.Integrations.Jira.Priorities
+			} else {
+				// default
+				config.Integrations.Jira.Priorities = &models.Priorities{
+					Critical: "highest",
+					High:     "high",
+					Medium:   "medium",
+					Low:      "low",
+				}
+			}
 		}
 
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
@@ -70,6 +81,9 @@ func MergeConfigFiles(
 
 	if repoConfig.Integrations.Jira != nil {
 		config.Integrations.Jira = repoConfig.Integrations.Jira
+		if repoConfig.Integrations.Jira.Priorities != nil {
+			config.Integrations.Jira.Priorities = repoConfig.Integrations.Jira.Priorities
+		}
 	}
 
 	if len(repoConfig.IgnoreDirs) > 0 {
