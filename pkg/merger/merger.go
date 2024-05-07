@@ -83,6 +83,16 @@ func MergeConfigFiles(
 		config.Integrations.Jira = repoConfig.Integrations.Jira
 		if repoConfig.Integrations.Jira.Priorities != nil {
 			config.Integrations.Jira.Priorities = repoConfig.Integrations.Jira.Priorities
+		} else if globalConfig != nil && globalConfig.Integrations.Jira != nil && globalConfig.Integrations.Jira.Priorities != nil {
+			config.Integrations.Jira.Priorities = globalConfig.Integrations.Jira.Priorities
+		} else {
+			// default
+			config.Integrations.Jira.Priorities = &models.Priorities{
+				Critical: "highest",
+				High:     "high",
+				Medium:   "medium",
+				Low:      "low",
+			}
 		}
 	}
 
