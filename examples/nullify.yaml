@@ -102,4 +102,6 @@ integrations:
       high: high
       medium: medium
       low: low
-
+    assignee:
+      id: 123456:abcd1234-abcd-1234-abcd-abcde12345666
+      name: Jonathan Lam
