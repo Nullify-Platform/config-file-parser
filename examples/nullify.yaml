@@ -97,3 +97,9 @@ integrations:
     issue_type: Task
     severity_threshold: high
     on_fix_transition: Done
+    priorities:
+      critical: highest
+      high: high
+      medium: medium
+      low: low
+

@@ -131,6 +131,12 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						Priorities: &models.Priorities{
+							Critical: "highest",
+							High:     "high",
+							Medium:   "medium",
+							Low:      "low",
+						},
 					},
 				},
 			},
@@ -188,6 +194,12 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						Priorities: &models.Priorities{
+							Critical: "highest",
+							High:     "high",
+							Medium:   "medium",
+							Low:      "low",
+						},
 					},
 				},
 			},
@@ -243,6 +255,12 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						Priorities: &models.Priorities{
+							Critical: "highest",
+							High:     "high",
+							Medium:   "medium",
+							Low:      "low",
+						},
 					},
 				},
 			},
@@ -289,6 +307,173 @@ func TestMergeConfigFiles(t *testing.T) {
 			},
 			expected: &models.Configuration{
 				SeverityThreshold: models.SeverityHigh,
+			},
+		},
+	} {
+		t.Run(scenario.name, func(t *testing.T) {
+			config := MergeConfigFiles(scenario.globalConfig, scenario.repoConfig)
+			require.Equal(t, scenario.expected, config, scenario.name)
+		})
+	}
+}
+
+func TestMergeJiraPriorities(t *testing.T) {
+	for _, scenario := range []struct {
+		name         string
+		globalConfig *models.Configuration
+		repoConfig   *models.Configuration
+		expected     *models.Configuration
+	}{
+		{
+			name: "Jira no priorities in global config, nil repoConfig",
+			globalConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{},
+				},
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "",
+						IssueType:  "",
+						Priorities: &models.Priorities{
+							Critical: "highest",
+							High:     "high",
+							Medium:   "medium",
+							Low:      "low",
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "Jira priorities from global config",
+			globalConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						Priorities: &models.Priorities{
+							Critical: "urgent_global",
+							High:     "high_global",
+							Medium:   "medium_global",
+							Low:      "low_global",
+						},
+					},
+				},
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "",
+						IssueType:  "",
+						Priorities: &models.Priorities{
+							Critical: "urgent_global",
+							High:     "high_global",
+							Medium:   "medium_global",
+							Low:      "low_global",
+						},
+					},
+				},
+			},
+		},
+		{
+			name:         "Jira priorities from repo config, nil global",
+			globalConfig: nil,
+			repoConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						Priorities: &models.Priorities{
+							Critical: "urgent_repo",
+							High:     "high_repo",
+							Medium:   "medium_repo",
+							Low:      "low_repo",
+						},
+					},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "",
+						IssueType:  "",
+						Priorities: &models.Priorities{
+							Critical: "urgent_repo",
+							High:     "high_repo",
+							Medium:   "medium_repo",
+							Low:      "low_repo",
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "Jira priorities from repo config overriding global config",
+			globalConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						Priorities: &models.Priorities{
+							Critical: "urgent_global",
+							High:     "high_global",
+							Medium:   "medium_global",
+							Low:      "low_global",
+						},
+					},
+				},
+			},
+			repoConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						Priorities: &models.Priorities{
+							Critical: "urgent_repo",
+							High:     "high_repo",
+							Medium:   "medium_repo",
+							Low:      "low_repo",
+						},
+					},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "",
+						IssueType:  "",
+						Priorities: &models.Priorities{
+							Critical: "urgent_repo",
+							High:     "high_repo",
+							Medium:   "medium_repo",
+							Low:      "low_repo",
+						},
+					},
+				},
+			},
+		},
+		{
+			name:         "Jira repo config with nil priorities",
+			globalConfig: nil,
+			repoConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "",
+						IssueType:  "",
+						Priorities: &models.Priorities{
+							Critical: "highest",
+							High:     "high",
+							Medium:   "medium",
+							Low:      "low",
+						},
+					},
+				},
 			},
 		},
 	} {
