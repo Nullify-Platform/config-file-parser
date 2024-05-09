@@ -33,21 +33,8 @@ func MergeConfigFiles(
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
 
-		// copies over Jira config but if Jira.Priorities is not set,
-		// it will use default values
 		if globalConfig.Integrations.Jira != nil {
 			config.Integrations.Jira = globalConfig.Integrations.Jira
-			if globalConfig.Integrations.Jira.Priorities != nil {
-				config.Integrations.Jira.Priorities = globalConfig.Integrations.Jira.Priorities
-			} else {
-				// default
-				config.Integrations.Jira.Priorities = &models.Priorities{
-					Critical: "highest",
-					High:     "high",
-					Medium:   "medium",
-					Low:      "low",
-				}
-			}
 		}
 
 		if len(globalConfig.Notifications) > 0 && config.Notifications == nil {
@@ -89,14 +76,13 @@ func MergeConfigFiles(
 			// copying over repoConfig if globalConfig is set may overwrite the priorities,
 			// so we need to copy over the globalConfig priorities again if repo level priorities are not set
 			config.Integrations.Jira.Priorities = globalConfig.Integrations.Jira.Priorities
-		} else {
-			// default if neither repo nor global config priorities are set
-			config.Integrations.Jira.Priorities = &models.Priorities{
-				Critical: "highest",
-				High:     "high",
-				Medium:   "medium",
-				Low:      "low",
-			}
+		}
+
+		if repoConfig.Integrations.Jira.Assignee != nil {
+			config.Integrations.Jira.Assignee = repoConfig.Integrations.Jira.Assignee
+		} else if globalConfig != nil && globalConfig.Integrations.Jira != nil && globalConfig.Integrations.Jira.Assignee != nil {
+			// assignee is set in the global config, but not in the repo config
+			config.Integrations.Jira.Assignee = globalConfig.Integrations.Jira.Assignee
 		}
 	}
 
