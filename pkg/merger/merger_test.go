@@ -131,12 +131,6 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
-						Priorities: &models.Priorities{
-							Critical: "highest",
-							High:     "high",
-							Medium:   "medium",
-							Low:      "low",
-						},
 					},
 				},
 			},
@@ -317,7 +311,7 @@ func TestMergeConfigFiles(t *testing.T) {
 	}
 }
 
-func TestMergeJiraPriorities(t *testing.T) {
+func TestMergeJira(t *testing.T) {
 	for _, scenario := range []struct {
 		name         string
 		globalConfig *models.Configuration
@@ -338,18 +332,12 @@ func TestMergeJiraPriorities(t *testing.T) {
 					Jira: &models.Jira{
 						ProjectKey: "",
 						IssueType:  "",
-						Priorities: &models.Priorities{
-							Critical: "highest",
-							High:     "high",
-							Medium:   "medium",
-							Low:      "low",
-						},
 					},
 				},
 			},
 		},
 		{
-			name: "Jira priorities from global config",
+			name: "Jira priorities from global config, nil repo",
 			globalConfig: &models.Configuration{
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
@@ -358,6 +346,10 @@ func TestMergeJiraPriorities(t *testing.T) {
 							High:     "high_global",
 							Medium:   "medium_global",
 							Low:      "low_global",
+						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
 						},
 					},
 				},
@@ -375,12 +367,16 @@ func TestMergeJiraPriorities(t *testing.T) {
 							Medium:   "medium_global",
 							Low:      "low_global",
 						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
+						},
 					},
 				},
 			},
 		},
 		{
-			name:         "Jira priorities from repo config, nil global",
+			name:         "Jira priorities and assignee from repo config, nil global",
 			globalConfig: nil,
 			repoConfig: &models.Configuration{
 				Integrations: models.Integrations{
@@ -390,6 +386,10 @@ func TestMergeJiraPriorities(t *testing.T) {
 							High:     "high_repo",
 							Medium:   "medium_repo",
 							Low:      "low_repo",
+						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
 						},
 					},
 				},
@@ -405,6 +405,10 @@ func TestMergeJiraPriorities(t *testing.T) {
 							High:     "high_repo",
 							Medium:   "medium_repo",
 							Low:      "low_repo",
+						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
 						},
 					},
 				},
@@ -421,6 +425,10 @@ func TestMergeJiraPriorities(t *testing.T) {
 							Medium:   "medium_global",
 							Low:      "low_global",
 						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
+						},
 					},
 				},
 			},
@@ -447,6 +455,10 @@ func TestMergeJiraPriorities(t *testing.T) {
 							High:     "high_repo",
 							Medium:   "medium_repo",
 							Low:      "low_repo",
+						},
+						Assignee: &models.Assignee{
+							Name: "John Smith",
+							ID:   "123456",
 						},
 					},
 				},
@@ -466,12 +478,6 @@ func TestMergeJiraPriorities(t *testing.T) {
 					Jira: &models.Jira{
 						ProjectKey: "",
 						IssueType:  "",
-						Priorities: &models.Priorities{
-							Critical: "highest",
-							High:     "high",
-							Medium:   "medium",
-							Low:      "low",
-						},
 					},
 				},
 			},

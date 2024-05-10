@@ -11,6 +11,7 @@ type Jira struct {
 	SeverityThreshold string      `yaml:"severity_threshold,omitempty"`
 	OnFixTransition   string      `yaml:"on_fix_transition,omitempty"`
 	Priorities        *Priorities `yaml:"priorities,omitempty"`
+	Assignee          *Assignee   `yaml:"assignee,omitempty"`
 }
 
 // Mapping of Nullify Finding severities to Jira Priorities.
@@ -20,4 +21,9 @@ type Priorities struct {
 	High     string `yaml:"high,omitempty"`
 	Medium   string `yaml:"medium,omitempty"`
 	Low      string `yaml:"low,omitempty"`
+}
+
+type Assignee struct {
+	Name string `yaml:"name,omitempty"`
+	ID   string `yaml:"id,omitempty"`
 }
