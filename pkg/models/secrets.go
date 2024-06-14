@@ -11,6 +11,7 @@ type SecretsIgnore struct {
 	// matchers
 	Value   string `yaml:"value,omitempty"`
 	Pattern string `yaml:"pattern,omitempty"`
+	SHA256  string `yaml:"sha256,omitempty"`
 
 	// global config only
 	Repositories []string `yaml:"repositories,omitempty"`
