@@ -90,6 +90,8 @@ secrets:
     - value: actualsecret123
       reason: We can't remove this right now but we should
       expiry: "2021-12-31"
+    - sha256: 87cbebfeebc05f7c54ac9336c4b4bbec831227a641951a4bde7edd56020f8590 # this is correct-horse-battery-staple
+      reason: This was allowlisted from the Nullify dashboard
 integrations:
   jira:
     disabled: true
