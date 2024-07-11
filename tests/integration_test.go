@@ -32,6 +32,16 @@ func TestIntegration(t *testing.T) {
 					Expiry: "2021-12-31",
 				},
 			},
+			CustomPatterns: map[string]models.SecretsCustomPattern{
+				"my-custom-rule-1": {
+					Description:      models.String("This is a custom rule for finding secrets"),
+					SecretRegex:      "mysecret[0-9]+",
+					SecretRegexGroup: models.Int(0),
+					Entropy:          models.Float32(4.0),
+					PathRegex:        models.String(".*"),
+					Keywords:         []string{"package", "func"},
+				},
+			},
 		},
 		Notifications: map[string]models.Notification{
 			"all-events-webhook": {
