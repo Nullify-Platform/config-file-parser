@@ -79,7 +79,7 @@ secrets:
       expiry: "2021-12-31"
   custom_patterns:
     my-custom-rule-1:
-      description: This is a custom rule for finding secrets 
+      description: This is a custom rule for finding secrets
       secret_regex: "mysecret[0-9]+"
       secret_regex_group: 0
       entropy: 4.0
