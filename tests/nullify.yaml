@@ -77,6 +77,14 @@ secrets:
     - value: actualsecret123
       reason: We can't remove this right now but we should
       expiry: "2021-12-31"
+  custom_patterns:
+    my-custom-rule-1:
+      description: This is a custom rule for finding secrets 
+      secret_regex: "mysecret[0-9]+"
+      secret_regex_group: 0
+      entropy: 4.0
+      path_regex: ".*"
+      keywords: [ "package", "func" ] # only go files
 integrations:
   jira:
     project_key: JIRINT
