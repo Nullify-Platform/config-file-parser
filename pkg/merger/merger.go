@@ -31,6 +31,7 @@ func MergeConfigFiles(
 		config.Dependencies.AutoFix = globalConfig.Dependencies.AutoFix
 		config.Dependencies.Ignore = globalConfig.Dependencies.Ignore
 		config.Secrets.Ignore = globalConfig.Secrets.Ignore
+		config.Secrets.CustomPatterns = globalConfig.Secrets.CustomPatterns
 		config.SecretsWhitelist = globalConfig.SecretsWhitelist
 
 		if globalConfig.Integrations.Jira != nil {
@@ -116,6 +117,20 @@ func MergeConfigFiles(
 
 	if len(repoConfig.SecretsWhitelist) > 0 {
 		config.SecretsWhitelist = repoConfig.SecretsWhitelist
+	}
+
+	config.Secrets.CustomPatternsOverrideGlobal = repoConfig.Secrets.CustomPatternsOverrideGlobal
+
+	if repoConfig.Secrets.CustomPatternsOverrideGlobal {
+		// override global custom patterns with repo custom patterns
+		config.Secrets.CustomPatterns = repoConfig.Secrets.CustomPatterns
+	} else if config.Secrets.CustomPatterns == nil {
+		config.Secrets.CustomPatterns = repoConfig.Secrets.CustomPatterns
+	} else {
+		// merge repo custom patterns with global custom patterns
+		for k, v := range repoConfig.Secrets.CustomPatterns {
+			config.Secrets.CustomPatterns[k] = v
+		}
 	}
 
 	if len(repoConfig.Notifications) > 0 && config.Notifications == nil {
