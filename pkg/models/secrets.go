@@ -1,8 +1,9 @@
 package models
 
 type Secrets struct {
-	Ignore         []SecretsIgnore                 `yaml:"ignore,omitempty"`
-	CustomPatterns map[string]SecretsCustomPattern `yaml:"custom_patterns,omitempty"`
+	Ignore                       []SecretsIgnore                 `yaml:"ignore,omitempty"`
+	CustomPatterns               map[string]SecretsCustomPattern `yaml:"custom_patterns,omitempty"`
+	CustomPatternsOverrideGlobal bool                            `yaml:"custom_patterns_override_global,omitempty"`
 }
 
 type SecretsIgnore struct {

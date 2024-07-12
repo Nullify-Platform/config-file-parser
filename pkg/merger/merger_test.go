@@ -482,6 +482,128 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "secrets custom patterns global",
+			globalConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+					},
+				},
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+					},
+				},
+			},
+		},
+		{
+			name:         "secrets custom patterns repo",
+			globalConfig: nil,
+			repoConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+					},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "secrets custom patterns merge",
+			globalConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+						"custom2": {
+							SecretRegex: "custom2",
+						},
+					},
+				},
+			},
+			repoConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1-repo-override",
+						},
+						"custom3": {
+							SecretRegex: "custom3",
+						},
+					},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1-repo-override",
+						},
+						"custom2": {
+							SecretRegex: "custom2",
+						},
+						"custom3": {
+							SecretRegex: "custom3",
+						},
+					},
+				},
+			},
+		},
+		{
+			name: "secrets custom patterns override global",
+			globalConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom1": {
+							SecretRegex: "custom1",
+						},
+					},
+				},
+			},
+			repoConfig: &models.Configuration{
+				Secrets: models.Secrets{
+					CustomPatternsOverrideGlobal: true,
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom2": {
+							SecretRegex: "custom2",
+						},
+					},
+				},
+			},
+			expected: &models.Configuration{
+				SeverityThreshold: parser.DefaultSeverityThreshold,
+				Secrets: models.Secrets{
+					CustomPatternsOverrideGlobal: true,
+					CustomPatterns: map[string]models.SecretsCustomPattern{
+						"custom2": {
+							SecretRegex: "custom2",
+						},
+					},
+				},
+			},
+		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config := MergeConfigFiles(scenario.globalConfig, scenario.repoConfig)
