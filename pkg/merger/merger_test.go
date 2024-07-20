@@ -305,7 +305,7 @@ func TestMergeConfigFiles(t *testing.T) {
 		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
-			config := MergeConfigFiles(scenario.globalConfig, scenario.repoConfig)
+			config := MergeConfigFiles(parser.NewDefaultConfig(), scenario.globalConfig, scenario.repoConfig)
 			require.Equal(t, scenario.expected, config, scenario.name)
 		})
 	}
@@ -606,7 +606,7 @@ func TestMergeJira(t *testing.T) {
 		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
-			config := MergeConfigFiles(scenario.globalConfig, scenario.repoConfig)
+			config := MergeConfigFiles(parser.NewDefaultConfig(), scenario.globalConfig, scenario.repoConfig)
 			require.Equal(t, scenario.expected, config, scenario.name)
 		})
 	}
