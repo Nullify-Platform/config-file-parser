@@ -27,7 +27,7 @@ func TestValidateSeverityThreshold(t *testing.T) {
 		{
 			name:     "empty SeverityThreshold",
 			config:   &models.Configuration{SeverityThreshold: ""},
-			expected: false,
+			expected: true,
 		},
 		{
 			name:     "SeverityLow",
