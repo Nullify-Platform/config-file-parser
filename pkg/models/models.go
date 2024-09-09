@@ -1,11 +1,17 @@
 package models
 
 type Configuration struct {
-	FailBuilds        *bool    `yaml:"fail_builds,omitempty"`
-	SeverityThreshold string   `yaml:"severity_threshold,omitempty"`
-	IgnoreDirs        []string `yaml:"ignore_dirs,omitempty"`
-	IgnorePaths       []string `yaml:"ignore_paths,omitempty"`
-	AutoFix           *AutoFix `yaml:"auto_fix,omitempty"`
+	// git platform options
+	EnableFailBuilds         *bool `yaml:"enable_fail_builds,omitempty"`
+	EnablePullRequestReviews *bool `yaml:"enable_pull_request_reviews,omitempty"`
+	EnableIssueDashboards    *bool `yaml:"enable_issue_dashboards,omitempty"`
+
+	SeverityThreshold string `yaml:"severity_threshold,omitempty"`
+	PriorityThreshold string `yaml:"priority_threshold,omitempty"`
+
+	IgnoreDirs  []string `yaml:"ignore_dirs,omitempty"`
+	IgnorePaths []string `yaml:"ignore_paths,omitempty"`
+	AutoFix     *AutoFix `yaml:"auto_fix,omitempty"`
 
 	Notifications          map[string]Notification          `yaml:"notifications,omitempty"`
 	ScheduledNotifications map[string]ScheduledNotification `yaml:"scheduled_notifications,omitempty"`
@@ -20,12 +26,28 @@ type Configuration struct {
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
 }
 
-func (c *Configuration) GetFailBuilds() bool {
-	if c.FailBuilds == nil {
+func (c *Configuration) GetEnableFailBuilds() bool {
+	if c.EnableFailBuilds == nil {
 		return false
 	}
 
-	return *c.FailBuilds
+	return *c.EnableFailBuilds
+}
+
+func (c *Configuration) GetEnablePullRequestReviews() bool {
+	if c.EnablePullRequestReviews == nil {
+		return false
+	}
+
+	return *c.EnablePullRequestReviews
+}
+
+func (c *Configuration) GetEnableIssueDashboards() bool {
+	if c.EnableIssueDashboards == nil {
+		return false
+	}
+
+	return *c.EnableIssueDashboards
 }
 
 func Bool(b bool) *bool {

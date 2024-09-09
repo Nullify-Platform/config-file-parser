@@ -10,12 +10,13 @@ import (
 )
 
 func TestIntegration(t *testing.T) {
-	fail := true
 	expectedConfig := &models.Configuration{
-		FailBuilds:        &fail,
-		SeverityThreshold: models.SeverityMedium,
-		IgnoreDirs:        []string{"dir1"},
-		IgnorePaths:       []string{"data/**/*"},
+		EnableFailBuilds:         models.Bool(true),
+		EnablePullRequestReviews: models.Bool(true),
+		EnableIssueDashboards:    models.Bool(true),
+		SeverityThreshold:        models.SeverityMedium,
+		IgnoreDirs:               []string{"dir1"},
+		IgnorePaths:              []string{"data/**/*"},
 		Secrets: models.Secrets{
 			Ignore: []models.SecretsIgnore{
 				{
@@ -162,7 +163,7 @@ func TestIntegration(t *testing.T) {
 
 func TestEmptyFailsBuildField(t *testing.T) {
 	expectedConfig := &models.Configuration{
-		FailBuilds:        nil,
+		EnableFailBuilds:  nil,
 		SeverityThreshold: models.SeverityMedium,
 		IgnoreDirs:        []string{"dir1"},
 		IgnorePaths:       []string{"data/**/*"},

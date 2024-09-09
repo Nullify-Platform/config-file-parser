@@ -1,4 +1,6 @@
-fail_builds: true
+enable_fail_builds: true
+enable_pull_request_reviews: true
+enable_issue_dashboards: true
 severity_threshold: medium
 ignore_dirs:
   - dir1
