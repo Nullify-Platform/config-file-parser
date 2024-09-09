@@ -20,7 +20,10 @@ func TestMergeConfigFiles(t *testing.T) {
 			globalConfig: nil,
 			repoConfig:   nil,
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 			},
 		},
 		{
@@ -81,9 +84,12 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityHigh,
-				IgnoreDirs:        []string{"dir1", "dir2"},
-				IgnorePaths:       []string{"path1", "path2"},
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        models.SeverityHigh,
+				PriorityThreshold:        models.PriorityMedium,
+				IgnoreDirs:               []string{"dir1", "dir2"},
+				IgnorePaths:              []string{"path1", "path2"},
 				Code: models.Code{
 					AutoFix: &models.AutoFix{
 						Enabled: true,
@@ -199,9 +205,12 @@ func TestMergeConfigFiles(t *testing.T) {
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityHigh,
-				IgnoreDirs:        []string{"dir1", "dir2"},
-				IgnorePaths:       []string{"path1", "path2"},
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        models.SeverityHigh,
+				PriorityThreshold:        models.PriorityMedium,
+				IgnoreDirs:               []string{"dir1", "dir2"},
+				IgnorePaths:              []string{"path1", "path2"},
 				Code: models.Code{
 					AutoFix: &models.AutoFix{
 						Enabled: true,
@@ -264,43 +273,61 @@ func TestMergeConfigFiles(t *testing.T) {
 			globalConfig: nil,
 			repoConfig: &models.Configuration{
 				SeverityThreshold: "",
+				PriorityThreshold: "",
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 			},
 		},
 		{
 			name: "global config without severity threshold",
 			globalConfig: &models.Configuration{
 				SeverityThreshold: "",
+				PriorityThreshold: "",
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 			},
 		},
 		{
 			name: "global and repo config without severity threshold",
 			globalConfig: &models.Configuration{
 				SeverityThreshold: "",
+				PriorityThreshold: "",
 			},
 			repoConfig: &models.Configuration{
 				SeverityThreshold: "",
+				PriorityThreshold: "",
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 			},
 		},
 		{
 			name: "global and repo config without severity threshold",
 			globalConfig: &models.Configuration{
 				SeverityThreshold: models.SeverityCritical,
+				PriorityThreshold: models.PriorityUrgent,
 			},
 			repoConfig: &models.Configuration{
 				SeverityThreshold: models.SeverityHigh,
+				PriorityThreshold: models.PriorityImportant,
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: models.SeverityHigh,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        models.SeverityHigh,
+				PriorityThreshold:        models.PriorityImportant,
 			},
 		},
 	} {
@@ -327,7 +354,10 @@ func TestMergeJira(t *testing.T) {
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey: "",
@@ -356,7 +386,10 @@ func TestMergeJira(t *testing.T) {
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey: "",
@@ -395,7 +428,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey: "",
@@ -445,7 +481,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey: "",
@@ -473,7 +512,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey: "",
@@ -495,7 +537,10 @@ func TestMergeJira(t *testing.T) {
 			},
 			repoConfig: nil,
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Secrets: models.Secrets{
 					CustomPatterns: map[string]models.SecretsCustomPattern{
 						"custom1": {
@@ -518,7 +563,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Secrets: models.Secrets{
 					CustomPatterns: map[string]models.SecretsCustomPattern{
 						"custom1": {
@@ -555,7 +603,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Secrets: models.Secrets{
 					CustomPatterns: map[string]models.SecretsCustomPattern{
 						"custom1": {
@@ -593,7 +644,10 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 			expected: &models.Configuration{
-				SeverityThreshold: parser.DefaultSeverityThreshold,
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				Secrets: models.Secrets{
 					CustomPatternsOverrideGlobal: true,
 					CustomPatterns: map[string]models.SecretsCustomPattern{

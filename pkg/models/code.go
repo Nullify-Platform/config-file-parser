@@ -1,9 +1,9 @@
 package models
 
 type Code struct {
-	FailBuilds *bool        `yaml:"fail_builds,omitempty"`
-	AutoFix    *AutoFix     `yaml:"auto_fix,omitempty"`
-	Ignore     []CodeIgnore `yaml:"ignore,omitempty"`
+	EnableFailBuilds *bool        `yaml:"enable_fail_builds,omitempty"`
+	AutoFix          *AutoFix     `yaml:"auto_fix,omitempty"`
+	Ignore           []CodeIgnore `yaml:"ignore,omitempty"`
 }
 
 type CodeIgnore struct {

@@ -22,3 +22,23 @@ var validSeveritites = []string{
 func ValidateSeverityThreshold(config *models.Configuration) bool {
 	return slices.Contains(validSeveritites, config.SeverityThreshold)
 }
+
+var validPriorities = []string{
+	models.PriorityUrgent,
+	models.PriorityImportant,
+	models.PriorityMedium,
+	models.PriorityLow,
+	models.PriorityNegligible,
+}
+
+// ValidatePriorityThreshold returns true if the priority_threshold
+// option is one of the valid values:
+//   - ""
+//   - NEGLIGIBLE / negligible
+//   - LOW / low
+//   - MEDIUM / medium
+//   - IMPORTANT / important
+//   - URGENT / urgent
+func ValidatePriorityThreshold(config *models.Configuration) bool {
+	return slices.Contains(validPriorities, config.PriorityThreshold)
+}

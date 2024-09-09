@@ -22,12 +22,28 @@ func MergeConfigFiles(
 			continue
 		}
 
-		if extraConfig.FailBuilds != nil {
-			config.FailBuilds = extraConfig.FailBuilds
+		// feature flags
+
+		if extraConfig.EnableFailBuilds != nil {
+			config.EnableFailBuilds = extraConfig.EnableFailBuilds
 		}
+
+		if extraConfig.EnablePullRequestReviews != nil {
+			config.EnablePullRequestReviews = extraConfig.EnablePullRequestReviews
+		}
+
+		if extraConfig.EnableIssueDashboards != nil {
+			config.EnableIssueDashboards = extraConfig.EnableIssueDashboards
+		}
+
+		// thresholds
 
 		if extraConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(extraConfig) {
 			config.SeverityThreshold = extraConfig.SeverityThreshold
+		}
+
+		if extraConfig.PriorityThreshold != "" && validator.ValidateSeverityThreshold(extraConfig) {
+			config.PriorityThreshold = extraConfig.PriorityThreshold
 		}
 
 		if extraConfig.Integrations.Jira != nil {

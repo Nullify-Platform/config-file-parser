@@ -1,7 +1,7 @@
 package models
 
 type Secrets struct {
-	FailBuilds                   *bool                           `yaml:"fail_builds,omitempty"`
+	EnableFailBuilds             *bool                           `yaml:"enable_fail_builds,omitempty"`
 	Ignore                       []SecretsIgnore                 `yaml:"ignore,omitempty"`
 	CustomPatterns               map[string]SecretsCustomPattern `yaml:"custom_patterns,omitempty"`
 	CustomPatternsOverrideGlobal bool                            `yaml:"custom_patterns_override_global,omitempty"`
