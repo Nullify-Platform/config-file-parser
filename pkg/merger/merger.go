@@ -50,6 +50,22 @@ func MergeConfigFiles(
 			if config.Integrations.Jira == nil {
 				config.Integrations.Jira = extraConfig.Integrations.Jira
 			} else {
+				if extraConfig.Integrations.Jira.ProjectKey != "" {
+					config.Integrations.Jira.ProjectKey = extraConfig.Integrations.Jira.ProjectKey
+				}
+				if extraConfig.Integrations.Jira.IssueType != "" {
+					config.Integrations.Jira.IssueType = extraConfig.Integrations.Jira.IssueType
+				}
+				if extraConfig.Integrations.Jira.OnFixTransition != "" {
+					config.Integrations.Jira.OnFixTransition = extraConfig.Integrations.Jira.OnFixTransition
+				}
+				if extraConfig.Integrations.Jira.Disabled {
+					config.Integrations.Jira.Disabled = extraConfig.Integrations.Jira.Disabled
+				}
+				if extraConfig.Integrations.Jira.SeverityThreshold != "" {
+					config.Integrations.Jira.SeverityThreshold = extraConfig.Integrations.Jira.SeverityThreshold
+				}
+
 				if extraConfig.Integrations.Jira.Priorities != nil {
 					config.Integrations.Jira.Priorities = extraConfig.Integrations.Jira.Priorities
 				}

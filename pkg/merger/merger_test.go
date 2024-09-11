@@ -525,6 +525,36 @@ func TestMergeJira(t *testing.T) {
 			},
 		},
 		{
+			name: "Jira repo config with project key overriding",
+			globalConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "projectkey1",
+						IssueType:  "issuetype1",
+					},
+				},
+			},
+			repoConfig: &models.Configuration{
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "projectkey2",
+					},
+				},
+			},
+			expected: &models.Configuration{
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
+				Integrations: models.Integrations{
+					Jira: &models.Jira{
+						ProjectKey: "projectkey2",
+						IssueType:  "issuetype1",
+					},
+				},
+			},
+		},
+		{
 			name: "secrets custom patterns global",
 			globalConfig: &models.Configuration{
 				Secrets: models.Secrets{
