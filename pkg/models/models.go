@@ -18,9 +18,10 @@ type Configuration struct {
 	Integrations           Integrations                     `yaml:"integrations,omitempty"`
 
 	// features
-	Code         Code         `yaml:"code,omitempty"`
-	Dependencies Dependencies `yaml:"dependencies,omitempty"`
-	Secrets      Secrets      `yaml:"secrets,omitempty"`
+	Code          Code          `yaml:"code,omitempty"`
+	Dependencies  Dependencies  `yaml:"dependencies,omitempty"`
+	Secrets       Secrets       `yaml:"secrets,omitempty"`
+	AttackSurface AttackSurface `yaml:"attack_surface,omitempty"`
 
 	// TODO deprecate
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
