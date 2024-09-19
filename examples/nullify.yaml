@@ -109,3 +109,28 @@ integrations:
     assignee:
       id: 123456:abcd1234-abcd-1234-abcd-abcde12345666
       name: John Smith
+projects:
+  frontend:
+    display_name: Frontend Application
+    path: frontend
+    type: react-app
+    description: "Frontend application for the web"
+  backend:
+    display_name: Backend API
+    path: backend
+    type: node-api
+    description: "Backend API server"
+  mobile:
+    display_name: Mobile Application
+    path: mobile
+    type: react-native-app
+    description: "Mobile application"
+  shared:
+    display_name: Shared Library
+    path: shared
+    type: library
+    description: "Shared utilities and libraries"
+  docs:
+    display_name: Documentation
+    path: docs/user-guide
+    description: "User guide documentation"
