@@ -10,5 +10,6 @@ func ValidateConfig(config *models.Configuration) bool {
 		ValidateNotifications(config) &&
 		ValidateScheduledNotifications(config) &&
 		ValidatePaths(config) &&
-		ValidateAutoFix(config)
+		ValidateAutoFix(config) &&
+		ValidateProjects(config)
 }
