@@ -80,6 +80,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						PriorityThreshold: models.PriorityImportant,
 					},
 				},
 			},
@@ -137,6 +138,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						PriorityThreshold: models.PriorityImportant,
 					},
 				},
 			},
@@ -194,6 +196,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						PriorityThreshold: models.PriorityImportant,
 						Priorities: &models.Priorities{
 							Critical: "highest",
 							High:     "high",
@@ -258,6 +261,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						IssueType:         "Nul-Finding",
 						OnFixTransition:   "Done",
 						SeverityThreshold: models.SeverityHigh,
+						PriorityThreshold: models.PriorityImportant,
 						Priorities: &models.Priorities{
 							Critical: "highest",
 							High:     "high",

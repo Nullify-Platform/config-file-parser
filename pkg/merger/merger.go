@@ -65,6 +65,9 @@ func MergeConfigFiles(
 				if extraConfig.Integrations.Jira.SeverityThreshold != "" {
 					config.Integrations.Jira.SeverityThreshold = extraConfig.Integrations.Jira.SeverityThreshold
 				}
+				if extraConfig.Integrations.Jira.PriorityThreshold != "" {
+					config.Integrations.Jira.PriorityThreshold = extraConfig.Integrations.Jira.PriorityThreshold
+				}
 
 				if extraConfig.Integrations.Jira.Priorities != nil {
 					config.Integrations.Jira.Priorities = extraConfig.Integrations.Jira.Priorities
