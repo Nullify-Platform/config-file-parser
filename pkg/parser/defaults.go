@@ -26,5 +26,6 @@ func NewDefaultConfig() *models.Configuration {
 		Notifications:          nil,
 		ScheduledNotifications: nil,
 		Integrations:           models.Integrations{},
+		Projects:               nil,
 	}
 }
