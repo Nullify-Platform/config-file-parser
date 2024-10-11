@@ -99,7 +99,8 @@ integrations:
     disabled: true
     project_key: SCRUM
     issue_type: Task
-    severity_threshold: high
+    severity_threshold: HIGH
+    priority_threshold: IMPORTANT
     on_fix_transition: Done
     priorities:
       critical: highest
