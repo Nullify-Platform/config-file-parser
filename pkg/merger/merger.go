@@ -76,6 +76,18 @@ func MergeConfigFiles(
 				if extraConfig.Integrations.Jira.Assignee != nil {
 					config.Integrations.Jira.Assignee = extraConfig.Integrations.Jira.Assignee
 				}
+
+				if extraConfig.Integrations.Jira.SAST != nil {
+					config.Integrations.Jira.SAST = extraConfig.Integrations.Jira.SAST
+				}
+
+				if extraConfig.Integrations.Jira.Secrets != nil {
+					config.Integrations.Jira.Secrets = extraConfig.Integrations.Jira.Secrets
+				}
+
+				if extraConfig.Integrations.Jira.Dependencies != nil {
+					config.Integrations.Jira.Dependencies = extraConfig.Integrations.Jira.Dependencies
+				}
 			}
 		}
 

@@ -5,14 +5,23 @@ type Integrations struct {
 }
 
 type Jira struct {
-	Disabled          bool        `yaml:"disabled,omitempty"`
-	ProjectKey        string      `yaml:"project_key,omitempty"`
-	IssueType         string      `yaml:"issue_type,omitempty"`
-	SeverityThreshold string      `yaml:"severity_threshold,omitempty"`
-	PriorityThreshold string      `yaml:"priority_threshold,omitempty"`
-	OnFixTransition   string      `yaml:"on_fix_transition,omitempty"`
-	Priorities        *Priorities `yaml:"priorities,omitempty"`
-	Assignee          *Assignee   `yaml:"assignee,omitempty"`
+	Disabled          bool                   `yaml:"disabled,omitempty"`
+	ProjectKey        string                 `yaml:"project_key,omitempty"`
+	IssueType         string                 `yaml:"issue_type,omitempty"`
+	SeverityThreshold string                 `yaml:"severity_threshold,omitempty"`
+	PriorityThreshold string                 `yaml:"priority_threshold,omitempty"`
+	OnFixTransition   string                 `yaml:"on_fix_transition,omitempty"`
+	Priorities        *Priorities            `yaml:"priorities,omitempty"`
+	Assignee          *Assignee              `yaml:"assignee,omitempty"`
+	SAST              *TicketServiceSettings `yaml:"sast,omitempty"`
+	Secrets           *TicketServiceSettings `yaml:"secrets,omitempty"`
+	Dependencies      *TicketServiceSettings `yaml:"dependencies,omitempty"`
+}
+
+type TicketServiceSettings struct {
+	Disabled          bool   `yaml:"disabled,omitempty"`
+	SeverityThreshold string `yaml:"severity_threshold,omitempty"`
+	PriorityThreshold string `yaml:"priority_threshold,omitempty"`
 }
 
 // Mapping of Nullify Finding severities to Jira Priorities.
