@@ -25,6 +25,15 @@ type Configuration struct {
 
 	// TODO deprecate
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
+
+	Projects map[string]Project `yaml:"projects,omitempty"`
+}
+
+type Project struct {
+	DisplayName string `yaml:"display_name"`
+	Path        string `yaml:"path"`
+	Type        string `yaml:"type"`
+	Description string `yaml:"description"`
 }
 
 func (c *Configuration) GetEnableFailBuilds() bool {
