@@ -1,5 +1,7 @@
 package models
 
+import "gopkg.in/yaml.v3"
+
 type Configuration struct {
 	// git platform options
 	EnableFailBuilds         *bool `yaml:"enable_fail_builds,omitempty"`
@@ -25,6 +27,8 @@ type Configuration struct {
 
 	// TODO deprecate
 	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
+
+	LocationInfo map[string]yaml.Node `yaml:"-"`
 }
 
 func (c *Configuration) GetEnableFailBuilds() bool {

@@ -159,7 +159,7 @@ func TestIntegration(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, expectedConfig, config)
-	require.True(t, validator.ValidateConfig(config))
+	require.True(t, validator.ValidateConfig(config).IsValid)
 }
 
 func TestEmptyFailsBuildField(t *testing.T) {
@@ -290,5 +290,5 @@ func TestEmptyFailsBuildField(t *testing.T) {
 	require.NoError(t, err)
 
 	require.Equal(t, expectedConfig, config)
-	require.True(t, validator.ValidateConfig(config))
+	require.True(t, validator.ValidateConfig(config).IsValid)
 }
