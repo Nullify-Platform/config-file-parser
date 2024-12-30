@@ -20,8 +20,18 @@ var validSeveritites = []string{
 //   - MEDIUM / medium
 //   - HIGH / high
 //   - CRITICAL / critical
-func ValidateSeverityThreshold(config *models.Configuration) bool {
-	return slices.Contains(validSeveritites, config.SeverityThreshold)
+func ValidateSeverityThreshold(config *models.Configuration) []ValidationError {
+	if !slices.Contains(validSeveritites, config.SeverityThreshold) {
+		return []ValidationError{
+			{
+				Field:   "severityThreshold",
+				Message: "Invalid severity threshold",
+				Line:    config.LocationInfo["severity_threshold"].Line,
+				Column:  config.LocationInfo["severity_threshold"].Column,
+			},
+		}
+	}
+	return []ValidationError{}
 }
 
 var validPriorities = []string{
@@ -41,6 +51,16 @@ var validPriorities = []string{
 //   - MEDIUM / medium
 //   - IMPORTANT / important
 //   - URGENT / urgent
-func ValidatePriorityThreshold(config *models.Configuration) bool {
-	return slices.Contains(validPriorities, config.PriorityThreshold)
+func ValidatePriorityThreshold(config *models.Configuration) []ValidationError {
+	if !slices.Contains(validPriorities, config.PriorityThreshold) {
+		return []ValidationError{
+			{
+				Field:   "priorityThreshold",
+				Message: "Invalid priority threshold",
+				Line:    config.LocationInfo["priority_threshold"].Line,
+				Column:  config.LocationInfo["priority_threshold"].Column,
+			},
+		}
+	}
+	return []ValidationError{}
 }

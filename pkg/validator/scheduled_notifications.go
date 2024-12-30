@@ -9,22 +9,33 @@ import (
 	"github.com/robfig/cron/v3"
 )
 
-func ValidateScheduledNotifications(config *models.Configuration) bool {
+func ValidateScheduledNotifications(config *models.Configuration) []ValidationError {
+	errors := []ValidationError{}
 	if config.ScheduledNotifications == nil {
-		return true
+		return errors
 	}
 
 	for _, notification := range config.ScheduledNotifications {
 		if !validateScheduledNotificationSchedule(notification.Schedule, notification.Timezone) {
-			return false
+			errors = append(errors, ValidationError{
+				Field:   "scheduledNotifications",
+				Message: "Invalid scheduled notifications",
+				Line:    config.LocationInfo["scheduled_notifications"].Line,
+				Column:  config.LocationInfo["scheduled_notifications"].Column,
+			})
 		}
 
 		if !validateScheduledNotificationEmails(notification) {
-			return false
+			errors = append(errors, ValidationError{
+				Field:   "scheduledNotifications",
+				Message: "Invalid scheduled notifications",
+				Line:    config.LocationInfo["scheduled_notifications"].Line,
+				Column:  config.LocationInfo["scheduled_notifications"].Column,
+			})
 		}
 	}
 
-	return true
+	return errors
 }
 
 // validateScheduledNotificationSchedule return true if provided schedule is a valid cron expression.

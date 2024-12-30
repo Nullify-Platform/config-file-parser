@@ -38,11 +38,11 @@ func MergeConfigFiles(
 
 		// thresholds
 
-		if extraConfig.SeverityThreshold != "" && validator.ValidateSeverityThreshold(extraConfig) {
+		if extraConfig.SeverityThreshold != "" && len(validator.ValidateSeverityThreshold(extraConfig)) == 0 {
 			config.SeverityThreshold = extraConfig.SeverityThreshold
 		}
 
-		if extraConfig.PriorityThreshold != "" && validator.ValidateSeverityThreshold(extraConfig) {
+		if extraConfig.PriorityThreshold != "" && len(validator.ValidateSeverityThreshold(extraConfig)) == 0 {
 			config.PriorityThreshold = extraConfig.PriorityThreshold
 		}
 
