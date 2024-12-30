@@ -6,6 +6,7 @@ import (
 )
 
 var validSeveritites = []string{
+	"",
 	models.SeverityLow,
 	models.SeverityMedium,
 	models.SeverityHigh,
@@ -24,6 +25,7 @@ func ValidateSeverityThreshold(config *models.Configuration) bool {
 }
 
 var validPriorities = []string{
+	"",
 	models.PriorityUrgent,
 	models.PriorityImportant,
 	models.PriorityMedium,
