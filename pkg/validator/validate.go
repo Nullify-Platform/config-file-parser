@@ -14,7 +14,8 @@ func ValidateConfig(config *models.Configuration) bool {
 		ValidateNotifications(config) &&
 		ValidateScheduledNotifications(config) &&
 		ValidatePaths(config) &&
-		ValidateAutoFix(config)
+		ValidateAutoFix(config) &&
+		ValidateProjects(config)
 }
 
 func IsConfigValid(ctx context.Context, configString string) (bool, error) {

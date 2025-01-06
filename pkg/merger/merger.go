@@ -140,6 +140,10 @@ func MergeConfigFiles(
 		for k, v := range extraConfig.ScheduledNotifications {
 			config.ScheduledNotifications[k] = v
 		}
+
+		if extraConfig.Projects != nil {
+			config.Projects = extraConfig.Projects
+		}
 	}
 
 	return &config
