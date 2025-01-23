@@ -692,6 +692,30 @@ func TestMergeJira(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "only global config for attack surface monitoring",
+			globalConfig: &models.Configuration{
+				AttackSurface: models.AttackSurface{
+					Enable:             true,
+					EnableDNSTraversal: true,
+					DomainNames:        []string{"example.com"},
+					IgnoreDomainNames:  []string{"example2.com"},
+				},
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
+				AttackSurface: models.AttackSurface{
+					Enable:             true,
+					EnableDNSTraversal: true,
+					DomainNames:        []string{"example.com"},
+					IgnoreDomainNames:  []string{"example2.com"},
+				},
+			},
+		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config := MergeConfigFiles(parser.NewDefaultConfig(), scenario.globalConfig, scenario.repoConfig)

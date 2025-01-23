@@ -153,6 +153,12 @@ func TestIntegration(t *testing.T) {
 				OnFixTransition:   "Done",
 			},
 		},
+		AttackSurface: models.AttackSurface{
+			Enable:             true,
+			EnableDNSTraversal: true,
+			DomainNames:        []string{"172.36.255.7", "example.com"},
+			IgnoreDomainNames:  []string{"jira.example.com"},
+		},
 	}
 
 	config, err := parser.LoadFromFile("nullify.yaml")

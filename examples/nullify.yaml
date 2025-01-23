@@ -110,3 +110,8 @@ integrations:
     assignee:
       id: 123456:abcd1234-abcd-1234-abcd-abcde12345666
       name: John Smith
+attack_surface:
+  enable: true
+  enable_dns_traversal: false
+  domain_names: [172.36.255.7,example.com]
+  ignore_domain_names: []

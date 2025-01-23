@@ -94,3 +94,8 @@ integrations:
     severity_threshold: HIGH
     priority_threshold: IMPORTANT
     on_fix_transition: Done
+attack_surface:
+  enable: true
+  enable_dns_traversal: true
+  domain_names: [172.36.255.7,example.com]
+  ignore_domain_names: [jira.example.com]
