@@ -153,7 +153,7 @@ func TestIntegration(t *testing.T) {
 				OnFixTransition:   "Done",
 			},
 		},
-		AttackSurface: models.AttackSurface{
+		AttackSurface: &models.AttackSurface{
 			Enable:             true,
 			EnableDNSTraversal: true,
 			DomainNames:        []string{"172.36.255.7", "example.com"},
