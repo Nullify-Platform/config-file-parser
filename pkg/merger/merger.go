@@ -130,7 +130,7 @@ func MergeConfigFiles(
 		}
 
 		if len(extraConfig.Notifications) > 0 && config.Notifications == nil {
-			config.Notifications = extraConfig.Notifications
+			config.Notifications = map[string]models.Notification{}
 		}
 
 		for k, v := range extraConfig.Notifications {
