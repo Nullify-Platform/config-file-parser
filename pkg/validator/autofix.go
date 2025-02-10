@@ -4,8 +4,26 @@ import (
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 )
 
-func ValidateAutoFix(config *models.Configuration) bool {
-	return validateAutoFix(config.Code.AutoFix) && validateAutoFix(config.Dependencies.AutoFix)
+func ValidateAutoFix(config *models.Configuration) []ValidationError {
+	errors := []ValidationError{}
+	if !validateAutoFix(config.Code.AutoFix) {
+		errors = append(errors, ValidationError{
+			Field:   "code.auto_fix",
+			Message: "Invalid auto fix",
+			Line:    config.LocationInfo["code.auto_fix"].Line,
+			Column:  config.LocationInfo["code.auto_fix"].Column,
+		})
+	}
+
+	if !validateAutoFix(config.Dependencies.AutoFix) {
+		errors = append(errors, ValidationError{
+			Field:   "dependencies.auto_fix",
+			Message: "Invalid auto fix",
+			Line:    config.LocationInfo["dependencies.auto_fix"].Line,
+			Column:  config.LocationInfo["dependencies.auto_fix"].Column,
+		})
+	}
+	return errors
 }
 
 func validateAutoFix(autofix *models.AutoFix) bool {

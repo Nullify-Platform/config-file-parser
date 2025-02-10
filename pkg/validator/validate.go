@@ -5,24 +5,48 @@ import (
 
 	"github.com/nullify-platform/config-file-parser/pkg/models"
 	"github.com/nullify-platform/config-file-parser/pkg/parser"
-	"github.com/pkg/errors"
 )
 
-// ValidateConfig return true if provided configuration is valid
-func ValidateConfig(config *models.Configuration) bool {
-	return ValidateSeverityThreshold(config) &&
-		ValidateNotifications(config) &&
-		ValidateScheduledNotifications(config) &&
-		ValidatePaths(config) &&
-		ValidateAutoFix(config)
+type ValidationError struct {
+	Field   string
+	Message string
+	Line    int
+	Column  int
 }
 
-func IsConfigValid(ctx context.Context, configString string) (bool, error) {
-	parsedConfig, err := parser.ParseConfiguration([]byte(configString))
-	if err != nil {
-		return false, errors.Wrap(err, "failed to parse config")
+type ValidationResult struct {
+	IsValid bool
+	Errors  []ValidationError
+}
+
+func ValidateConfig(config *models.Configuration) ValidationResult {
+	var result ValidationResult
+
+	result.Errors = append(result.Errors, ValidateSeverityThreshold(config)...)
+	result.Errors = append(result.Errors, ValidatePriorityThreshold(config)...)
+	result.Errors = append(result.Errors, ValidateNotifications(config)...)
+	result.Errors = append(result.Errors, ValidateScheduledNotifications(config)...)
+	result.Errors = append(result.Errors, ValidatePaths(config)...)
+	result.Errors = append(result.Errors, ValidateAutoFix(config)...)
+
+	result.IsValid = len(result.Errors) == 0
+	return result
+}
+
+func IsConfigValid(ctx context.Context, configString string) (ValidationResult, error) {
+	parsedConfig, parseErr := parser.ParseConfiguration([]byte(configString))
+	if parseErr != nil {
+		// Handle YAML parsing errors
+		return ValidationResult{
+			IsValid: false,
+			Errors: []ValidationError{{
+				Field:   "yaml_syntax",
+				Message: parseErr.Message,
+				Line:    parseErr.Line,
+				Column:  parseErr.Column,
+			}},
+		}, nil
 	}
 
-	isValid := ValidateConfig(parsedConfig)
-	return isValid, nil
+	return ValidateConfig(parsedConfig), nil
 }
