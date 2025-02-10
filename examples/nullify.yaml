@@ -62,7 +62,28 @@ code:
         - config-file-parser
         - dast-action
         - cli
-    - rule_ids: [ python-sql-injection ]
+    - rule_ids: [ python-sqlAttackSurface: &models.AttackSurface{
+			Enable:               true,
+			EnableDNSEnumeration: true,
+			DomainNames:          []string{"172.36.255.7", "example.com"},
+			PathPrefixes:         []string{"/vuln"},
+			Ignore: []models.AttackSurfaceIgnore{
+				{
+					HTTPMethods: []string{"DELETE"},
+				},
+				{
+					HTTPMethods: []string{"jira.example.com"},
+				},
+				{
+					DomainNames: []string{"*.testing.example.com"},
+					Ports:       []int{8080, 8088, 9999},
+				},
+				{
+					DomainNames: []string{"dev.*", "staging.*"},
+					HTTPMethods: []string{"POST", "PUT"},
+				},
+			},
+		},-injection ]
       reason: This code won't be going live until next year but we should fix it before then
       expiry: "2021-12-31"
 dependencies:
@@ -112,10 +133,21 @@ integrations:
       name: John Smith
 attack_surface:
   enable: true
-  enable_dns_enumeration: false
-  domain_names: [172.36.255.7,example.com]
-  ignore_domain_names: []
-  path_prefixes: [/vuln]
-  ignore_methods: [POST,DELETE]
-  ignore_ports: [8080]
-  schemes: ["http","https"]
+  enable_dns_enumeration: true
+  ip_addresses: [10.11.12.13, 100.110.120.0/24, 10.0.0.1-254]
+  domain_names: [example.com, prod.hosting.com]
+  include_only:
+    - domain_names: [live.prod.hosting.com]
+      http:
+        paths: [/main, /api/**/create]
+  ignore:
+    - http:
+        methods: [DELETE]
+    - domain_names: [jira.example.com, "*.testing.example.com"]
+    - ip_addresses: [100.110.120.130]
+      transport_protocols: [tcp]
+      ports: [22, 8080, 9990-9999]
+    - domain_names: ["dev.*", "staging.*"]
+      http:
+        paths: [/auth]
+        methods: [POST]

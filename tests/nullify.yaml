@@ -97,9 +97,20 @@ integrations:
 attack_surface:
   enable: true
   enable_dns_enumeration: true
-  domain_names: [172.36.255.7,example.com]
-  ignore_domain_names: [jira.example.com]
-  path_prefixes: [/vuln]
-  ignore_methods: [POST,DELETE]
-  ignore_ports: [8080]
-  schemes: ["http","https"]
+  ip_addresses: [10.11.12.13, 100.110.120.0/24, 10.0.0.1-254]
+  domain_names: [example.com, prod.hosting.com]
+  include_only:
+    - domain_names: [live.prod.hosting.com]
+      http:
+        paths: [/main, /api/**/create]
+  ignore:
+    - http:
+        methods: [DELETE]
+    - domain_names: [jira.example.com, "*.testing.example.com"]
+    - ip_addresses: [100.110.120.130]
+      transport_protocols: [tcp]
+      ports: [22, 8080, 9990-9999]
+    - domain_names: ["dev.*", "staging.*"]
+      http:
+        paths: [/auth]
+        methods: [POST]
