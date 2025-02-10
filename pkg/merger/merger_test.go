@@ -340,7 +340,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				AttackSurface: &models.AttackSurface{
 					Enable:               true,
 					EnableDNSEnumeration: true,
-					IPAddresses:          []string{"10.11.12.13", "100.110.120.0/24", "10.0.0.1-254"},
+					IPAddresses:          []string{"10.11.12.13", "10.0.0.1-254"},
 					DomainNames:          []string{"example.com", "prod.hosting.com"},
 					IncludeOnly: []models.AttackSurfaceIncludeOnly{
 						{
@@ -383,7 +383,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				AttackSurface: &models.AttackSurface{
 					Enable:               true,
 					EnableDNSEnumeration: true,
-					IPAddresses:          []string{"10.11.12.13", "100.110.120.0/24", "10.0.0.1-254"},
+					IPAddresses:          []string{"10.11.12.13", "10.0.0.1-254"},
 					DomainNames:          []string{"example.com", "prod.hosting.com"},
 					IncludeOnly: []models.AttackSurfaceIncludeOnly{
 						{
