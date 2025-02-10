@@ -154,10 +154,10 @@ func TestIntegration(t *testing.T) {
 			},
 		},
 		AttackSurface: &models.AttackSurface{
-			Enable:             true,
-			EnableDNSTraversal: true,
-			DomainNames:        []string{"172.36.255.7", "example.com"},
-			IgnoreDomainNames:  []string{"jira.example.com"},
+			Enable:               true,
+			EnableDNSEnumeration: true,
+			DomainNames:          []string{"172.36.255.7", "example.com"},
+			IgnoreDomainNames:    []string{"jira.example.com"},
 		},
 	}
 

@@ -339,7 +339,7 @@ func TestMergeConfigFiles(t *testing.T) {
 			globalConfig: &models.Configuration{
 				AttackSurface: &models.AttackSurface{
 					Enable:             true,
-					EnableDNSTraversal: true,
+					EnableDNSEnumeration: true,
 					DomainNames:        []string{"example.com"},
 					IgnoreDomainNames:  []string{"example2.com"},
 				},
@@ -352,7 +352,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				PriorityThreshold:        parser.DefaultPriorityThreshold,
 				AttackSurface: &models.AttackSurface{
 					Enable:             true,
-					EnableDNSTraversal: true,
+					EnableDNSEnumeration: true,
 					DomainNames:        []string{"example.com"},
 					IgnoreDomainNames:  []string{"example2.com"},
 				},
