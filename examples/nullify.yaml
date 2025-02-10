@@ -112,6 +112,6 @@ integrations:
       name: John Smith
 attack_surface:
   enable: true
-  enable_dns_traversal: false
+  enable_dns_enumeration: false
   domain_names: [172.36.255.7,example.com]
   ignore_domain_names: []
