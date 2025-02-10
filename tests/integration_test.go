@@ -156,8 +156,38 @@ func TestIntegration(t *testing.T) {
 		AttackSurface: &models.AttackSurface{
 			Enable:               true,
 			EnableDNSEnumeration: true,
-			DomainNames:          []string{"172.36.255.7", "example.com"},
-			IgnoreDomainNames:    []string{"jira.example.com"},
+			IPAddresses:          []string{"10.11.12.13", "10.0.0.1-254"},
+			DomainNames:          []string{"example.com", "prod.hosting.com"},
+			IncludeOnly: []models.AttackSurfaceIncludeOnly{
+				{
+					DomainNames: []string{"live.prod.hosting.com"},
+					HTTP: &models.HTTPAttackSurfaceIncludeOnly{
+						Paths: []string{"/main", "/api/**/create"},
+					},
+				},
+			},
+			Ignore: []models.AttackSurfaceIgnore{
+				{
+					HTTP: &models.HTTPAttackSurfaceIgnore{
+						Methods: []string{"DELETE"},
+					},
+				},
+				{
+					DomainNames: []string{"jira.example.com", "*.testing.example.com"},
+				},
+				{
+					IPAddresses:        []string{"100.110.120.130"},
+					TransportProtocols: []string{"tcp"},
+					Ports:              []string{"22", "8080", "9990-9999"},
+				},
+				{
+					DomainNames: []string{"dev.*", "staging.*"},
+					HTTP: &models.HTTPAttackSurfaceIgnore{
+						Paths:   []string{"/auth"},
+						Methods: []string{"POST"},
+					},
+				},
+			},
 		},
 	}
 
