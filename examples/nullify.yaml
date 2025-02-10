@@ -62,28 +62,7 @@ code:
         - config-file-parser
         - dast-action
         - cli
-    - rule_ids: [ python-sqlAttackSurface: &models.AttackSurface{
-			Enable:               true,
-			EnableDNSEnumeration: true,
-			DomainNames:          []string{"172.36.255.7", "example.com"},
-			PathPrefixes:         []string{"/vuln"},
-			Ignore: []models.AttackSurfaceIgnore{
-				{
-					HTTPMethods: []string{"DELETE"},
-				},
-				{
-					HTTPMethods: []string{"jira.example.com"},
-				},
-				{
-					DomainNames: []string{"*.testing.example.com"},
-					Ports:       []int{8080, 8088, 9999},
-				},
-				{
-					DomainNames: []string{"dev.*", "staging.*"},
-					HTTPMethods: []string{"POST", "PUT"},
-				},
-			},
-		},-injection ]
+    - rule_ids: [ python-sql-injection ]
       reason: This code won't be going live until next year but we should fix it before then
       expiry: "2021-12-31"
 dependencies:
