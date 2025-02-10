@@ -115,3 +115,7 @@ attack_surface:
   enable_dns_enumeration: false
   domain_names: [172.36.255.7,example.com]
   ignore_domain_names: []
+  path_prefixes: [/vuln]
+  ignore_methods: [POST,DELETE]
+  ignore_ports: [8080]
+  schemes: ["http","https"]

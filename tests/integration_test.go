@@ -158,6 +158,10 @@ func TestIntegration(t *testing.T) {
 			EnableDNSEnumeration: true,
 			DomainNames:          []string{"172.36.255.7", "example.com"},
 			IgnoreDomainNames:    []string{"jira.example.com"},
+			PathPrefixes:         []string{"/vuln"},
+			IgnoreMethods:        []string{"POST", "DELETE"},
+			IgnorePorts:          []int{8080},
+			Schemes:              []string{"http", "https"},
 		},
 	}
 
