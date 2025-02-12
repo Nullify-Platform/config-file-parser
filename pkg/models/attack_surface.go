@@ -4,6 +4,7 @@ type AttackSurface struct {
 	// global only
 	Enable               bool                       `yaml:"enable"`
 	EnableDNSEnumeration bool                       `yaml:"enable_dns_enumeration"`
+	EnableAWSIntegration bool                       `yaml:"enable_aws_integration"`
 	IPAddresses          []string                   `yaml:"ip_addresses,omitempty"`
 	DomainNames          []string                   `yaml:"domain_names,omitempty"`
 	IncludeOnly          []AttackSurfaceIncludeOnly `yaml:"include_only,omitempty"`
