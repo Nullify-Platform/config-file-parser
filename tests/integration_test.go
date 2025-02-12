@@ -189,11 +189,11 @@ func TestIntegration(t *testing.T) {
 				},
 			},
 			AWSIntegration: &models.AWSIntegration{
-				EnableAWSIntegration: true,
-				PrimaryAccountID:     "123456789012",
-				PrimaryRegion:        "ap-southeast-2",
-				TargetRegions:        &[]string{"ap-southeast-2", "us-east-2"},
-				TargetAccounts:       &[]string{"123456789012", "123456789013"},
+				Enable:           true,
+				PrimaryAccountID: "123456789012",
+				PrimaryRegion:    "ap-southeast-2",
+				TargetRegions:    &[]string{"ap-southeast-2", "us-east-2"},
+				TargetAccounts:   &[]string{"123456789012", "123456789013"},
 			},
 		},
 	}
