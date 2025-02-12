@@ -424,11 +424,11 @@ func TestMergeConfigFiles(t *testing.T) {
 				AttackSurface: &models.AttackSurface{
 					Enable: true,
 					AWSIntegration: &models.AWSIntegration{
-						EnableAWSIntegration: true,
-						PrimaryAccountID:     "111111111111",
-						PrimaryRegion:        "ap-southeast-2",
-						TargetRegions:        &[]string{"ap-southeast-1", "us-east-2"},
-						TargetAccounts:       &[]string{"222222222222", "333333333333"},
+						Enable:           true,
+						PrimaryAccountID: "111111111111",
+						PrimaryRegion:    "ap-southeast-2",
+						TargetRegions:    &[]string{"ap-southeast-1", "us-east-2"},
+						TargetAccounts:   &[]string{"222222222222", "333333333333"},
 					},
 				},
 			},
@@ -441,11 +441,11 @@ func TestMergeConfigFiles(t *testing.T) {
 				AttackSurface: &models.AttackSurface{
 					Enable: true,
 					AWSIntegration: &models.AWSIntegration{
-						EnableAWSIntegration: true,
-						PrimaryAccountID:     "111111111111",
-						PrimaryRegion:        "ap-southeast-2",
-						TargetRegions:        &[]string{"ap-southeast-1", "us-east-2"},
-						TargetAccounts:       &[]string{"222222222222", "333333333333"},
+						Enable:           true,
+						PrimaryAccountID: "111111111111",
+						PrimaryRegion:    "ap-southeast-2",
+						TargetRegions:    &[]string{"ap-southeast-1", "us-east-2"},
+						TargetAccounts:   &[]string{"222222222222", "333333333333"},
 					},
 				},
 			},
