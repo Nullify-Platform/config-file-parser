@@ -119,6 +119,12 @@ attack_surface:
     - domain_names: [live.prod.hosting.com]
       http:
         paths: [/main, /api/**/create]
+  aws_integration_configuration:
+    enable_aws_integration: true
+    primary_account_id: 123456789012
+    primary_region: ap-southeast-2
+    target_regions: [ap-southeast-2, us-east-2]
+    target_accounts: [123456789012, 123456789013]
   ignore:
     - http:
         methods: [DELETE]

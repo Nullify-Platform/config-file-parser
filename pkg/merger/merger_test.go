@@ -418,6 +418,38 @@ func TestMergeConfigFiles(t *testing.T) {
 				},
 			},
 		},
+		{
+			name: "attack surface with AWS integration merge",
+			globalConfig: &models.Configuration{
+				AttackSurface: &models.AttackSurface{
+					Enable: true,
+					AWSIntegration: &models.AWSIntegration{
+						EnableAWSIntegration: true,
+						PrimaryAccountID:     "111111111111",
+						PrimaryRegion:        "ap-southeast-2",
+						TargetRegions:        &[]string{"ap-southeast-1", "us-east-2"},
+						TargetAccounts:       &[]string{"222222222222", "333333333333"},
+					},
+				},
+			},
+			repoConfig: nil,
+			expected: &models.Configuration{
+				EnablePullRequestReviews: models.Bool(true),
+				EnableIssueDashboards:    models.Bool(true),
+				SeverityThreshold:        parser.DefaultSeverityThreshold,
+				PriorityThreshold:        parser.DefaultPriorityThreshold,
+				AttackSurface: &models.AttackSurface{
+					Enable: true,
+					AWSIntegration: &models.AWSIntegration{
+						EnableAWSIntegration: true,
+						PrimaryAccountID:     "111111111111",
+						PrimaryRegion:        "ap-southeast-2",
+						TargetRegions:        &[]string{"ap-southeast-1", "us-east-2"},
+						TargetAccounts:       &[]string{"222222222222", "333333333333"},
+					},
+				},
+			},
+		},
 	} {
 		t.Run(scenario.name, func(t *testing.T) {
 			config := MergeConfigFiles(parser.NewDefaultConfig(), scenario.globalConfig, scenario.repoConfig)

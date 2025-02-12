@@ -4,11 +4,19 @@ type AttackSurface struct {
 	// global only
 	Enable               bool                       `yaml:"enable"`
 	EnableDNSEnumeration bool                       `yaml:"enable_dns_enumeration"`
-	EnableAWSIntegration bool                       `yaml:"enable_aws_integration"`
+	AWSIntegration       *AWSIntegration            `yaml:"aws_integration,omitempty"`
 	IPAddresses          []string                   `yaml:"ip_addresses,omitempty"`
 	DomainNames          []string                   `yaml:"domain_names,omitempty"`
 	IncludeOnly          []AttackSurfaceIncludeOnly `yaml:"include_only,omitempty"`
 	Ignore               []AttackSurfaceIgnore      `yaml:"ignore,omitempty"`
+}
+
+type AWSIntegration struct {
+	EnableAWSIntegration bool      `yaml:"enable_aws_integration"`
+	PrimaryAccountID     string    `yaml:"primary_account_id"`
+	PrimaryRegion        string    `yaml:"primary_region"`
+	TargetRegions        *[]string `yaml:"target_regions,omitempty"`
+	TargetAccounts       *[]string `yaml:"target_accounts,omitempty"`
 }
 
 type AttackSurfaceIncludeOnly struct {
