@@ -5,8 +5,7 @@ type AttackSurface struct {
 	Enable               bool                       `yaml:"enable"`
 	EnableDNSEnumeration bool                       `yaml:"enable_dns_enumeration"`
 	AWSIntegration       *AWSIntegration            `yaml:"aws_integration"`
-	IPAddresses          []string                   `yaml:"ip_addresses,omitempty"`
-	DomainNames          []string                   `yaml:"domain_names,omitempty"`
+	Hosts                []string                   `yaml:"hosts,omitempty"`
 	IncludeOnly          []AttackSurfaceIncludeOnly `yaml:"include_only,omitempty"`
 	Ignore               []AttackSurfaceIgnore      `yaml:"ignore,omitempty"`
 }
@@ -20,18 +19,18 @@ type AWSIntegration struct {
 }
 
 type AttackSurfaceIncludeOnly struct {
-	DomainNames []string                      `yaml:"domain_names,omitempty"`
-	HTTP        *HTTPAttackSurfaceIncludeOnly `yaml:"http,omitempty"`
+	Hosts []string                      `yaml:"hosts,omitempty"`
+	HTTP  *HTTPAttackSurfaceIncludeOnly `yaml:"http,omitempty"`
 }
 
 type HTTPAttackSurfaceIncludeOnly struct {
-	Paths []string `yaml:"paths,omitempty"`
+	Methods []string `yaml:"methods,omitempty"`
+	Paths   []string `yaml:"paths,omitempty"`
 }
 
 type AttackSurfaceIgnore struct {
 	// empty fields are equivalent to *
-	IPAddresses        []string                 `yaml:"ip_addresses,omitempty"`
-	DomainNames        []string                 `yaml:"domain_names,omitempty"`
+	Hosts              []string                 `yaml:"hosts,omitempty"`
 	TransportProtocols []string                 `yaml:"transport_protocols,omitempty"`
 	Ports              []string                 `yaml:"ports,omitempty"`
 	HTTP               *HTTPAttackSurfaceIgnore `yaml:"http,omitempty"`
