@@ -113,11 +113,11 @@ integrations:
 attack_surface:
   enable: true
   enable_dns_enumeration: true
-  ip_addresses: [10.11.12.13, 10.0.0.1-254]
-  domain_names: [example.com, prod.hosting.com]
+  hosts: [example.com, prod.hosting.com, 10.11.12.13, 10.0.0.*]
   include_only:
-    - domain_names: [live.prod.hosting.com]
+    - hosts: [live.prod.hosting.com]
       http:
+        methods: [GET, POST]
         paths: [/main, /api/**/create]
   aws_integration:
     enable: true
@@ -128,11 +128,11 @@ attack_surface:
   ignore:
     - http:
         methods: [DELETE]
-    - domain_names: [jira.example.com, "*.testing.example.com"]
-    - ip_addresses: [100.110.120.130]
+    - hosts: [jira.example.com, "*.testing.example.com"]
+    - hosts: [100.110.120.130]
       transport_protocols: [tcp]
       ports: [22, 8080, 9990-9999]
-    - domain_names: ["dev.*", "staging.*"]
+    - hosts: ["dev.*", "staging.*"]
       http:
         paths: [/auth]
         methods: [POST]
