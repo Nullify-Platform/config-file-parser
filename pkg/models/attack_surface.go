@@ -12,6 +12,7 @@ type AttackSurface struct {
 
 type AWSIntegration struct {
 	Enable           bool      `yaml:"enable"`
+	RoleNameToAssume string    `yaml:"role_name_to_assume"`
 	PrimaryAccountID string    `yaml:"primary_account_id,omitempty"`
 	PrimaryRegion    string    `yaml:"primary_region,omitempty"`
 	TargetRegions    *[]string `yaml:"target_regions,omitempty"`
