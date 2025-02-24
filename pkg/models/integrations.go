@@ -2,6 +2,7 @@ package models
 
 type Integrations struct {
 	Jira *Jira `yaml:"jira,omitempty"`
+	AWS  *AWS  `yaml:"aws,omitempty"`
 }
 
 type Jira struct {
@@ -30,4 +31,13 @@ type Priorities struct {
 type Assignee struct {
 	Name string `yaml:"name,omitempty"`
 	ID   string `yaml:"id,omitempty"`
+}
+
+type AWS struct {
+	Enable           bool      `yaml:"enable"`
+	RoleNameToAssume string    `yaml:"role_name_to_assume"`
+	PrimaryAccountID string    `yaml:"primary_account_id"`
+	PrimaryRegion    string    `yaml:"primary_region"`
+	TargetRegions    *[]string `yaml:"target_regions,omitempty"`
+	TargetAccounts   *[]string `yaml:"target_accounts,omitempty"`
 }

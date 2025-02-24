@@ -94,6 +94,13 @@ integrations:
     severity_threshold: HIGH
     priority_threshold: IMPORTANT
     on_fix_transition: Done
+  aws:
+    enable: true
+    role_name_to_assume: nullify-role
+    primary_account_id: 123456789012
+    primary_region: ap-southeast-2
+    target_regions: [ap-southeast-2, us-east-2]
+    target_accounts: [123456789012, 123456789013]
 attack_surface:
   enable: true
   enable_dns_enumeration: true
@@ -114,10 +121,4 @@ attack_surface:
       http:
         paths: [/auth]
         methods: [POST]
-  aws_integration:
-    enable: true
-    role_name_to_assume: nullify-role
-    primary_account_id: 123456789012
-    primary_region: ap-southeast-2
-    target_regions: [ap-southeast-2, us-east-2]
-    target_accounts: [123456789012, 123456789013]
+
