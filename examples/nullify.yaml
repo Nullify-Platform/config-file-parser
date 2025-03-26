@@ -122,6 +122,8 @@ attack_surface:
   hosts: [example.com, prod.hosting.com, 10.11.12.13, 10.0.0.*]
   include_only:
     - hosts: [live.prod.hosting.com]
+      transport_protocols: [tcp]
+      ports: [80, 443]
       http:
         methods: [GET, POST]
         paths: [/main, /api/**/create]

@@ -373,18 +373,20 @@ func TestMergeConfigFiles(t *testing.T) {
 					Enable:               true,
 					EnableDNSEnumeration: true,
 					Hosts:                []string{"example.com", "prod.hosting.com", "10.11.12.13", "10.0.0.*"},
-					IncludeOnly: []models.AttackSurfaceIncludeOnly{
+					IncludeOnly: []models.AttackSurfaceScopingRule{
 						{
-							Hosts: []string{"live.prod.hosting.com"},
-							HTTP: &models.HTTPAttackSurfaceIncludeOnly{
+							Hosts:              []string{"live.prod.hosting.com"},
+							TransportProtocols: []string{"tcp"},
+							Ports:              []string{"80", "443"},
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Methods: []string{"GET", "POST"},
 								Paths:   []string{"/main", "/api/**/create"},
 							},
 						},
 					},
-					Ignore: []models.AttackSurfaceIgnore{
+					Ignore: []models.AttackSurfaceScopingRule{
 						{
-							HTTP: &models.HTTPAttackSurfaceIgnore{
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Methods: []string{"DELETE"},
 							},
 						},
@@ -398,7 +400,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						},
 						{
 							Hosts: []string{"dev.*", "staging.*"},
-							HTTP: &models.HTTPAttackSurfaceIgnore{
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Paths:   []string{"/auth"},
 								Methods: []string{"POST"},
 							},
@@ -416,18 +418,20 @@ func TestMergeConfigFiles(t *testing.T) {
 					Enable:               true,
 					EnableDNSEnumeration: true,
 					Hosts:                []string{"example.com", "prod.hosting.com", "10.11.12.13", "10.0.0.*"},
-					IncludeOnly: []models.AttackSurfaceIncludeOnly{
+					IncludeOnly: []models.AttackSurfaceScopingRule{
 						{
-							Hosts: []string{"live.prod.hosting.com"},
-							HTTP: &models.HTTPAttackSurfaceIncludeOnly{
+							Hosts:              []string{"live.prod.hosting.com"},
+							TransportProtocols: []string{"tcp"},
+							Ports:              []string{"80", "443"},
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Methods: []string{"GET", "POST"},
 								Paths:   []string{"/main", "/api/**/create"},
 							},
 						},
 					},
-					Ignore: []models.AttackSurfaceIgnore{
+					Ignore: []models.AttackSurfaceScopingRule{
 						{
-							HTTP: &models.HTTPAttackSurfaceIgnore{
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Methods: []string{"DELETE"},
 							},
 						},
@@ -441,7 +445,7 @@ func TestMergeConfigFiles(t *testing.T) {
 						},
 						{
 							Hosts: []string{"dev.*", "staging.*"},
-							HTTP: &models.HTTPAttackSurfaceIgnore{
+							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
 								Paths:   []string{"/auth"},
 								Methods: []string{"POST"},
 							},
