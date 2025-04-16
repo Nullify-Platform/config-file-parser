@@ -25,6 +25,11 @@ func sanitizeConfig(config *models.Configuration) {
 		config.SeverityThreshold = strings.ToUpper(config.SeverityThreshold)
 	}
 
+	config.PriorityThreshold = strings.Trim(config.PriorityThreshold, " ")
+	if config.PriorityThreshold != "" {
+		config.PriorityThreshold = strings.ToUpper(config.PriorityThreshold)
+	}
+
 	for name, n := range config.Notifications {
 		if n.Events.All != nil {
 			n.Events.All.MinimumSeverity = strings.ToUpper(n.Events.All.MinimumSeverity)

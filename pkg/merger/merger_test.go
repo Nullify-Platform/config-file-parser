@@ -96,7 +96,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				EnablePullRequestReviews: models.Bool(true),
 				EnableIssueDashboards:    models.Bool(true),
 				SeverityThreshold:        models.SeverityHigh,
-				PriorityThreshold:        models.PriorityMedium,
+				PriorityThreshold:        models.PriorityImportant,
 				IgnoreDirs:               []string{"dir1", "dir2"},
 				IgnorePaths:              []string{"path1", "path2"},
 				Code: models.Code{
@@ -235,7 +235,7 @@ func TestMergeConfigFiles(t *testing.T) {
 				EnablePullRequestReviews: models.Bool(true),
 				EnableIssueDashboards:    models.Bool(true),
 				SeverityThreshold:        models.SeverityHigh,
-				PriorityThreshold:        models.PriorityMedium,
+				PriorityThreshold:        models.PriorityImportant,
 				IgnoreDirs:               []string{"dir1", "dir2"},
 				IgnorePaths:              []string{"path1", "path2"},
 				Code: models.Code{

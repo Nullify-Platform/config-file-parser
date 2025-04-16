@@ -28,9 +28,7 @@ var validPriorities = []string{
 	"",
 	models.PriorityUrgent,
 	models.PriorityImportant,
-	models.PriorityMedium,
-	models.PriorityLow,
-	models.PriorityNegligible,
+	models.PriorityInformational,
 }
 
 // ValidatePriorityThreshold returns true if the priority_threshold
