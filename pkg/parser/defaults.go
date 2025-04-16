@@ -3,7 +3,7 @@ package parser
 import "github.com/nullify-platform/config-file-parser/pkg/models"
 
 const DefaultSeverityThreshold = models.SeverityMedium
-const DefaultPriorityThreshold = models.PriorityMedium
+const DefaultPriorityThreshold = models.PriorityImportant
 
 func NewDefaultConfig() *models.Configuration {
 	return &models.Configuration{

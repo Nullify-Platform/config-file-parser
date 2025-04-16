@@ -15,6 +15,7 @@ func TestIntegration(t *testing.T) {
 		EnablePullRequestReviews: models.Bool(true),
 		EnableIssueDashboards:    models.Bool(true),
 		SeverityThreshold:        models.SeverityMedium,
+		PriorityThreshold:        models.PriorityUrgent,
 		IgnoreDirs:               []string{"dir1"},
 		IgnorePaths:              []string{"data/**/*"},
 		Secrets: models.Secrets{
