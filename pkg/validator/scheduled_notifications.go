@@ -5,7 +5,7 @@ import (
 	"net/mail"
 	"time"
 
-	"github.com/nullify-platform/config-file-parser/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
 	"github.com/robfig/cron/v3"
 )
 

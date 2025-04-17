@@ -3,7 +3,7 @@ package parser
 import (
 	"strings"
 
-	"github.com/nullify-platform/config-file-parser/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
 	"gopkg.in/yaml.v3"
 )
 

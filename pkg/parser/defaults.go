@@ -1,6 +1,6 @@
 package parser
 
-import "github.com/nullify-platform/config-file-parser/pkg/models"
+import "github.com/nullify-platform/config-file-parser/v2/pkg/models"
 
 const DefaultSeverityThreshold = models.SeverityMedium
 const DefaultPriorityThreshold = models.PriorityImportant

@@ -2,7 +2,7 @@ package validator
 
 import (
 	"github.com/gobwas/glob"
-	"github.com/nullify-platform/config-file-parser/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
 )
 
 func ValidatePaths(config *models.Configuration) bool {

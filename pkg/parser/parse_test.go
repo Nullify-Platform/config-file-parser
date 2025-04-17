@@ -3,7 +3,7 @@ package parser
 import (
 	"testing"
 
-	"github.com/nullify-platform/config-file-parser/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

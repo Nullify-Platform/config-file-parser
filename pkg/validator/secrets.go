@@ -1,6 +1,6 @@
 package validator
 
-import "github.com/nullify-platform/config-file-parser/pkg/models"
+import "github.com/nullify-platform/config-file-parser/v2/pkg/models"
 
 func ValidateSecrets(config *models.Configuration) bool {
 	// the list of strings can be any mix of characters so no validation needed at this stage

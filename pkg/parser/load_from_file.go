@@ -3,7 +3,7 @@ package parser
 import (
 	"os"
 
-	"github.com/nullify-platform/config-file-parser/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
 )
 
 func LoadFromFile(path string) (*models.Configuration, error) {

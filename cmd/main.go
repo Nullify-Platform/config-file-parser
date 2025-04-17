@@ -3,7 +3,7 @@ package main
 import (
 	"bytes"
 
-	"github.com/nullify-platform/config-file-parser/pkg/parser"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/parser"
 	"gopkg.in/yaml.v3"
 )
 
