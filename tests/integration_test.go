@@ -3,9 +3,9 @@ package tests
 import (
 	"testing"
 
-	"github.com/nullify-platform/config-file-parser/pkg/models"
-	"github.com/nullify-platform/config-file-parser/pkg/parser"
-	"github.com/nullify-platform/config-file-parser/pkg/validator"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/models"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/parser"
+	"github.com/nullify-platform/config-file-parser/v2/pkg/validator"
 	"github.com/stretchr/testify/require"
 )
 
