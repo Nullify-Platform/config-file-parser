@@ -20,6 +20,10 @@ func TestComparePriority(t *testing.T) {
 		{"INFORMATIONAL", "INFORMATIONAL", 0},
 		{"IMPORTANT", "IMPORTANT", 0},
 		{"URGENT", "URGENT", 0},
+		{"NONE", "INVALID", 0},
+		{"NONE", "UNKNOWN", 0},
+		{"UNKNOWN", "", 0},
+		{"", "UNKNOWN", 0},
 	}
 
 	for _, test := range tests {
