@@ -7,9 +7,9 @@ const (
 )
 
 var priorityToInt = map[string]int{
-	PriorityUrgent:        0,
+	PriorityInformational: 0,
 	PriorityImportant:     1,
-	PriorityInformational: 2,
+	PriorityUrgent:        2,
 }
 
 func ComparePriority(priority1, priority2 string) int {
