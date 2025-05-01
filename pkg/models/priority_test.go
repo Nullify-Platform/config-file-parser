@@ -34,3 +34,26 @@ func TestComparePriority(t *testing.T) {
 		}
 	}
 }
+
+func TestSeverityToPriority(t *testing.T) {
+	tests := []struct {
+		name     string
+		severity string
+		want     string
+	}{
+		{"Critical to Urgent", SeverityCritical, PriorityUrgent},
+		{"High to Important", SeverityHigh, PriorityImportant},
+		{"Medium to Important", SeverityMedium, PriorityImportant},
+		{"Low to Informational", SeverityLow, PriorityInformational},
+		{"Unknown to Informational", SeverityUnknown, PriorityInformational},
+		{"Empty to Informational", "", PriorityInformational},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := SeverityToPriority(tt.severity); got != tt.want {
+				t.Errorf("SeverityToPriority() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
