@@ -17,13 +17,13 @@ const (
 var priorityToInt = map[string]int{
 	PriorityUnknown:       0,
 	PriorityInformational: 1,
-	PriorityImportant:     4,
-	PriorityUrgent:        5,
+	PriorityImportant:     3,
+	PriorityUrgent:        4,
 
 	// To be deprecated
 	PriorityNegligible: 1,
-	PriorityLow:        2,
-	PriorityMedium:     3,
+	PriorityLow:        1,
+	PriorityMedium:     2,
 }
 
 func ComparePriority(priority1, priority2 string) int {

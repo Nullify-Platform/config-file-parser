@@ -24,6 +24,32 @@ func TestComparePriority(t *testing.T) {
 		{"NONE", "UNKNOWN", 0},
 		{"UNKNOWN", "", 0},
 		{"", "UNKNOWN", 0},
+
+		// To be deprecated, for backwards compatibility
+		{"NEGIGIBLE", "URGENT", -1},
+		{"NEGIGIBLE", "IMPORTANT", -1},
+		{"NEGIGIBLE", "INFORMATIONAL", 0},
+		{"NEGIGIBLE", "UNKNOWN", 1},
+		{"NEGIGIBLE", "NONE", 1},
+		{"NEGIGIBLE", "", 1},
+		{"", "NEGIGIBLE", -1},
+		{"NEGIGIBLE", "NEGIGIBLE", 0},
+		{"LOW", "URGENT", -1},
+		{"LOW", "IMPORTANT", -1},
+		{"LOW", "INFORMATIONAL", 0},
+		{"LOW", "UNKNOWN", 1},
+		{"LOW", "NONE", 1},
+		{"LOW", "", 1},
+		{"", "LOW", -1},
+		{"LOW", "LOW", 0},
+		{"MEDIUM", "URGENT", -1},
+		{"MEDIUM", "IMPORTANT", -1},
+		{"MEDIUM", "INFORMATIONAL", 1},
+		{"MEDIUM", "UNKNOWN", 1},
+		{"MEDIUM", "NONE", 1},
+		{"MEDIUM", "", 1},
+		{"", "MEDIUM", -1},
+		{"MEDIUM", "MEDIUM", 0},
 	}
 
 	for _, test := range tests {
