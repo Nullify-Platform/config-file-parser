@@ -24,6 +24,32 @@ func TestComparePriority(t *testing.T) {
 		{"NONE", "UNKNOWN", 0},
 		{"UNKNOWN", "", 0},
 		{"", "UNKNOWN", 0},
+
+		// To be deprecated, for backwards compatibility
+		{"NEGIGIBLE", "URGENT", -1},
+		{"NEGIGIBLE", "IMPORTANT", -1},
+		{"NEGIGIBLE", "INFORMATIONAL", 0},
+		{"NEGIGIBLE", "UNKNOWN", 1},
+		{"NEGIGIBLE", "NONE", 1},
+		{"NEGIGIBLE", "", 1},
+		{"", "NEGIGIBLE", -1},
+		{"NEGIGIBLE", "NEGIGIBLE", 0},
+		{"LOW", "URGENT", -1},
+		{"LOW", "IMPORTANT", -1},
+		{"LOW", "INFORMATIONAL", 0},
+		{"LOW", "UNKNOWN", 1},
+		{"LOW", "NONE", 1},
+		{"LOW", "", 1},
+		{"", "LOW", -1},
+		{"LOW", "LOW", 0},
+		{"MEDIUM", "URGENT", -1},
+		{"MEDIUM", "IMPORTANT", -1},
+		{"MEDIUM", "INFORMATIONAL", 1},
+		{"MEDIUM", "UNKNOWN", 1},
+		{"MEDIUM", "NONE", 1},
+		{"MEDIUM", "", 1},
+		{"", "MEDIUM", -1},
+		{"MEDIUM", "MEDIUM", 0},
 	}
 
 	for _, test := range tests {
@@ -32,5 +58,28 @@ func TestComparePriority(t *testing.T) {
 			t.Errorf("ComparePriority(%s, %s) = %d; want %d",
 				test.priority1, test.priority2, result, test.expected)
 		}
+	}
+}
+
+func TestSeverityToPriority(t *testing.T) {
+	tests := []struct {
+		name     string
+		severity string
+		want     string
+	}{
+		{"Critical to Urgent", SeverityCritical, PriorityUrgent},
+		{"High to Important", SeverityHigh, PriorityImportant},
+		{"Medium to Important", SeverityMedium, PriorityImportant},
+		{"Low to Informational", SeverityLow, PriorityInformational},
+		{"Unknown to Informational", SeverityUnknown, PriorityInformational},
+		{"Empty to Informational", "", PriorityInformational},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := SeverityToPriority(tt.severity); got != tt.want {
+				t.Errorf("SeverityToPriority() = %v, want %v", got, tt.want)
+			}
+		})
 	}
 }
