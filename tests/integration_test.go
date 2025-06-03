@@ -153,14 +153,6 @@ func TestIntegration(t *testing.T) {
 				PriorityThreshold: models.PriorityImportant,
 				OnFixTransition:   "Done",
 			},
-			AWS: &models.AWS{
-				Enable:           true,
-				RoleNameToAssume: "nullify-role",
-				PrimaryAccountID: "123456789012",
-				PrimaryRegion:    "ap-southeast-2",
-				TargetRegions:    &[]string{"ap-southeast-2", "us-east-2"},
-				TargetAccounts:   &[]string{"123456789012", "123456789013"},
-			},
 		},
 		AttackSurface: &models.AttackSurface{
 			Enable:               true,
