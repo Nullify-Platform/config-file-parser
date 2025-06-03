@@ -79,28 +79,6 @@ func MergeConfigFiles(
 			}
 		}
 
-		if extraConfig.Integrations.AWS != nil {
-			if config.Integrations.AWS == nil {
-				config.Integrations.AWS = extraConfig.Integrations.AWS
-			} else {
-				config.Integrations.AWS.Enable = extraConfig.Integrations.AWS.Enable
-
-				config.Integrations.AWS.RoleNameToAssume = extraConfig.Integrations.AWS.RoleNameToAssume
-				config.Integrations.AWS.PrimaryAccountID = extraConfig.Integrations.AWS.PrimaryAccountID
-				config.Integrations.AWS.PrimaryRegion = extraConfig.Integrations.AWS.PrimaryRegion
-
-				if extraConfig.Integrations.AWS.PrimaryRegion != "" {
-					config.Integrations.AWS.PrimaryRegion = extraConfig.Integrations.AWS.PrimaryRegion
-				}
-				if extraConfig.Integrations.AWS.TargetRegions != nil {
-					config.Integrations.AWS.TargetRegions = extraConfig.Integrations.AWS.TargetRegions
-				}
-				if extraConfig.Integrations.AWS.TargetAccounts != nil {
-					config.Integrations.AWS.TargetAccounts = extraConfig.Integrations.AWS.TargetAccounts
-				}
-			}
-		}
-
 		if len(extraConfig.IgnoreDirs) > 0 {
 			config.IgnoreDirs = extraConfig.IgnoreDirs
 		}
