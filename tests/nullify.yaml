@@ -102,26 +102,4 @@ integrations:
     primary_region: ap-southeast-2
     target_regions: [ap-southeast-2, us-east-2]
     target_accounts: [123456789012, 123456789013]
-attack_surface:
-  enable: true
-  enable_dns_enumeration: true
-  hosts: [example.com, prod.hosting.com, 10.11.12.13, 10.0.0.*]
-  include_only:
-    - hosts: [live.prod.hosting.com]
-      transport_protocols: [tcp]
-      ports: [80, 443]
-      http:
-        methods: [GET, POST]
-        paths: [/main, /api/**/create]
-  ignore:
-    - http:
-        methods: [DELETE]
-    - hosts: [jira.example.com, "*.testing.example.com"]
-    - hosts: [100.110.120.130]
-      transport_protocols: [tcp]
-      ports: [22, 8080, 9990-9999]
-    - hosts: ["dev.*", "staging.*"]
-      http:
-        paths: [/auth]
-        methods: [POST]
 
