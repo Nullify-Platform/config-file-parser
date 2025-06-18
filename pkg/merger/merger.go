@@ -125,10 +125,6 @@ func MergeConfigFiles(
 			}
 		}
 
-		if extraConfig.AttackSurface != nil {
-			config.AttackSurface = extraConfig.AttackSurface
-		}
-
 		if len(extraConfig.Notifications) > 0 && config.Notifications == nil {
 			config.Notifications = map[string]models.Notification{}
 		}

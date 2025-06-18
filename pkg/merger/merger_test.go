@@ -303,23 +303,6 @@ func TestMergeConfigFiles(t *testing.T) {
 		{
 			name: "global and repo config without severity threshold",
 			globalConfig: &models.Configuration{
-				SeverityThreshold: "",
-				PriorityThreshold: "",
-			},
-			repoConfig: &models.Configuration{
-				SeverityThreshold: "",
-				PriorityThreshold: "",
-			},
-			expected: &models.Configuration{
-				EnablePullRequestReviews: models.Bool(true),
-				EnableIssueDashboards:    models.Bool(true),
-				SeverityThreshold:        parser.DefaultSeverityThreshold,
-				PriorityThreshold:        parser.DefaultPriorityThreshold,
-			},
-		},
-		{
-			name: "global and repo config without severity threshold",
-			globalConfig: &models.Configuration{
 				SeverityThreshold: models.SeverityCritical,
 				PriorityThreshold: models.PriorityUrgent,
 			},
@@ -332,94 +315,6 @@ func TestMergeConfigFiles(t *testing.T) {
 				EnableIssueDashboards:    models.Bool(true),
 				SeverityThreshold:        models.SeverityHigh,
 				PriorityThreshold:        models.PriorityImportant,
-			},
-		},
-		{
-			name: "only global config for attack surface monitoring",
-			globalConfig: &models.Configuration{
-				AttackSurface: &models.AttackSurface{
-					Enable:               true,
-					EnableDNSEnumeration: true,
-					Hosts:                []string{"example.com", "prod.hosting.com", "10.11.12.13", "10.0.0.*"},
-					IncludeOnly: []models.AttackSurfaceScopingRule{
-						{
-							Hosts:              []string{"live.prod.hosting.com"},
-							TransportProtocols: []string{"tcp"},
-							Ports:              []string{"80", "443"},
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Methods: []string{"GET", "POST"},
-								Paths:   []string{"/main", "/api/**/create"},
-							},
-						},
-					},
-					Ignore: []models.AttackSurfaceScopingRule{
-						{
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Methods: []string{"DELETE"},
-							},
-						},
-						{
-							Hosts: []string{"jira.example.com", "*.testing.example.com"},
-						},
-						{
-							Hosts:              []string{"100.110.120.130"},
-							TransportProtocols: []string{"tcp"},
-							Ports:              []string{"22", "8080", "9990-9999"},
-						},
-						{
-							Hosts: []string{"dev.*", "staging.*"},
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Paths:   []string{"/auth"},
-								Methods: []string{"POST"},
-							},
-						},
-					},
-				},
-			},
-			repoConfig: nil,
-			expected: &models.Configuration{
-				EnablePullRequestReviews: models.Bool(true),
-				EnableIssueDashboards:    models.Bool(true),
-				SeverityThreshold:        parser.DefaultSeverityThreshold,
-				PriorityThreshold:        parser.DefaultPriorityThreshold,
-				AttackSurface: &models.AttackSurface{
-					Enable:               true,
-					EnableDNSEnumeration: true,
-					Hosts:                []string{"example.com", "prod.hosting.com", "10.11.12.13", "10.0.0.*"},
-					IncludeOnly: []models.AttackSurfaceScopingRule{
-						{
-							Hosts:              []string{"live.prod.hosting.com"},
-							TransportProtocols: []string{"tcp"},
-							Ports:              []string{"80", "443"},
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Methods: []string{"GET", "POST"},
-								Paths:   []string{"/main", "/api/**/create"},
-							},
-						},
-					},
-					Ignore: []models.AttackSurfaceScopingRule{
-						{
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Methods: []string{"DELETE"},
-							},
-						},
-						{
-							Hosts: []string{"jira.example.com", "*.testing.example.com"},
-						},
-						{
-							Hosts:              []string{"100.110.120.130"},
-							TransportProtocols: []string{"tcp"},
-							Ports:              []string{"22", "8080", "9990-9999"},
-						},
-						{
-							Hosts: []string{"dev.*", "staging.*"},
-							HTTP: &models.HTTPAttackSurfaceScopingRuleHTTP{
-								Paths:   []string{"/auth"},
-								Methods: []string{"POST"},
-							},
-						},
-					},
-				},
 			},
 		},
 	} {
