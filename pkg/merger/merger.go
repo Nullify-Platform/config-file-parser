@@ -50,6 +50,11 @@ func MergeConfigFiles(
 			if config.Integrations.Jira == nil {
 				config.Integrations.Jira = extraConfig.Integrations.Jira
 			} else {
+				// enabled/disabled
+				if extraConfig.Integrations.Jira.Enabled != nil {
+					config.Integrations.Jira.Enabled = extraConfig.Integrations.Jira.Enabled
+					config.Integrations.Jira.Disabled = !*extraConfig.Integrations.Jira.Enabled
+				}
 				if extraConfig.Integrations.Jira.ProjectKey != "" {
 					config.Integrations.Jira.ProjectKey = extraConfig.Integrations.Jira.ProjectKey
 				}
@@ -67,6 +72,18 @@ func MergeConfigFiles(
 				}
 				if extraConfig.Integrations.Jira.PriorityThreshold != "" {
 					config.Integrations.Jira.PriorityThreshold = extraConfig.Integrations.Jira.PriorityThreshold
+				}
+				if len(extraConfig.Integrations.Jira.Labels) > 0 {
+					config.Integrations.Jira.Labels = extraConfig.Integrations.Jira.Labels
+				}
+				if extraConfig.Integrations.Jira.CommentOnClose != nil {
+					config.Integrations.Jira.CommentOnClose = extraConfig.Integrations.Jira.CommentOnClose
+				}
+				if extraConfig.Integrations.Jira.TitleTemplate != "" {
+					config.Integrations.Jira.TitleTemplate = extraConfig.Integrations.Jira.TitleTemplate
+				}
+				if extraConfig.Integrations.Jira.DescriptionTemplate != "" {
+					config.Integrations.Jira.DescriptionTemplate = extraConfig.Integrations.Jira.DescriptionTemplate
 				}
 
 				if extraConfig.Integrations.Jira.Priorities != nil {

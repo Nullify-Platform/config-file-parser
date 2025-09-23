@@ -30,6 +30,18 @@ func sanitizeConfig(config *models.Configuration) {
 		config.PriorityThreshold = strings.ToUpper(config.PriorityThreshold)
 	}
 
+	if config.Integrations.Jira != nil {
+		j := config.Integrations.Jira
+		// Normalize Jira thresholds
+		j.SeverityThreshold = strings.ToUpper(strings.Trim(j.SeverityThreshold, " "))
+		j.PriorityThreshold = strings.ToUpper(strings.Trim(j.PriorityThreshold, " "))
+		// Map jira.enabled to Disabled for internal use
+		if j.Enabled != nil {
+			j.Disabled = !*j.Enabled
+		}
+		config.Integrations.Jira = j
+	}
+
 	for name, n := range config.Notifications {
 		if n.Events.All != nil {
 			n.Events.All.MinimumSeverity = strings.ToUpper(n.Events.All.MinimumSeverity)
