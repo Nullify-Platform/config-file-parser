@@ -107,43 +107,6 @@ func TestIntegration(t *testing.T) {
 				},
 			},
 		},
-		Code: models.Code{
-			Ignore: []models.CodeIgnore{
-				{
-					CWEs:   []int{589},
-					Reason: "HTTP requests with variables in tests don't matter",
-					Paths:  []string{"**/tests/*"},
-					Repositories: []string{
-						"config-file-parser",
-						"dast-action",
-						"cli",
-					},
-				},
-				{
-					RuleIDs: []string{"python-sql-injection"},
-					Reason:  "This code won't be going live until next year but we should fix it before then",
-					Expiry:  "2021-12-31",
-				},
-			},
-		},
-		Dependencies: models.Dependencies{
-			Ignore: []models.DependenciesIgnore{
-				{
-					CVEs:   []string{"CVE-2021-1234"},
-					Reason: "This is a false positive",
-					Expiry: "2021-12-31",
-				},
-				{
-					CVEs:   []string{"CVE-2021-5678"},
-					Reason: "This isn't exploitable in client applications",
-					Expiry: "2021-12-31",
-					Repositories: []string{
-						"dast-action",
-						"cli",
-					},
-				},
-			},
-		},
 		Integrations: models.Integrations{
 			Jira: &models.Jira{
 				Disabled:          false,
@@ -245,43 +208,6 @@ func TestEmptyFailsBuildField(t *testing.T) {
 					"config-file-parser",
 					"dast-action",
 					"cli",
-				},
-			},
-		},
-		Code: models.Code{
-			Ignore: []models.CodeIgnore{
-				{
-					CWEs:   []int{589},
-					Reason: "HTTP requests with variables in tests don't matter",
-					Paths:  []string{"**/tests/*"},
-					Repositories: []string{
-						"config-file-parser",
-						"dast-action",
-						"cli",
-					},
-				},
-				{
-					RuleIDs: []string{"python-sql-injection"},
-					Reason:  "This code won't be going live until next year but we should fix it before then",
-					Expiry:  "2021-12-31",
-				},
-			},
-		},
-		Dependencies: models.Dependencies{
-			Ignore: []models.DependenciesIgnore{
-				{
-					CVEs:   []string{"CVE-2021-1234"},
-					Reason: "This is a false positive",
-					Expiry: "2021-12-31",
-				},
-				{
-					CVEs:   []string{"CVE-2021-5678"},
-					Reason: "This isn't exploitable in client applications",
-					Expiry: "2021-12-31",
-					Repositories: []string{
-						"dast-action",
-						"cli",
-					},
 				},
 			},
 		},

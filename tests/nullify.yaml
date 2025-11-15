@@ -47,34 +47,10 @@ scheduled_notifications:
       - config-file-parser
       - dast-action
       - cli
-code:
-  ignore:
-    - cwes: [ 589 ] # Potential HTTP request made with variable url
-      reason: HTTP requests with variables in tests don't matter
-      paths: [ "**/tests/*" ]
-      repositories:
-        - config-file-parser
-        - dast-action
-        - cli
-    - rule_ids: [ python-sql-injection ]
-      reason: This code won't be going live until next year but we should fix it before then
-      expiry: "2021-12-31"
-dependencies:
-  ignore:
-    - cves: [ CVE-2021-1234 ]
-      reason: This is a false positive
-      expiry: "2021-12-31"
-    - cves: [ CVE-2021-5678 ]
-      reason: This isn't exploitable in client applications
-      expiry: "2021-12-31"
-      repositories:
-        - dast-action
-        - cli
 secrets:
   ignore:
     - value: mocksecret123
       reason: This is a test secret, it has no access to anything
-      paths: [ "**/tests/*" ]
     - pattern: id[0-9]+
       reason: These are not secrets, they are internal identifiers
     - value: actualsecret123

@@ -20,8 +20,7 @@ cov:
 lint: lint-go lint-docker
 
 lint-go:
-	docker build --quiet --target golangci-lint -t golangci-lint:latest .
-	docker run --rm -v $(shell pwd):/app -w /app golangci-lint golangci-lint run ./...
+	golangci-lint run ./cmd/... ./pkg/... ./tests/...
 
 lint-docker:
 	docker build --quiet --target hadolint -t hadolint:latest .
