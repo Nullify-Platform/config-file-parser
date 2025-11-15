@@ -142,21 +142,6 @@ func MergeConfigFiles(
 			}
 		}
 
-		if len(extraConfig.Notifications) > 0 && config.Notifications == nil {
-			config.Notifications = map[string]models.Notification{}
-		}
-
-		for k, v := range extraConfig.Notifications {
-			config.Notifications[k] = v
-		}
-
-		if len(extraConfig.ScheduledNotifications) > 0 && config.ScheduledNotifications == nil {
-			config.ScheduledNotifications = extraConfig.ScheduledNotifications
-		}
-
-		for k, v := range extraConfig.ScheduledNotifications {
-			config.ScheduledNotifications[k] = v
-		}
 	}
 
 	return &config

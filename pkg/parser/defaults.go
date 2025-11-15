@@ -23,8 +23,6 @@ func NewDefaultConfig() *models.Configuration {
 		Secrets: models.Secrets{
 			Ignore: nil,
 		},
-		Notifications:          nil,
-		ScheduledNotifications: nil,
-		Integrations:           models.Integrations{},
+		Integrations: models.Integrations{},
 	}
 }

@@ -60,20 +60,6 @@ func TestMergeConfigFiles(t *testing.T) {
 						},
 					},
 				},
-				Notifications: map[string]models.Notification{
-					"slack": {
-						Events: models.NotificationEvents{
-							All: &models.NotificationEventAll{
-								MinimumSeverity: models.SeverityHigh,
-							},
-						},
-					},
-				},
-				ScheduledNotifications: map[string]models.ScheduledNotification{
-					"slack": {
-						Schedule: "0 0 * * *",
-					},
-				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey:        "JIRINT",
@@ -118,20 +104,6 @@ func TestMergeConfigFiles(t *testing.T) {
 						},
 					},
 				},
-				Notifications: map[string]models.Notification{
-					"slack": {
-						Events: models.NotificationEvents{
-							All: &models.NotificationEventAll{
-								MinimumSeverity: models.SeverityHigh,
-							},
-						},
-					},
-				},
-				ScheduledNotifications: map[string]models.ScheduledNotification{
-					"slack": {
-						Schedule: "0 0 * * *",
-					},
-				},
 				Integrations: models.Integrations{
 					Jira: &models.Jira{
 						ProjectKey:        "JIRINT",
@@ -174,20 +146,6 @@ func TestMergeConfigFiles(t *testing.T) {
 						{
 							Value: "password",
 						},
-					},
-				},
-				Notifications: map[string]models.Notification{
-					"slack": {
-						Events: models.NotificationEvents{
-							All: &models.NotificationEventAll{
-								MinimumSeverity: models.SeverityHigh,
-							},
-						},
-					},
-				},
-				ScheduledNotifications: map[string]models.ScheduledNotification{
-					"slack": {
-						Schedule: "0 0 * * *",
 					},
 				},
 				Integrations: models.Integrations{
@@ -239,20 +197,6 @@ func TestMergeConfigFiles(t *testing.T) {
 						{
 							Value: "password",
 						},
-					},
-				},
-				Notifications: map[string]models.Notification{
-					"slack": {
-						Events: models.NotificationEvents{
-							All: &models.NotificationEventAll{
-								MinimumSeverity: models.SeverityHigh,
-							},
-						},
-					},
-				},
-				ScheduledNotifications: map[string]models.ScheduledNotification{
-					"slack": {
-						Schedule: "0 0 * * *",
 					},
 				},
 				Integrations: models.Integrations{

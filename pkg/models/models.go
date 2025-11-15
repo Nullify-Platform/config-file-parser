@@ -13,9 +13,7 @@ type Configuration struct {
 	IgnorePaths []string `yaml:"ignore_paths,omitempty"`
 	AutoFix     *AutoFix `yaml:"auto_fix,omitempty"`
 
-	Notifications          map[string]Notification          `yaml:"notifications,omitempty"`
-	ScheduledNotifications map[string]ScheduledNotification `yaml:"scheduled_notifications,omitempty"`
-	Integrations           Integrations                     `yaml:"integrations,omitempty"`
+	Integrations Integrations `yaml:"integrations,omitempty"`
 
 	// features
 	Code         Code         `yaml:"code"`

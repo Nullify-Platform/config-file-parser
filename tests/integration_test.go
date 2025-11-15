@@ -45,68 +45,6 @@ func TestIntegration(t *testing.T) {
 				},
 			},
 		},
-		Notifications: map[string]models.Notification{
-			"all-events-webhook": {
-				Events: models.NotificationEvents{
-					All: &models.NotificationEventAll{
-						MinimumSeverity: models.SeverityHigh,
-						SecretTypes:     []string{"ssh_key"},
-					},
-				},
-				Targets: models.NotificationTargets{
-					Webhook: &models.NotificationTargetWebhook{
-						URLs: []string{"https://webhook.site/123456"},
-					},
-				},
-			},
-			"findings-to-slack-and-email": {
-				Events: models.NotificationEvents{
-					NewCodeFindings: &models.NotificationEventNewCodeFindings{
-						MinimumSeverity: models.SeverityHigh,
-					},
-					NewSecretFindings: &models.NotificationEventNewSecretFindings{
-						Types: []string{"ssh_key"},
-					},
-					NewDependencyFindings: &models.NotificationEventNewDependencyFindings{
-						MinimumSeverity: models.SeverityHigh,
-					},
-				},
-				Targets: models.NotificationTargets{
-					Slack: &models.NotificationTargetSlack{
-						Channels: []string{"123456"},
-					},
-					Email: &models.NotificationTargetEmail{
-						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
-					},
-				},
-				Repositories: []string{
-					"config-file-parser",
-					"dast-action",
-					"cli",
-				},
-			},
-		},
-		ScheduledNotifications: map[string]models.ScheduledNotification{
-			"new-findings": {
-				Schedule: "0 0 * * *",
-				Topics: models.ScheduledNotificationTopics{
-					All: true,
-				},
-				Targets: models.ScheduledNotificationTargets{
-					Email: &models.ScheduledNotificationTargetEmail{
-						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
-					},
-					Slack: &models.ScheduledNotificationTargetSlack{
-						Channels: []string{"123456"},
-					},
-				},
-				Repositories: []string{
-					"config-file-parser",
-					"dast-action",
-					"cli",
-				},
-			},
-		},
 		Integrations: models.Integrations{
 			Jira: &models.Jira{
 				Disabled:          false,
@@ -146,68 +84,6 @@ func TestEmptyFailsBuildField(t *testing.T) {
 					Value:  "actualsecret123",
 					Reason: "We can't remove this right now but we should",
 					Expiry: "2021-12-31",
-				},
-			},
-		},
-		Notifications: map[string]models.Notification{
-			"all-events-webhook": {
-				Events: models.NotificationEvents{
-					All: &models.NotificationEventAll{
-						MinimumSeverity: models.SeverityHigh,
-						SecretTypes:     []string{"ssh_key"},
-					},
-				},
-				Targets: models.NotificationTargets{
-					Webhook: &models.NotificationTargetWebhook{
-						URLs: []string{"https://webhook.site/123456"},
-					},
-				},
-			},
-			"findings-to-slack-and-email": {
-				Events: models.NotificationEvents{
-					NewCodeFindings: &models.NotificationEventNewCodeFindings{
-						MinimumSeverity: models.SeverityHigh,
-					},
-					NewSecretFindings: &models.NotificationEventNewSecretFindings{
-						Types: []string{"ssh_key"},
-					},
-					NewDependencyFindings: &models.NotificationEventNewDependencyFindings{
-						MinimumSeverity: models.SeverityHigh,
-					},
-				},
-				Targets: models.NotificationTargets{
-					Slack: &models.NotificationTargetSlack{
-						Channels: []string{"123456"},
-					},
-					Email: &models.NotificationTargetEmail{
-						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
-					},
-				},
-				Repositories: []string{
-					"config-file-parser",
-					"dast-action",
-					"cli",
-				},
-			},
-		},
-		ScheduledNotifications: map[string]models.ScheduledNotification{
-			"new-findings": {
-				Schedule: "0 0 * * *",
-				Topics: models.ScheduledNotificationTopics{
-					All: true,
-				},
-				Targets: models.ScheduledNotificationTargets{
-					Email: &models.ScheduledNotificationTargetEmail{
-						Addresses: []string{"notifications@nullify.ai", "noreply@nullify.ai"},
-					},
-					Slack: &models.ScheduledNotificationTargetSlack{
-						Channels: []string{"123456"},
-					},
-				},
-				Repositories: []string{
-					"config-file-parser",
-					"dast-action",
-					"cli",
 				},
 			},
 		},
