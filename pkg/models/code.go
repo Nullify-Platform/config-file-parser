@@ -3,9 +3,6 @@ package models
 type Code struct {
 	EnableFailBuilds *bool        `yaml:"enable_fail_builds,omitempty"`
 	Ignore           []CodeIgnore `yaml:"ignore,omitempty"`
-
-	// TODO deprecate
-	AutoFix *AutoFix `yaml:"auto_fix,omitempty"`
 }
 
 type CodeIgnore struct {

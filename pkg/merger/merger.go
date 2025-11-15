@@ -104,16 +104,8 @@ func MergeConfigFiles(
 			config.IgnorePaths = extraConfig.IgnorePaths
 		}
 
-		if extraConfig.Code.AutoFix != nil {
-			config.Code.AutoFix = extraConfig.Code.AutoFix
-		}
-
 		if len(extraConfig.Code.Ignore) > 0 {
 			config.Code.Ignore = extraConfig.Code.Ignore
-		}
-
-		if extraConfig.Dependencies.AutoFix != nil {
-			config.Dependencies.AutoFix = extraConfig.Dependencies.AutoFix
 		}
 
 		if len(extraConfig.Dependencies.Ignore) > 0 {

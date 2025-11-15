@@ -11,8 +11,7 @@ import (
 // ValidateConfig return true if provided configuration is valid
 func ValidateConfig(config *models.Configuration) bool {
 	return ValidateSeverityThreshold(config) &&
-		ValidatePaths(config) &&
-		ValidateAutoFix(config)
+		ValidatePaths(config)
 }
 
 func IsConfigValid(ctx context.Context, configString string) (bool, error) {

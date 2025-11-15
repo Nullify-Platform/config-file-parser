@@ -11,7 +11,6 @@ type Configuration struct {
 
 	IgnoreDirs  []string `yaml:"ignore_dirs,omitempty"`
 	IgnorePaths []string `yaml:"ignore_paths,omitempty"`
-	AutoFix     *AutoFix `yaml:"auto_fix,omitempty"`
 
 	Integrations Integrations `yaml:"integrations,omitempty"`
 
