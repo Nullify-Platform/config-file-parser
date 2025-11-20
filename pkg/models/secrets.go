@@ -18,6 +18,9 @@ type SecretsIgnore struct {
 
 	// global config only
 	Repositories []string `yaml:"repositories,omitempty"`
+
+	// TODO deprecate
+	Paths []string `yaml:"paths,omitempty"`
 }
 
 type SecretsCustomPattern struct {

@@ -2,7 +2,6 @@ package models
 
 type Code struct {
 	EnableFailBuilds *bool        `yaml:"enable_fail_builds,omitempty"`
-	AutoFix          *AutoFix     `yaml:"auto_fix,omitempty"`
 	Ignore           []CodeIgnore `yaml:"ignore,omitempty"`
 }
 
@@ -14,8 +13,10 @@ type CodeIgnore struct {
 	CWEs    []int    `yaml:"cwes,omitempty"`
 	RuleIDs []string `yaml:"rule_ids,omitempty"`
 	Dirs    []string `yaml:"dirs,omitempty"`
-	Paths   []string `yaml:"paths,omitempty"`
 
 	// global config only
 	Repositories []string `yaml:"repositories,omitempty"`
+
+	// TODO deprecate
+	Paths []string `yaml:"paths,omitempty"`
 }

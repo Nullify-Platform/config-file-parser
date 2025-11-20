@@ -104,16 +104,8 @@ func MergeConfigFiles(
 			config.IgnorePaths = extraConfig.IgnorePaths
 		}
 
-		if extraConfig.Code.AutoFix != nil {
-			config.Code.AutoFix = extraConfig.Code.AutoFix
-		}
-
 		if len(extraConfig.Code.Ignore) > 0 {
 			config.Code.Ignore = extraConfig.Code.Ignore
-		}
-
-		if extraConfig.Dependencies.AutoFix != nil {
-			config.Dependencies.AutoFix = extraConfig.Dependencies.AutoFix
 		}
 
 		if len(extraConfig.Dependencies.Ignore) > 0 {
@@ -142,21 +134,6 @@ func MergeConfigFiles(
 			}
 		}
 
-		if len(extraConfig.Notifications) > 0 && config.Notifications == nil {
-			config.Notifications = map[string]models.Notification{}
-		}
-
-		for k, v := range extraConfig.Notifications {
-			config.Notifications[k] = v
-		}
-
-		if len(extraConfig.ScheduledNotifications) > 0 && config.ScheduledNotifications == nil {
-			config.ScheduledNotifications = extraConfig.ScheduledNotifications
-		}
-
-		for k, v := range extraConfig.ScheduledNotifications {
-			config.ScheduledNotifications[k] = v
-		}
 	}
 
 	return &config
