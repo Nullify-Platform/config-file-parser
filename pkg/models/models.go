@@ -2,25 +2,25 @@ package models
 
 type Configuration struct {
 	// git platform options
-	EnableFailBuilds         *bool `yaml:"enable_fail_builds,omitempty"`
-	EnablePullRequestReviews *bool `yaml:"enable_pull_request_reviews,omitempty"`
-	EnableIssueDashboards    *bool `yaml:"enable_issue_dashboards,omitempty"`
+	EnableFailBuilds         *bool `json:"enableFailBuilds,omitempty"         yaml:"enable_fail_builds,omitempty"`
+	EnablePullRequestReviews *bool `json:"enablePullRequestReviews,omitempty" yaml:"enable_pull_request_reviews,omitempty"`
+	EnableIssueDashboards    *bool `json:"enableIssueDashboards,omitempty"    yaml:"enable_issue_dashboards,omitempty"`
 
-	SeverityThreshold string `yaml:"severity_threshold,omitempty"`
-	PriorityThreshold string `yaml:"priority_threshold,omitempty"`
+	SeverityThreshold string `json:"severityThreshold,omitempty" yaml:"severity_threshold,omitempty"`
+	PriorityThreshold string `json:"priorityThreshold,omitempty" yaml:"priority_threshold,omitempty"`
 
-	IgnoreDirs  []string `yaml:"ignore_dirs,omitempty"`
-	IgnorePaths []string `yaml:"ignore_paths,omitempty"`
+	IgnoreDirs  []string `json:"ignoreDirs,omitempty"  yaml:"ignore_dirs,omitempty"`
+	IgnorePaths []string `json:"ignorePaths,omitempty" yaml:"ignore_paths,omitempty"`
 
-	Integrations Integrations `yaml:"integrations,omitempty"`
+	Integrations Integrations `json:"integrations,omitempty" yaml:"integrations,omitempty"`
 
 	// features
-	Code         Code         `yaml:"code"`
-	Dependencies Dependencies `yaml:"dependencies"`
-	Secrets      Secrets      `yaml:"secrets"`
+	Code         Code         `json:"code"         yaml:"code"`
+	Dependencies Dependencies `json:"dependencies" yaml:"dependencies"`
+	Secrets      Secrets      `json:"secrets"      yaml:"secrets"`
 
 	// TODO deprecate
-	SecretsWhitelist []string `yaml:"secrets_whitelist,omitempty"`
+	SecretsWhitelist []string `json:"secretsWhitelist,omitempty" yaml:"secrets_whitelist,omitempty"`
 }
 
 func (c *Configuration) GetEnableFailBuilds() bool {

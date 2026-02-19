@@ -1,21 +1,21 @@
 package models
 
 type Dependencies struct {
-	EnableFailBuilds *bool                `yaml:"enable_fail_builds,omitempty"`
-	Ignore           []DependenciesIgnore `yaml:"ignore,omitempty"`
+	EnableFailBuilds *bool                `json:"enableFailBuilds,omitempty" yaml:"enable_fail_builds,omitempty"`
+	Ignore           []DependenciesIgnore `json:"ignore,omitempty"           yaml:"ignore,omitempty"`
 }
 
 type DependenciesIgnore struct {
-	Reason string `yaml:"reason,omitempty"`
-	Expiry string `yaml:"expiry,omitempty"`
+	Reason string `json:"reason,omitempty" yaml:"reason,omitempty"`
+	Expiry string `json:"expiry,omitempty" yaml:"expiry,omitempty"`
 
 	// matchers
-	CVEs []string `yaml:"cves,omitempty"`
-	Dirs []string `yaml:"dirs,omitempty"`
+	CVEs []string `json:"cves,omitempty" yaml:"cves,omitempty"`
+	Dirs []string `json:"dirs,omitempty" yaml:"dirs,omitempty"`
 
 	// global config only
-	Repositories []string `yaml:"repositories,omitempty"`
+	Repositories []string `json:"repositories,omitempty" yaml:"repositories,omitempty"`
 
 	// TODO deprecate
-	Paths []string `yaml:"paths,omitempty"`
+	Paths []string `json:"paths,omitempty" yaml:"paths,omitempty"`
 }

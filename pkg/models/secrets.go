@@ -1,33 +1,33 @@
 package models
 
 type Secrets struct {
-	EnableFailBuilds             *bool                           `yaml:"enable_fail_builds,omitempty"`
-	Ignore                       []SecretsIgnore                 `yaml:"ignore,omitempty"`
-	CustomPatterns               map[string]SecretsCustomPattern `yaml:"custom_patterns,omitempty"`
-	CustomPatternsOverrideGlobal bool                            `yaml:"custom_patterns_override_global,omitempty"`
+	EnableFailBuilds             *bool                           `json:"enableFailBuilds,omitempty"             yaml:"enable_fail_builds,omitempty"`
+	Ignore                       []SecretsIgnore                 `json:"ignore,omitempty"                       yaml:"ignore,omitempty"`
+	CustomPatterns               map[string]SecretsCustomPattern `json:"customPatterns,omitempty"                yaml:"custom_patterns,omitempty"`
+	CustomPatternsOverrideGlobal bool                            `json:"customPatternsOverrideGlobal,omitempty" yaml:"custom_patterns_override_global,omitempty"`
 }
 
 type SecretsIgnore struct {
-	Reason string `yaml:"reason,omitempty"`
-	Expiry string `yaml:"expiry,omitempty"`
+	Reason string `json:"reason,omitempty"  yaml:"reason,omitempty"`
+	Expiry string `json:"expiry,omitempty"  yaml:"expiry,omitempty"`
 
 	// matchers
-	Value   string `yaml:"value,omitempty"`
-	Pattern string `yaml:"pattern,omitempty"`
-	SHA256  string `yaml:"sha256,omitempty"`
+	Value   string `json:"value,omitempty"   yaml:"value,omitempty"`
+	Pattern string `json:"pattern,omitempty" yaml:"pattern,omitempty"`
+	SHA256  string `json:"sha256,omitempty"  yaml:"sha256,omitempty"`
 
 	// global config only
-	Repositories []string `yaml:"repositories,omitempty"`
+	Repositories []string `json:"repositories,omitempty" yaml:"repositories,omitempty"`
 
 	// TODO deprecate
-	Paths []string `yaml:"paths,omitempty"`
+	Paths []string `json:"paths,omitempty" yaml:"paths,omitempty"`
 }
 
 type SecretsCustomPattern struct {
-	Description      *string  `yaml:"description,omitempty"`
-	SecretRegex      string   `yaml:"secret_regex,omitempty"`
-	SecretRegexGroup *int     `yaml:"secret_regex_group,omitempty"`
-	Entropy          *float32 `yaml:"entropy,omitempty"`
-	PathRegex        *string  `yaml:"path_regex,omitempty"`
-	Keywords         []string `yaml:"keywords,omitempty"`
+	Description      *string  `json:"description,omitempty"      yaml:"description,omitempty"`
+	SecretRegex      string   `json:"secretRegex,omitempty"      yaml:"secret_regex,omitempty"`
+	SecretRegexGroup *int     `json:"secretRegexGroup,omitempty" yaml:"secret_regex_group,omitempty"`
+	Entropy          *float32 `json:"entropy,omitempty"          yaml:"entropy,omitempty"`
+	PathRegex        *string  `json:"pathRegex,omitempty"        yaml:"path_regex,omitempty"`
+	Keywords         []string `json:"keywords,omitempty"         yaml:"keywords,omitempty"`
 }
