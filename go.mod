@@ -1,6 +1,6 @@
 module github.com/nullify-platform/config-file-parser
 
-go 1.24.0
+go 1.25.0
 
 toolchain go1.25.6
 
@@ -20,5 +20,5 @@ require (
 require (
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
-	golang.org/x/exp v0.0.0-20260112195511-716be5621a96
+	golang.org/x/exp v0.0.0-20260218203240-3dfff04db8fa
 )
