@@ -2,7 +2,7 @@ module github.com/nullify-platform/config-file-parser
 
 go 1.25.0
 
-toolchain go1.25.6
+toolchain go1.26.0
 
 require (
 	github.com/gobwas/glob v0.2.3
